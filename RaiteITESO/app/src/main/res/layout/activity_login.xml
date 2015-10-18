@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
     android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/activity_login_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="user"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="15dp"/>
+
+    <EditText
+        android:id="@+id/activity_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="40dp"/>
+
+    <Button
+        android:id="@+id/activity_login_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Log in"
+        android:layout_marginBottom="100dp"/>
+
+    <Button
+        android:id="@+id/activity_login_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Create Account"
+        android:layout_marginBottom="15dp"/>
 
 </LinearLayout>
