@@ -31,6 +31,13 @@ public class ActivityLogin extends Activity {
         login = (Button) findViewById(R.id.activity_login_login);
         create = (Button) findViewById(R.id.activity_login_create);
 
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
