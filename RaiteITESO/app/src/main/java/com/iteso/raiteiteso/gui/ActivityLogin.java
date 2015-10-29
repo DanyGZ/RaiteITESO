@@ -23,12 +23,12 @@ public class ActivityLogin extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        /*setContentView(R.layout.activity_login);
 
         userNameEdit = (EditText) findViewById(R.id.activity_login_user);
         passwordEdit = (EditText) findViewById(R.id.activity_login_password);
         login = (Button) findViewById(R.id.activity_login_login);
-        create = (Button) findViewById(R.id.activity_login_create);
+        create = (Button) findViewById(R.id.activity_login_create);*/
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
