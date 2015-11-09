@@ -18,6 +18,7 @@
                 android:id="@+id/activity_create_account_userName"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
+                android:singleLine="true"
                 android:hint="Nombre de usuario"/>
 
             <EditText
@@ -25,6 +26,7 @@
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:singleLine="true"
                 android:hint="Nombre"/>
 
             <EditText
@@ -32,6 +34,7 @@
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:singleLine="true"
                 android:hint="Contraseña"
                 android:password="true"
                 android:inputType="textPassword"/>
@@ -57,6 +60,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="5dp"
+                    android:singleLine="true"
                     android:inputType="number"
                     android:hint="Lunes"/>
 
@@ -66,6 +70,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
+                    android:singleLine="true"
                     android:inputType="number"
                     android:hint="Martes"/>
 
@@ -75,6 +80,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
+                    android:singleLine="true"
                     android:inputType="number"
                     android:hint="Miércoles"/>
 
@@ -92,6 +98,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:hint="Jueves"/>
 
                 <EditText
@@ -101,6 +108,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:hint="Viernes"/>
 
             </LinearLayout>
@@ -125,6 +133,7 @@
                     android:id="@+id/activity_create_account_car"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
+                    android:singleLine="true"
                     android:hint="Carro" />
 
                 <EditText
@@ -132,6 +141,7 @@
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
+                    android:singleLine="true"
                     android:hint="Color" />
 
                 <EditText
@@ -148,6 +158,7 @@
                     android:layout_height="50dp"
                     android:textOff="No disponible"
                     android:textOn="Disponible"
+                    android:singleLine="true"
                     android:checked="true"/>
 
             </LinearLayout>

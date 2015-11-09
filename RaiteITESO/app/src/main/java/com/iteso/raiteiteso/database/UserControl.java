@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
@@ -47,6 +48,7 @@ public class UserControl {
             inserted = db.insertOrThrow(DatabaseHandler.USERS_WITH_CAR, null, values);
         }catch(Exception e){
             inserted = -1;
+            Log.v("TAG", e.getLocalizedMessage());
         }
         try{
             db.close();

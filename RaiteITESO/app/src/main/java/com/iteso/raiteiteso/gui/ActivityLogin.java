@@ -53,20 +53,26 @@ public class ActivityLogin extends Activity {
                 userName = userNameEdit.getText().toString();
                 password = passwordEdit.getText().toString();
 
-                UserWOCar userWCar = userValidation();
-                if(userWCar != null){
-                    if(userWCar.getPassword().equals(password)){
-                        if(userWCar instanceof UserWOCar){
-                            intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
-                        }else{
-                            intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
-                        }
-                        startActivity(intent);
-                    }else{
-                        Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
-                    }
+                if(userName.equals("") || userName.equals(" ") || password.equals("") || password.equals(" ")){
+                    Toast.makeText(ActivityLogin.this, "Debe llenar todos los campos", Toast.LENGTH_LONG).show();
+                }else if(userName.contains("'")){
+                    Toast.makeText(ActivityLogin.this, "Caracteres inválidos", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(ActivityLogin.this, "Usuario incorrecto", Toast.LENGTH_LONG).show();
+                    UserWOCar userWCar = userValidation();
+                    if(userWCar != null){
+                        if(userWCar.getPassword().equals(password)){
+                            if(userWCar instanceof UserWOCar){
+                                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
+                            }else{
+                                intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                            }
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Toast.makeText(ActivityLogin.this, "Usuario incorrecto", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

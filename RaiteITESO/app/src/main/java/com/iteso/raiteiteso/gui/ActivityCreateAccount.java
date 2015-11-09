@@ -93,10 +93,11 @@ public class ActivityCreateAccount extends Activity {
                 String carColor = carColorEditText.getText().toString();
                 String carCapacity = carCapacityEditText.getText().toString();
 
-                if(userName == null || name == null || password == null || repeatedPassword == null ||
-                        monday == null || tuesday == null || wednesday == null || thursday == null ||
-                        friday == null || (car == null && carToggle.isChecked()) ||
-                        (carColor == null && carToggle.isChecked()) || (carCapacity == null && carToggle.isChecked())){
+
+                if(userName.equals("") || name.equals("") || password.equals("") || repeatedPassword.equals("") ||
+                        monday.equals("") || tuesday.equals("") || wednesday.equals("") || thursday.equals("") ||
+                        friday.equals("") || (car.equals("") && carToggle.isChecked()) ||
+                        (carColor.equals("") && carToggle.isChecked()) || (carCapacity.equals("") && carToggle.isChecked())){
                     Toast.makeText(ActivityCreateAccount.this, "Debe llenar todos los campos", Toast.LENGTH_LONG).show();
                 }else{
                     if(password.equals(repeatedPassword)){
@@ -117,14 +118,14 @@ public class ActivityCreateAccount extends Activity {
                             user.setAvailable(availableToggle.isChecked());
 
                             if(userControl.addUserWithCar(user, dh) == -1){
-                                Toast.makeText(ActivityCreateAccount.this, "Usuario con carro inválido", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ActivityCreateAccount.this, "Usuario inválido", Toast.LENGTH_LONG).show();
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
                             }
                         }else{
                             if(userControl.addUserWithOutCar((UserWOCar)user, dh) == -1){
-                                Toast.makeText(ActivityCreateAccount.this, "Usuario sin carro inválido", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ActivityCreateAccount.this, "Usuario inválido", Toast.LENGTH_LONG).show();
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
