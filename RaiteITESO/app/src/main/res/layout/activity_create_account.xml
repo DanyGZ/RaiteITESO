@@ -10,22 +10,153 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:gravity="center">
 
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"/>
+            <EditText
+                android:id="@+id/activity_create_account_userName"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:hint="Nombre de usuario"/>
 
-            <!--Si el usuario tiene carro se muestra esto-->
+            <EditText
+                android:id="@+id/activity_create_account_name"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="Nombre"/>
+
+            <EditText
+                android:id="@+id/activity_create_account_password"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="Contraseña"
+                android:password="true"
+                android:inputType="textPassword"/>
+
+            <EditText
+                android:id="@+id/activity_create_account_repeat_password"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="Repita contraseña"
+                android:password="true"
+                android:inputType="textPassword"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/activity_create_account_monday"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:inputType="number"
+                    android:hint="Lunes"/>
+
+                <EditText
+                    android:id="@+id/activity_create_account_tuesday"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:hint="Martes"/>
+
+                <EditText
+                    android:id="@+id/activity_create_account_wednesday"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:hint="Miércoles"/>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/activity_create_account_thursday"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:inputType="number"
+                    android:hint="Jueves"/>
+
+                <EditText
+                    android:id="@+id/activity_create_account_friday"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:hint="Viernes"/>
+
+            </LinearLayout>
+
+            <ToggleButton
+                android:id="@+id/activity_create_account_toggle"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textOff="No carro"
+                android:textOn="Carro"
+                android:checked="false"/>
+
+            <LinearLayout
+                android:id="@+id/activity_create_account_layout_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/activity_create_account_car"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:hint="Carro" />
+
+                <EditText
+                    android:id="@+id/activity_create_account_car_color"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="Color" />
+
+                <EditText
+                    android:id="@+id/activity_create_account_car_capacity"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:hint="Capacidad" />
+
+                <ToggleButton
+                    android:id="@+id/activity_create_account_toggle_available"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:textOff="No disponible"
+                    android:textOn="Disponible"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/activity_create_account_create"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:text="Crear"/>
 
         </LinearLayout>
 
