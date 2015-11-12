@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/activity_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="20dp"
+
+        />
+
+    <TextView
+        android:id="@+id/activity_item_final_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Punto Final"
+        android:textSize="20dp"
+        android:layout_below="@+id/activity_item_name"
+        />
+
+    <Button
+        android:id="@+id/activity_item_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rechazar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="3dp"
+        />
+
+
+</RelativeLayout>
