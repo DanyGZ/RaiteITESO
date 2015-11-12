@@ -22,6 +22,10 @@
             android:name=".ActivityCreateAccount"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ActivityMainWithCar"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
