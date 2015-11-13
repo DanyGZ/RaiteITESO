@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.iteso.raiteiteso.beans.UserWCar;
+
 import java.util.ArrayList;
 
 /**
@@ -16,10 +18,10 @@ import java.util.ArrayList;
  */
 public class ActivityAdapterWithoutCar extends BaseAdapter implements ListAdapter {
 
-    private ArrayList<String> infoRaite = new ArrayList<String>();
+    private ArrayList<UserWCar> infoRaite = new ArrayList<>();
     private Context context;
 
-    public ActivityAdapterWithoutCar(ArrayList<String>infoRaite, Context context){
+    public ActivityAdapterWithoutCar(ArrayList<UserWCar>infoRaite, Context context){
         this.infoRaite = infoRaite;
         this.context=context;
     }
@@ -48,13 +50,13 @@ public class ActivityAdapterWithoutCar extends BaseAdapter implements ListAdapte
         }
 
         TextView nameTxt = (TextView)view.findViewById(R.id.activity_item_without_car_name);
-        nameTxt.setText(infoRaite.get(position));
+        nameTxt.setText(infoRaite.get(position).getName());
 
         TextView finalPoint = (TextView)view.findViewById(R.id.activity_item_without_car_final_point);
-        finalPoint.setText(infoRaite.get(position));
+        finalPoint.setText(infoRaite.get(position).getCar());
 
         TextView timeTxt = (TextView)view.findViewById(R.id.activity_item_without_car_time);
-        timeTxt.setText(infoRaite.get(position));
+        timeTxt.setText(infoRaite.get(position).getMondayHour());
 
         ImageView info = (ImageView)view.findViewById(R.id.activity_item_without_car_imagen);
 

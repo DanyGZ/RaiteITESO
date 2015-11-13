@@ -42,4 +42,13 @@
         >
     </ListView>
 
+    <TextView
+        android:id="@+id/activity_main_without_car_no_raite"
+        android:layout_below="@+id/activity_main_without_car_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="25dp"
+        android:text="No hay raites disponibles"/>
+
 </RelativeLayout>

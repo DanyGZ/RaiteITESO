@@ -2,7 +2,14 @@ package com.iteso.raiteiteso.gui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.iteso.raiteiteso.beans.UserWCar;
+import com.iteso.raiteiteso.database.DatabaseHandler;
+import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -10,23 +17,30 @@ import java.util.ArrayList;
  * Created by Daniel on 29/10/2015.
  */
 public class ActivityMainWithOutCar extends Activity{
+    TextView noRaite;
+    ListView listView;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_without_car);
 
-        ArrayList<String> points =new ArrayList<String>();
-        points.add("Prueba 1");
-        points.add("Prueba 2");
-        points.add("Prueba 3");
-        points.add("Prueba 4");
-        points.add("Prueba 5");
-        points.add("Prueba 6");
-        points.add("Prueba 7");
-        points.add("Prueba 8");
+        noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
+        listView = (ListView)findViewById(R.id.activity_main_without_car_list);
 
-        ActivityAdapterWithoutCar raite = new ActivityAdapterWithoutCar(points,this);
-        ListView listView = (ListView)findViewById(R.id.activity_main_without_car_list);
-        listView.setAdapter(raite);
+        DatabaseHandler dh = DatabaseHandler.getInstance(this);
+        UserControl userControl = new UserControl(this);
+
+        ArrayList<UserWCar> points = userControl.getRides(dh, Constants.MONDAY, "1");
+
+        if(points.size() == 0){
+            noRaite.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        }else{
+            noRaite.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+            ActivityAdapterWithoutCar raite = new ActivityAdapterWithoutCar(points,this);
+            listView.setAdapter(raite);
+        }
     }
 }
