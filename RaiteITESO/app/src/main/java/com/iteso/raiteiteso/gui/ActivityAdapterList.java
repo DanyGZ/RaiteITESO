@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -55,6 +56,16 @@ public class ActivityAdapterList extends BaseAdapter implements ListAdapter{
         finalPointTxt.setText(pointsInteres.get(position));
 
         Button cancelBtn = (Button)view.findViewById(R.id.activity_item_cancel);
+
+      /*  CheckBox c = new CheckBox(context);
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(c.isChecked()){
+
+                }
+            }
+        });*/
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
