@@ -8,6 +8,9 @@ import android.util.Log;
 
 import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
+import com.iteso.raiteiteso.utils.Constants;
+
+import java.util.ArrayList;
 
 /**
  * Created by Daniel on 08/11/2015.
@@ -170,5 +173,68 @@ public class UserControl {
         cursor = null;
 
         return userWOCar;
+    }
+
+    public ArrayList<UserWCar> getRides(DatabaseHandler dh, int day, String hour){
+        ArrayList<UserWCar> usersWCars = new ArrayList<>();
+        String selectQuery = "Select " + DatabaseHandler.USERS_WITH_CAR_USER_NAME + ", " + DatabaseHandler.USERS_WITH_CAR_NAME +
+                ", " + DatabaseHandler.USERS_WITH_CAR_CAR + ", " + DatabaseHandler.USERS_WITH_CAR_CAR_COLOR +
+                ", " + DatabaseHandler.USERS_WITH_CAR_CAPACITY + ", " + DatabaseHandler.USERS_WITH_CAR_MONDAY_HOUR +
+                ", " + DatabaseHandler.USERS_WITH_CAR_TUESDAY_HOUR + ", " + DatabaseHandler.USERS_WITH_CAR_WEDNESDAY_HOUR +
+                ", " + DatabaseHandler.USERS_WITH_CAR_THURSDAY_HOUR + ", " + DatabaseHandler.USERS_WITH_CAR_FRIDAY_HOUR +
+                ", " + DatabaseHandler.USERS_WITH_CAR_AVAILABLE + " FROM " + DatabaseHandler.USERS_WITH_CAR +
+                " WHERE ";
+
+        switch (day){
+            case Constants.MONDAY:
+                selectQuery += DatabaseHandler.USERS_WITH_CAR_MONDAY_HOUR;
+                break;
+            case Constants.TUESDAY:
+                selectQuery += DatabaseHandler.USERS_WITH_CAR_TUESDAY_HOUR;
+                break;
+            case Constants.WEDNESDAY:
+                selectQuery += DatabaseHandler.USERS_WITH_CAR_WEDNESDAY_HOUR;
+                break;
+            case Constants.THURSDAY:
+                selectQuery += DatabaseHandler.USERS_WITH_CAR_THURSDAY_HOUR;
+                break;
+            case Constants.FRIDAY:
+                selectQuery += DatabaseHandler.USERS_WITH_CAR_FRIDAY_HOUR;
+                break;
+        }
+
+        selectQuery += " = '" + hour + "' AND " + DatabaseHandler.USERS_WITH_CAR_AVAILABLE + " = 1";
+
+        SQLiteDatabase db = dh.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()){
+            do{
+                UserWCar userWCar = new UserWCar();
+                userWCar.setUserName(cursor.getString(0));
+                userWCar.setName(cursor.getString(1));
+                userWCar.setCar(cursor.getString(2));
+                userWCar.setCarColor(cursor.getString(3));
+                userWCar.setCarCapacity(cursor.getInt(4));
+                userWCar.setMondayHour(cursor.getString(5));
+                userWCar.setTuesdayHour(cursor.getString(6));
+                userWCar.setWednesdayHour(cursor.getString(7));
+                userWCar.setThursdayHour(cursor.getString(8));
+                userWCar.setFridayHour(cursor.getString(9));
+                userWCar.setPassword("");
+                userWCar.setAvailable(true);
+
+                usersWCars.add(userWCar);
+            }while(cursor.moveToNext());
+        }
+
+        try{
+            cursor.close();
+            db.close();
+        }catch(Exception e){
+        }
+        cursor = null;
+        db = null;
+
+        return usersWCars;
     }
 }

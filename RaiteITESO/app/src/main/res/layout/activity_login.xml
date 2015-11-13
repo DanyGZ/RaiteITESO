@@ -19,6 +19,8 @@
         android:layout_marginTop="20dp"
         android:hint="Contraseña"
         android:singleLine="true"
+        android:inputType="textPassword"
+        android:password="true"
         android:layout_gravity="center"/>
 
     <LinearLayout
