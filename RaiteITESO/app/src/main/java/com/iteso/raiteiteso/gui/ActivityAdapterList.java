@@ -76,8 +76,6 @@ public class ActivityAdapterList extends BaseAdapter implements ListAdapter{
             }
         });
 
-        RecyclerView recycler;
-
         return view;
     }
 }
