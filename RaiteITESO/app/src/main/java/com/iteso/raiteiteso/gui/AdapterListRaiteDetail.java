@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.iteso.raiteiteso.beans.UserWCar;
-
 import java.util.ArrayList;
 
 /**
@@ -46,9 +44,10 @@ public class AdapterListRaiteDetail extends BaseAdapter implements ListAdapter {
         View view = convertView;
         if(view ==null){
             LayoutInflater inflater= (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.activity_item, null);
+            view = inflater.inflate(R.layout.item_list_detail, null);
         }
         TextView detail = (TextView)view.findViewById(R.id.item_list_details_text);
+        detail.setText(details.get(position));
 
         return view;
     }

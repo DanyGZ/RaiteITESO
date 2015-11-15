@@ -16,10 +16,6 @@ public class ToggleButtonClass extends RelativeLayout{
     ToggleButton rightButton;
     private ToggleButtonListener toggleButtonListener;
     private Context context;
-    private String leftButtonOnText;
-    private String leftButtonOffText;
-    private String rightButtonOnText;
-    private String rightButtonOffText;
 
     public interface ToggleButtonListener{
         void leftButtonClick();
@@ -27,13 +23,15 @@ public class ToggleButtonClass extends RelativeLayout{
     }
 
     public void setLeftButtonText(String onText, String offText){
-        this.leftButtonOnText = onText;
-        this.leftButtonOffText = offText;
+        leftButton.setTextOn(onText);
+        leftButton.setTextOff(offText);
+        leftButton.setText(onText);
     }
 
     public void setRithButtonText(String onText, String offText){
-        this.rightButtonOnText = onText;
-        this.rightButtonOffText = offText;
+        rightButton.setTextOn(onText);
+        rightButton.setTextOff(offText);
+        rightButton.setText(offText);
     }
 
     public void setToggleButtonListener(ToggleButtonListener toggleButtonListener){
