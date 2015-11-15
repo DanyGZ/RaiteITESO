@@ -16,12 +16,12 @@ import java.util.ArrayList;
 /**
  * Created by houstonsalgado on 13/11/15.
  */
-public class ActivityAdapterWithoutCar extends BaseAdapter implements ListAdapter {
+public class AdapterListWithoutCar extends BaseAdapter implements ListAdapter {
 
     private ArrayList<UserWCar> infoRaite = new ArrayList<>();
     private Context context;
 
-    public ActivityAdapterWithoutCar(ArrayList<UserWCar>infoRaite, Context context){
+    public AdapterListWithoutCar(ArrayList<UserWCar> infoRaite, Context context){
         this.infoRaite = infoRaite;
         this.context=context;
     }

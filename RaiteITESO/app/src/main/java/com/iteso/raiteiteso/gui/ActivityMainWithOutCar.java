@@ -39,7 +39,7 @@ public class ActivityMainWithOutCar extends Activity{
         }else{
             noRaite.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
-            ActivityAdapterWithoutCar raite = new ActivityAdapterWithoutCar(points,this);
+            AdapterListWithoutCar raite = new AdapterListWithoutCar(points,this);
             listView.setAdapter(raite);
         }
     }
