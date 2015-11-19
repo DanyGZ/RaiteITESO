@@ -3,11 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/activity_raite_details_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/iteso_logo"
+        />
+
     <TextView
         android:id="@+id/activity_raite_detail_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/activity_raite_details_image"
         android:typeface="sans"
         android:textSize="40dp"
         android:text="Wey del raite"
@@ -15,17 +24,19 @@
 
     <com.iteso.raiteiteso.gui.ToggleButtonClass
         android:id="@+id/activity_raite_detail_toggle_button"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/activity_raite_detail_name">
     </com.iteso.raiteiteso.gui.ToggleButtonClass>
 
     <ListView
         android:id="@+id/activity_raite_detail_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="310dp"
+        android:layout_centerHorizontal="true"
+        android:dividerHeight="1dp"
         android:layout_below="@+id/activity_raite_detail_toggle_button">
-
     </ListView>
 
     <Button
@@ -34,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/activity_raite_detail_list"
+        android:layout_marginTop="10dp"
         android:typeface="sans"
         android:textSize="20dp"
         android:text="Pedir Raite"
