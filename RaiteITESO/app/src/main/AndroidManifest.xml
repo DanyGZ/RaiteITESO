@@ -30,6 +30,10 @@
             android:name=".ActivityMainWithOutCar"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ActivityRaiteDetail"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,8 +1,10 @@
 package com.iteso.raiteiteso.gui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -42,5 +44,13 @@ public class ActivityMainWithOutCar extends Activity{
             AdapterListWithoutCar raite = new AdapterListWithoutCar(points,this);
             listView.setAdapter(raite);
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ActivityMainWithOutCar.this, ActivityRaiteDetail.class);
+                startActivity(intent);
+            }
+        });
     }
 }
