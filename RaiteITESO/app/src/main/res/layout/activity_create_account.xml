@@ -13,7 +13,11 @@
         android:layout_marginBottom="25dp"
         android:textColor="@android:color/black"/>
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:id="@+id/activity_create_account_first_data_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,6 +107,8 @@
                 android:layout_gravity="center"
                 android:text="Siguiente" />
         </LinearLayout>
+
+    </ScrollView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -260,4 +266,5 @@
         </LinearLayout>
 
     </ScrollView>
+
 </LinearLayout>

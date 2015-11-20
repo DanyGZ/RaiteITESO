@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.database.DatabaseHandler;
 import com.iteso.raiteiteso.database.UserControl;
@@ -61,7 +62,7 @@ public class ActivityLogin extends Activity {
                     UserWOCar userWCar = userValidation();
                     if(userWCar != null){
                         if(userWCar.getPassword().equals(password)){
-                            if(userWCar instanceof UserWOCar){
+                            if(userWCar instanceof UserWCar){
                                 intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
                             }else{
                                 intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
