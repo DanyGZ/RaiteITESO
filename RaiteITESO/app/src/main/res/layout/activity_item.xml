@@ -3,13 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/activity_item_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/Manita"
+        />
+
+
     <TextView
         android:id="@+id/activity_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
         android:textSize="20dp"
-
+        android:layout_toRightOf="@+id/activity_item_image"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
         />
 
     <TextView
@@ -19,16 +31,28 @@
         android:text="Punto Final"
         android:textSize="20dp"
         android:layout_below="@+id/activity_item_name"
+        android:layout_toRightOf="@+id/activity_item_image"
+        android:layout_marginLeft="10dp"
         />
-
-    <Button
-        android:id="@+id/activity_item_cancel"
+    <TextView
+        android:id="@+id/activity_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rechazar"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="3dp"
+        android:text="12:00"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/activity_item_final_point"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/activity_item_name"
         />
+
+    <CheckBox
+        android:id="@+id/item_button_check"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        />
+
 
 
 </RelativeLayout>
