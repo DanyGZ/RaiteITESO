@@ -62,9 +62,9 @@ public class ActivityLogin extends Activity {
                     if(userWCar != null){
                         if(userWCar.getPassword().equals(password)){
                             if(userWCar instanceof UserWOCar){
-                                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
-                            }else{
                                 intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                            }else{
+                                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
                             }
                             startActivity(intent);
                         }else{

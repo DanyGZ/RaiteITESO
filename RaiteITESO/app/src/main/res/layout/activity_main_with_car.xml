@@ -3,46 +3,112 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/activity_with_car_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Ofrecer Raite"
+    <ImageView
+        android:id="@+id/activity_main_with_car_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/iteso_logo"
         android:layout_centerHorizontal="true"
-        android:typeface="sans"
-        android:textSize="30dp"
         />
-    <Switch
-        android:id="@+id/activity_main_with_car_visible"
+    
+    <LinearLayout
+        android:id="@+id/activity_main_with_car_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/activity_main_with_car_image"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        >
+        
+        <ImageView
+            android:id="@+id/activity_main_with_car_image_signo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/signo"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="20dp"
+            android:typeface="sans"
+            android:textSize="20dp"
+            android:text="Disponible"
+            />
+
+
+        <Switch
+            android:id="@+id/activity_main_with_car_visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="170dp"
+            android:background="@color/colorPrimary"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/activity_main_with_car_message_solicitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Visible"
+        android:layout_below="@+id/activity_main_with_car_layout1"
+        android:layout_marginTop="5dp"
         android:typeface="sans"
         android:textSize="20dp"
-        android:layout_below="@+id/activity_with_car_message"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="3dp"
-        android:track="@color/colorAccent"
+        android:text="Solicitudes de Raite"
         />
 
+    <ImageView
+        android:id="@+id/activity_main_with_car_refresh"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/activity_main_with_car_layout1"
+        android:layout_marginTop="3dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/refresh"
+        />
     <ListView
         android:id="@+id/activity_main_with_car_points_interest"
         android:layout_width="wrap_content"
-        android:layout_height="320dp"
-        android:layout_below="@+id/activity_main_with_car_visible"
-        android:layout_marginTop="10dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/activity_main_with_car_refresh"
+        android:layout_marginTop="1dp"
+        android:dividerHeight="1dp"
         >
     </ListView>
 
+    <TextView
+        android:id="@+id/activity_main_with_car_message_aviso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_main_with_car_points_interest"
+        android:layout_marginLeft="15dp"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:text="Mensaje de Aviso:"
+        />
     <EditText
+        android:id="@+id/activity_main_with_car_message_confirm"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/activity_main_with_car_points_interest"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/activity_main_with_car_message_aviso"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:singleLine="true"
         android:text="¿Donde nos vemos?"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_main_with_car_message_confirm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:text="Confirmar"
         />
 </RelativeLayout>

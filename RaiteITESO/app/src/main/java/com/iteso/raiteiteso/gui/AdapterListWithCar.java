@@ -7,19 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.iteso.raiteiteso.beans.UserWOCar;
 
 import java.util.ArrayList;
 
 /**
  * Created by houstonsalgado on 10/11/15.
  */
-public class ActivityAdapterList extends BaseAdapter implements ListAdapter{
-    private ArrayList<String> pointsInteres = new ArrayList<String>();
+public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
+    private ArrayList<UserWOCar> pointsInteres = new ArrayList<>();
     private Context context;
 
-    public ActivityAdapterList(ArrayList<String>pointsInteres, Context context){
+    public AdapterListWithCar(ArrayList<UserWOCar> pointsInteres, Context context){
         this.pointsInteres = pointsInteres;
         this.context=context;
     }
@@ -36,7 +39,6 @@ public class ActivityAdapterList extends BaseAdapter implements ListAdapter{
 
     @Override
     public long getItemId(int position) {
-        //return pointsInteres.get(position).getId();
         return 0;
     }
 
@@ -49,23 +51,31 @@ public class ActivityAdapterList extends BaseAdapter implements ListAdapter{
         }
 
         TextView nameTxt = (TextView)view.findViewById(R.id.activity_item_name);
-        nameTxt.setText(pointsInteres.get(position));
+        nameTxt.setText(pointsInteres.get(position).getName());
 
         TextView finalPointTxt = (TextView)view.findViewById(R.id.activity_item_final_point);
-        finalPointTxt.setText(pointsInteres.get(position));
+        finalPointTxt.setText(pointsInteres.get(position).getFridayHour());
+        //Falta agregar el punto
 
         Button cancelBtn = (Button)view.findViewById(R.id.activity_item_cancel);
+
+      /*  CheckBox c = new CheckBox(context);
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(c.isChecked()){
+
+                }
+            }
+        });*/
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Falta definir que se hara en este caso.
                 pointsInteres.remove(position);
                 notifyDataSetChanged();
             }
         });
-
-        RecyclerView recycler;
 
         return view;
     }
