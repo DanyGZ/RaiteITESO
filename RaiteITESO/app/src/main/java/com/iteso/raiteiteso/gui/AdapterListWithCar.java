@@ -1,13 +1,10 @@
 package com.iteso.raiteiteso.gui;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -57,8 +54,6 @@ public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
         finalPointTxt.setText(pointsInteres.get(position).getFridayHour());
         //Falta agregar el punto
 
-        Button cancelBtn = (Button)view.findViewById(R.id.activity_item_cancel);
-
       /*  CheckBox c = new CheckBox(context);
         c.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,14 +63,6 @@ public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
                 }
             }
         });*/
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pointsInteres.remove(position);
-                notifyDataSetChanged();
-            }
-        });
 
         return view;
     }

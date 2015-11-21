@@ -9,4 +9,5 @@ public class Constants {
     public static final int WEDNESDAY = 2;
     public static final int THURSDAY = 3;
     public static final int FRIDAY = 4;
+    public static final String USER_EXTRA = "UserExtra";
 }

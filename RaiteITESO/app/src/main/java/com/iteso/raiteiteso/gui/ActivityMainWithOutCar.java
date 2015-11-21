@@ -30,8 +30,12 @@ public class ActivityMainWithOutCar extends Activity{
         noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
         listView = (ListView)findViewById(R.id.activity_main_without_car_list);
 
+        UserWCar user = getIntent().getParcelableExtra("");
+
         DatabaseHandler dh = DatabaseHandler.getInstance(this);
         UserControl userControl = new UserControl(this);
+
+
 
         ArrayList<UserWCar> points = userControl.getRides(dh, Constants.MONDAY, "1");
 
