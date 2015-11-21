@@ -38,35 +38,35 @@ public class ActivityMainWithOutCar extends Activity{
         DatabaseHandler dh = DatabaseHandler.getInstance(this);
         UserControl userControl = new UserControl(this);
 
-        userWOCarc = getIntent().getParcelableExtra("tag");
+        userWOCarc = getIntent().getParcelableExtra(Constants.USER_EXTRA);
 
-        points = userControl.getRides(dh, calendar.get(Calendar.DAY_OF_WEEK), getHora());
+       // if(Calendar.DAY_OF_WEEK != Calendar.SATURDAY && Calendar.DAY_OF_WEEK != Calendar.SUNDAY) {
+            points = userControl.getRides(dh, Calendar.MONDAY, getHora());
 
 
-        if(points.size() == 0){
-            noRaite.setVisibility(View.VISIBLE);
-            listView.setVisibility(View.GONE);
-        }else{
-            noRaite.setVisibility(View.GONE);
-            listView.setVisibility(View.VISIBLE);
-            AdapterListWithoutCar raite = new AdapterListWithoutCar(points,this);
-            listView.setAdapter(raite);
-        }
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ActivityMainWithOutCar.this, ActivityRaiteDetail.class);
-                intent.putExtra("uwc",points.get(position));
-                startActivity(intent);
+            if (points.size() == 0) {
+                noRaite.setVisibility(View.VISIBLE);
+                listView.setVisibility(View.GONE);
+            } else {
+                noRaite.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
+                AdapterListWithoutCar raite = new AdapterListWithoutCar(points, this);
+                listView.setAdapter(raite);
             }
-        });
 
-
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(ActivityMainWithOutCar.this, ActivityRaiteDetail.class);
+                    intent.putExtra("uwc", points.get(position));
+                    startActivity(intent);
+                }
+            });
+       // }
     }
 
     public String getHora(){
-        String hora = "";
+        String hora = " ";
         switch (calendar.get(Calendar.DAY_OF_WEEK)){
             case Calendar.MONDAY:
                 hora = userWOCarc.getMondayHour();
@@ -84,6 +84,9 @@ public class ActivityMainWithOutCar extends Activity{
                 hora = userWOCarc.getFridayHour();
                 break;
         }
+
+        hora = userWOCarc.getMondayHour();
+
         return hora;
     }
 }

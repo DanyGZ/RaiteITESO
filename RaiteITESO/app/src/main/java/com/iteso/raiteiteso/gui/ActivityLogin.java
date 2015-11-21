@@ -71,7 +71,6 @@ public class ActivityLogin extends Activity {
                             }
                             intent.putExtra(Constants.USER_EXTRA, userWCar);
                             startActivity(intent);
-                            intent.putExtra("UserExtra",userWCar);
 
                         }else{
                             Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
