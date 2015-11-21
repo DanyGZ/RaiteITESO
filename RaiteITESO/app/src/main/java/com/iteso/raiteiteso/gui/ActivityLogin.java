@@ -35,6 +35,7 @@ public class ActivityLogin extends Activity {
         setContentView(R.layout.activity_login);
 
         dh = DatabaseHandler.getInstance(this);
+        final UserWCar userWCar = new UserWCar();
 
         userNameEdit = (EditText) findViewById(R.id.activity_login_user);
         passwordEdit = (EditText) findViewById(R.id.activity_login_password);
@@ -70,6 +71,8 @@ public class ActivityLogin extends Activity {
                             }
                             intent.putExtra(Constants.USER_EXTRA, userWCar);
                             startActivity(intent);
+                            intent.putExtra("UserExtra",userWCar);
+
                         }else{
                             Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
                         }

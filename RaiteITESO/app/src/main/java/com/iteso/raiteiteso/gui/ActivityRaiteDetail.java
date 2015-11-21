@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.iteso.raiteiteso.beans.UserWCar;
+
 import java.util.ArrayList;
 
 /**
@@ -27,9 +29,10 @@ public class ActivityRaiteDetail extends Activity{
         interestPoints = new ArrayList<>();
         adapterArrayList = new ArrayList<>();
 
-        detail.add("Jetta");
-        detail.add("Verde");
-        detail.add("No fumador");
+        UserWCar user = getIntent().getParcelableExtra("uwc");
+
+        detail.add(user.getCar());
+        detail.add(user.getCarColor());
         detail.add("Punto de reunion");
 
         interestPoints.add("Patria");
