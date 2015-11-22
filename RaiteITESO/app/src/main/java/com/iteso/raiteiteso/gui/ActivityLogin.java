@@ -36,6 +36,7 @@ public class ActivityLogin extends Activity {
 
         dh = DatabaseHandler.getInstance(this);
         final UserWCar userWCar = new UserWCar();
+        final UserWOCar userWOCar = new UserWOCar();
 
         userNameEdit = (EditText) findViewById(R.id.activity_login_user);
         passwordEdit = (EditText) findViewById(R.id.activity_login_password);
@@ -66,8 +67,13 @@ public class ActivityLogin extends Activity {
                         if(userWCar.getPassword().equals(password)){
                             if(userWCar.getCar() != null){
                                 intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
-                            }else{
-                                intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                            }else {
+                                if (userWOCar.getRide() ==""){
+                                    intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                                }else{
+                                    intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
+                                    intent.putExtra("wc",userControl.getUserWithOuthCarByUserName(userWOCar.getUserName(),dh));
+                                }
                             }
                             intent.putExtra(Constants.USER_EXTRA, userWCar);
                             startActivity(intent);
