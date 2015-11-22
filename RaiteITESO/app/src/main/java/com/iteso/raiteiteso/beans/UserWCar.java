@@ -55,6 +55,12 @@ public class UserWCar extends UserWOCar implements Parcelable{
         }
     };
 
+    public void askForRide(UserWOCar userWOCar){
+        if(!userWOCars.contains(userWOCar)){
+            userWOCars.add(userWOCar);
+        }
+    }
+
     public String getCar() {
         return car;
     }

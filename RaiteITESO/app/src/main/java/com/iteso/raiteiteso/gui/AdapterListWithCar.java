@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -18,10 +20,21 @@ import java.util.ArrayList;
 public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
     private ArrayList<UserWOCar> pointsInteres = new ArrayList<>();
     private Context context;
+    private ArrayList<Boolean> checkedItems;
 
     public AdapterListWithCar(ArrayList<UserWOCar> pointsInteres, Context context){
         this.pointsInteres = pointsInteres;
         this.context=context;
+        checkedItems = new ArrayList<>();
+
+        for(int i=0; i<pointsInteres.size(); i++){
+            checkedItems.add(false);
+        }
+
+    }
+
+    public ArrayList<Boolean> getCheckedItems(){
+        return checkedItems;
     }
 
     @Override
@@ -52,17 +65,19 @@ public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
 
         TextView finalPointTxt = (TextView)view.findViewById(R.id.activity_item_final_point);
         finalPointTxt.setText(pointsInteres.get(position).getFridayHour());
-        //Falta agregar el punto
 
-      /*  CheckBox c = new CheckBox(context);
-        c.setOnClickListener(new View.OnClickListener() {
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.item_button_check);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(c.isChecked()){
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    checkedItems.set(position, true);
+                }else{
+                    checkedItems.set(position, false);
                 }
             }
-        });*/
+        });
+
 
         return view;
     }

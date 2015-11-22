@@ -9,6 +9,8 @@
         android:layout_height="match_parent"
         android:checked="true"
         android:layout_weight=".5"
+        android:background="@color/gray"
+        android:textColor="@android:color/white"
         android:text="Datos del Raite"
         />
 
@@ -18,6 +20,8 @@
         android:layout_height="match_parent"
         android:checked="false"
         android:layout_weight=".5"
+        android:background="@color/black"
+        android:textColor="@android:color/white"
         android:text="Puntos de Interes"
         />
 
