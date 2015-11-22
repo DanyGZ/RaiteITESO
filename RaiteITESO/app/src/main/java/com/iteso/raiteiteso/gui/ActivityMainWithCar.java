@@ -102,10 +102,12 @@ public class ActivityMainWithCar extends Activity{
                             for(int i=0; i<acceptedUsers.size(); i++){
                                 userControl.updateUsersWithOutCar(dh, rideRequest.get(acceptedUsers.get(i)), userWCar.getUserName(),
                                         meetingPoint.getText().toString());
+                                rideRequest.remove(acceptedUsers.get(i));
                             }
 
-                            Toast.makeText(ActivityMainWithCar.this, "Has aceptado a este usuario", Toast.LENGTH_LONG).show();
-
+                            Toast.makeText(ActivityMainWithCar.this, "Has aceptado a los usuarios seleccionados", Toast.LENGTH_LONG).show();
+                            finish();
+                            startActivity(getIntent());
                         }
                     }
 

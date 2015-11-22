@@ -26,6 +26,7 @@ public class ActivityMainWithOutCar extends Activity{
     UserWOCar userWOCarc = new UserWOCar();
     Calendar calendar = Calendar.getInstance();
     ArrayList<UserWCar> points;
+    ArrayList<UserWCar> usersWithCar;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -40,9 +41,16 @@ public class ActivityMainWithOutCar extends Activity{
 
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWOCarc = userControl.getUserWithOuthCarByUserName(userName, dh);
+        points = new ArrayList<>();
 
        // if(Calendar.DAY_OF_WEEK != Calendar.SATURDAY && Calendar.DAY_OF_WEEK != Calendar.SUNDAY) {
-            points = userControl.getRides(dh, Calendar.MONDAY, getHora());
+        usersWithCar = userControl.getRides(dh, Calendar.MONDAY, getHora());
+
+        for(int i=0; i<usersWithCar.size(); i++){
+            if(usersWithCar.get(i).getUserWOCars().size() < usersWithCar.get(i).getCarCapacity()){
+                points.add(usersWithCar.get(i));
+            }
+        }
 
 
             if (points.size() == 0) {
