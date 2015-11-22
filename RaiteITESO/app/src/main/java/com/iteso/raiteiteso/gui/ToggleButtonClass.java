@@ -38,7 +38,7 @@ public class ToggleButtonClass extends RelativeLayout{
         this.toggleButtonListener = toggleButtonListener;
     }
 
-    public ToggleButtonClass(Context context, AttributeSet attrs) {
+    public ToggleButtonClass(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         toggleButtonListener = null;
@@ -57,6 +57,8 @@ public class ToggleButtonClass extends RelativeLayout{
                 if(leftButton.isChecked() && toggleButtonListener != null){
                     toggleButtonListener.leftButtonClick();
                 }
+                leftButton.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                rightButton.setBackgroundColor(context.getResources().getColor(R.color.black));
                 leftButton.setChecked(true);
                 rightButton.setChecked(false);
             }
@@ -68,6 +70,8 @@ public class ToggleButtonClass extends RelativeLayout{
                 if(rightButton.isChecked() && toggleButtonListener != null){
                     toggleButtonListener.rightButtonClick();
                 }
+                leftButton.setBackgroundColor(context.getResources().getColor(R.color.black));
+                rightButton.setBackgroundColor(context.getResources().getColor(R.color.gray));
                 rightButton.setChecked(true);
                 leftButton.setChecked(false);
             }

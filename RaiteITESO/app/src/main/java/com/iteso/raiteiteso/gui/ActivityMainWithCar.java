@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
@@ -30,6 +31,8 @@ public class ActivityMainWithCar extends Activity{
     private TextView noticeMessage;
     private EditText meetingPoint;
     private Button confirm;
+    private ArrayList<UserWOCar> rideRequest;
+    private ArrayList<Integer> acceptedUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,13 @@ public class ActivityMainWithCar extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
-        UserWCar userWCar = getIntent().getParcelableExtra(Constants.USER_EXTRA);
+        final UserWCar userWCar = getIntent().getParcelableExtra(Constants.USER_EXTRA);
+
+        for(int i=0; i<userWCar.getUserWOCars().size(); i++){
+            UserWOCar userWOCar = userWCar.getUserWOCars().get(i);
+            String name = userWOCar.getUserName();
+            System.out.print(name);
+        }
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
@@ -55,9 +64,43 @@ public class ActivityMainWithCar extends Activity{
             confirm.setVisibility(View.GONE);
             listView.setVisibility(View.GONE);
         }else{
-            ArrayList<UserWOCar> rideRequest = userControl.getRidesRequest(dh, userWCar);
+            rideRequest = userControl.getRidesRequest(dh, userWCar);
             adapterList = new AdapterListWithCar(rideRequest, this);
             listView.setAdapter(adapterList);
+
+            confirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ArrayList<Boolean> checkedUsers = adapterList.getCheckedItems();
+                    acceptedUsers = new ArrayList<>();
+
+                    for(int i=0; i<checkedUsers.size(); i++){
+                        if(checkedUsers.get(i)){
+                            acceptedUsers.add(i);
+                        }
+                    }
+
+                    if(acceptedUsers.size() == 0){
+                        Toast.makeText(ActivityMainWithCar.this, "No has seleccionado a nadie para darle ride",
+                                Toast.LENGTH_LONG).show();
+                    }else{
+                        if(meetingPoint.getText().toString().equals("")){
+                            Toast.makeText(ActivityMainWithCar.this, "Debes escribir un mensaje con el" +
+                                    "punto de reunión", Toast.LENGTH_LONG).show();
+                        }else{
+                            for(int i=0; i<acceptedUsers.size(); i++){
+                                userControl.updateUsersWithOutCar(dh, userWCar.getUserWOCars().
+                                        get(acceptedUsers.get(i)), userWCar.getUserName());
+                            }
+
+                            Toast.makeText(ActivityMainWithCar.this, "Has aceptado a este usuario", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+
+                }
+            });
+
         }
         
     }

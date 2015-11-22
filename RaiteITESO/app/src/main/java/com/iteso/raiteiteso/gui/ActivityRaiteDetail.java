@@ -2,9 +2,15 @@ package com.iteso.raiteiteso.gui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.iteso.raiteiteso.beans.UserWCar;
+import com.iteso.raiteiteso.beans.UserWOCar;
+import com.iteso.raiteiteso.database.DatabaseHandler;
+import com.iteso.raiteiteso.database.UserControl;
 
 import java.util.ArrayList;
 
@@ -17,19 +23,29 @@ public class ActivityRaiteDetail extends Activity{
     private  ArrayList<String> detail;
     private ArrayList<String> interestPoints;
     private ArrayList<String> adapterArrayList;
+    private Button askForRide;
     ListView listDetail;
+    private DatabaseHandler dh;
+    private UserControl userControl;
+    private UserWCar user;
+    private UserWOCar userWOCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raite_detail);
         listDetail = (ListView)findViewById(R.id.activity_raite_detail_list);
+        toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
+        askForRide = (Button) findViewById(R.id.activity_raite_detail_buttom_raite);
 
         detail = new ArrayList<>();
         interestPoints = new ArrayList<>();
         adapterArrayList = new ArrayList<>();
+        dh = DatabaseHandler.getInstance(this);
+        userControl = new UserControl(this);
 
-        UserWCar user = getIntent().getParcelableExtra("uwc");
+        user = getIntent().getParcelableExtra("uwc");
+        userWOCar = getIntent().getParcelableExtra("wc");
 
         detail.add(user.getCar());
         detail.add(user.getCarColor());
@@ -39,11 +55,19 @@ public class ActivityRaiteDetail extends Activity{
         interestPoints.add("Guadalupe");
 
         adapterArrayList = interestPoints;
-        toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
         toggleButton.setLeftButtonText("Puntos de interés", "Puntos de interés");
         toggleButton.setRithButtonText("Datos del raite", "Datos del raite");
         raiteDetail = new AdapterListRaiteDetail(adapterArrayList, this);
         listDetail.setAdapter(raiteDetail);
+
+        askForRide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user.askForRide(userWOCar);
+                Toast.makeText(ActivityRaiteDetail.this, "Solicitud de ride enviada", Toast.LENGTH_LONG).show();
+                userControl.updateUserWithCar(dh, user);
+            }
+        });
 
         toggleButton.setToggleButtonListener(new ToggleButtonClass.ToggleButtonListener() {
             @Override

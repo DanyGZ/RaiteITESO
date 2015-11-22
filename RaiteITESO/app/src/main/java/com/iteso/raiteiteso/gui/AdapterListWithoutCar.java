@@ -56,7 +56,7 @@ public class AdapterListWithoutCar extends BaseAdapter implements ListAdapter {
         finalPoint.setText(infoRaite.get(position).getCar());
 
         TextView timeTxt = (TextView)view.findViewById(R.id.activity_item_without_car_time);
-        timeTxt.setText(infoRaite.get(position).getMondayHour());
+        timeTxt.setText("(" + infoRaite.get(position).getMondayHour() + ")");
 
         ImageView info = (ImageView)view.findViewById(R.id.activity_item_without_car_imagen);
 
