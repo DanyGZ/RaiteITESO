@@ -54,8 +54,7 @@ public class ActivityRaiteDetail extends Activity{
         detail.add(user.getCarColor());
         detail.add(userWOCar.getMeetingPoint());
 
-        interestPoints.add("Patria");
-        interestPoints.add("Guadalupe");
+        interestPoints = user.getInterestPoints();
 
         adapterArrayList = interestPoints;
         toggleButton.setLeftButtonText("Puntos de interés", "Puntos de interés");
