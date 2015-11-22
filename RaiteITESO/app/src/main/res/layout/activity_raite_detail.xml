@@ -33,7 +33,7 @@
     <ListView
         android:id="@+id/activity_raite_detail_list"
         android:layout_width="300dp"
-        android:layout_height="320"
+        android:layout_height="280dp"
         android:layout_centerHorizontal="true"
         android:dividerHeight="1dp"
         android:layout_below="@+id/activity_raite_detail_toggle_button">

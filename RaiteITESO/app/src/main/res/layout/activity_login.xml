@@ -44,6 +44,7 @@
         android:textSize="20sp"
         android:layout_gravity="left"
         android:layout_marginLeft="55dp"
+        android:cursorVisible="true"
         android:layout_marginTop="30dp"
         android:text="Contraseña:"/>
 

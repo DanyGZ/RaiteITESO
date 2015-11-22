@@ -19,10 +19,12 @@ public class UserWOCar implements Parcelable{
     private String fridayHour;
     private String ride;
     private ArrayList<String> interestPoints;
+    private String meetingPoint;
 
 
     public UserWOCar(){
         ride = "";
+        meetingPoint = "";
     }
 
     protected UserWOCar(Parcel in) {
@@ -36,6 +38,7 @@ public class UserWOCar implements Parcelable{
         fridayHour = in.readString();
         ride = in.readString();
         interestPoints = in.createStringArrayList();
+        meetingPoint = in.readString();
     }
 
     public static final Creator<UserWOCar> CREATOR = new Creator<UserWOCar>() {
@@ -130,6 +133,14 @@ public class UserWOCar implements Parcelable{
         this.interestPoints = interestPoints;
     }
 
+    public String getMeetingPoint() {
+        return meetingPoint;
+    }
+
+    public void setMeetingPoint(String meetingPoint) {
+        this.meetingPoint = meetingPoint;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -147,5 +158,6 @@ public class UserWOCar implements Parcelable{
         dest.writeString(fridayHour);
         dest.writeString(ride);
         dest.writeStringList(interestPoints);
+        dest.writeString(meetingPoint);
     }
 }

@@ -68,14 +68,15 @@ public class ActivityLogin extends Activity {
                             if(userWCar.getCar() != null){
                                 intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
                             }else {
-                                if (userWOCar.getRide() ==""){
+                                if (userWCar.getRide().equals("")){
                                     intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
                                 }else{
                                     intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
-                                    intent.putExtra("wc",userControl.getUserWithOuthCarByUserName(userWOCar.getUserName(),dh));
+                                    intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
+                                            userControl.getUserWithCarByUserName(userWCar.getRide(),dh).getUserName());
                                 }
                             }
-                            intent.putExtra(Constants.USER_EXTRA, userWCar);
+                            intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
                             startActivity(intent);
 
                         }else{

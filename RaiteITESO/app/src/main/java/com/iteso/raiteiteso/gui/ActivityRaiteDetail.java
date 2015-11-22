@@ -11,6 +11,7 @@ import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.database.DatabaseHandler;
 import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -44,12 +45,14 @@ public class ActivityRaiteDetail extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
-        user = getIntent().getParcelableExtra("uwc");
-        userWOCar = getIntent().getParcelableExtra("wc");
+        String userName = getIntent().getStringExtra(Constants.USER_WITH_CAR_EXTRA);
+        user = userControl.getUserWithCarByUserName(userName, dh);
+        String name = getIntent().getStringExtra(Constants.USER_EXTRA);
+        userWOCar = userControl.getUserWithOuthCarByUserName(name, dh);
 
         detail.add(user.getCar());
         detail.add(user.getCarColor());
-        detail.add("Punto de reunion");
+        detail.add(userWOCar.getMeetingPoint());
 
         interestPoints.add("Patria");
         interestPoints.add("Guadalupe");
@@ -60,20 +63,26 @@ public class ActivityRaiteDetail extends Activity{
         raiteDetail = new AdapterListRaiteDetail(adapterArrayList, this);
         listDetail.setAdapter(raiteDetail);
 
-        askForRide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user.askForRide(userWOCar);
-                Toast.makeText(ActivityRaiteDetail.this, "Solicitud de ride enviada", Toast.LENGTH_LONG).show();
-                userControl.updateUserWithCar(dh, user);
-            }
-        });
+        if(userWOCar.getRide().equals("")){
+            askForRide.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (user.askForRide(userWOCar)) {
+                        Toast.makeText(ActivityRaiteDetail.this, "Solicitud de ride enviada", Toast.LENGTH_LONG).show();
+                        userControl.updateUserWithCar(dh, user);
+                    } else {
+                        Toast.makeText(ActivityRaiteDetail.this, "Ya habías mandado solicitud a este usuario", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }else{
+            askForRide.setVisibility(View.GONE);
+        }
 
         toggleButton.setToggleButtonListener(new ToggleButtonClass.ToggleButtonListener() {
             @Override
             public void leftButtonClick() {
                 raiteDetail = new AdapterListRaiteDetail(interestPoints, ActivityRaiteDetail.this);
-                listDetail.deferNotifyDataSetChanged();
                 listDetail.setAdapter(raiteDetail);
             }
 

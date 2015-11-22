@@ -33,6 +33,7 @@ public class ActivityMainWithCar extends Activity{
     private Button confirm;
     private ArrayList<UserWOCar> rideRequest;
     private ArrayList<Integer> acceptedUsers;
+    private UserWCar userWCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,8 @@ public class ActivityMainWithCar extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
-        final UserWCar userWCar = getIntent().getParcelableExtra(Constants.USER_EXTRA);
-
-        for(int i=0; i<userWCar.getUserWOCars().size(); i++){
-            UserWOCar userWOCar = userWCar.getUserWOCars().get(i);
-            String name = userWOCar.getUserName();
-            System.out.print(name);
-        }
+        String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
+        userWCar = userControl.getUserWithCarByUserName(userName, dh);
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
@@ -64,7 +60,22 @@ public class ActivityMainWithCar extends Activity{
             confirm.setVisibility(View.GONE);
             listView.setVisibility(View.GONE);
         }else{
-            rideRequest = userControl.getRidesRequest(dh, userWCar);
+            rideRequest = new ArrayList<>();
+            for(int i=0; i<userWCar.getUserWOCars().size(); i++){
+                if(userWCar.getUserWOCars().get(i).getRide().equals("")){
+                    rideRequest.add(userWCar.getUserWOCars().get(i));
+                }
+            }
+
+            if(rideRequest.size() == 0){
+                rideRequestText.setText("Ya has aceptado todas las solicitudes");
+                rideRequestText.setVisibility(View.VISIBLE);
+                noticeMessage.setVisibility(View.GONE);
+                meetingPoint.setVisibility(View.GONE);
+                confirm.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
+            }
+
             adapterList = new AdapterListWithCar(rideRequest, this);
             listView.setAdapter(adapterList);
 
@@ -89,8 +100,8 @@ public class ActivityMainWithCar extends Activity{
                                     "punto de reunión", Toast.LENGTH_LONG).show();
                         }else{
                             for(int i=0; i<acceptedUsers.size(); i++){
-                                userControl.updateUsersWithOutCar(dh, userWCar.getUserWOCars().
-                                        get(acceptedUsers.get(i)), userWCar.getUserName());
+                                userControl.updateUsersWithOutCar(dh, rideRequest.get(acceptedUsers.get(i)), userWCar.getUserName(),
+                                        meetingPoint.getText().toString());
                             }
 
                             Toast.makeText(ActivityMainWithCar.this, "Has aceptado a este usuario", Toast.LENGTH_LONG).show();

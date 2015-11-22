@@ -86,14 +86,14 @@ public class UserControl {
         SQLiteDatabase db = dh.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        String interestPoints = "'";
+        String interestPoints = "";
         for(int i=0; i<userWOCar.getInterestPoints().size(); i++){
             if(i>0){
                 interestPoints += ", ";
             }
             interestPoints += userWOCar.getInterestPoints().get(i);
         }
-        interestPoints += "'";
+        interestPoints += "";
 
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_USER_NAME, userWOCar.getUserName());
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_PASSWORD, userWOCar.getPassword());
@@ -105,6 +105,7 @@ public class UserControl {
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_FRIDAY_HOUR, userWOCar.getFridayHour());
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_INTEREST_POINTS, interestPoints);
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_RIDE_USER, userWOCar.getRide());
+        values.put(DatabaseHandler.USERS_WITHOUT_CAR_MEETING_POINT, userWOCar.getMeetingPoint());
 
         try{
             inserted = db.insertOrThrow(DatabaseHandler.USERS_WITHOUT_CAR, null, values);
@@ -210,6 +211,7 @@ public class UserControl {
                 ", " + DatabaseHandler.USERS_WITHOUT_CAR_WEDNESDAY_HOUR + ", " +
                 DatabaseHandler.USERS_WITHOUT_CAR_THURSDAY_HOUR + ", " + DatabaseHandler.USERS_WITHOUT_CAR_FRIDAY_HOUR +
                 ", " + DatabaseHandler.USERS_WITHOUT_CAR_INTEREST_POINTS + ", " + DatabaseHandler.USERS_WITHOUT_CAR_RIDE_USER +
+                ", " + DatabaseHandler.USERS_WITHOUT_CAR_MEETING_POINT +
                 " FROM " + DatabaseHandler.USERS_WITHOUT_CAR + " WHERE " + DatabaseHandler.USERS_WITHOUT_CAR_USER_NAME +
                 " = " + " '" + userName + "'";
 
@@ -242,7 +244,7 @@ public class UserControl {
             userWOCar.setInterestPoints(interestPointsArray);
 
             userWOCar.setRide(cursor.getString(9));
-
+            userWOCar.setMeetingPoint(cursor.getString(10));
         }
 
         try{
@@ -360,7 +362,8 @@ public class UserControl {
                 ", " + DatabaseHandler.USERS_WITHOUT_CAR_TUESDAY_HOUR + ", " + DatabaseHandler.USERS_WITHOUT_CAR_WEDNESDAY_HOUR +
                 ", " + DatabaseHandler.USERS_WITHOUT_CAR_THURSDAY_HOUR + ", " + DatabaseHandler.USERS_WITHOUT_CAR_FRIDAY_HOUR +
                 ", " + DatabaseHandler.USERS_WITHOUT_CAR_INTEREST_POINTS + ", " + DatabaseHandler.USERS_WITHOUT_CAR_PASSWORD +
-                ", " + DatabaseHandler.USERS_WITHOUT_CAR_RIDE_USER + " FROM " + DatabaseHandler.USERS_WITHOUT_CAR ;
+                ", " + DatabaseHandler.USERS_WITHOUT_CAR_RIDE_USER + ", " + DatabaseHandler.USERS_WITHOUT_CAR_MEETING_POINT +
+                " FROM " + DatabaseHandler.USERS_WITHOUT_CAR ;
 
         for (int i = 0; i < userWCar.getUserWOCars().size(); i++) {
             if(i == 0){
@@ -403,6 +406,7 @@ public class UserControl {
 
                 userWOCar.setPassword(cursor.getString(8));
                 userWOCar.setRide(cursor.getString(9));
+                userWOCar.setMeetingPoint(cursor.getString(10));
                 userWOCars.add(userWOCar);
             } while (cursor.moveToNext());
         }
@@ -433,17 +437,19 @@ public class UserControl {
 
         for(int i=0; i<userWCar.getInterestPoints().size(); i++){
             if(i>0){
-                interestPoints += ", ";
+                interestPoints += ",";
             }
             interestPoints += userWCar.getInterestPoints().get(i);
         }
 
         String rideRequest = "";
         for(int i=0; i<userWCar.getUserWOCars().size(); i++){
-            if(i>0){
-                rideRequest += ", ";
+            if(userWCar.getUserWOCars().get(i).getUserName() != null) {
+                if (i > 0) {
+                    rideRequest += ",";
+                }
+                rideRequest += userWCar.getUserWOCars().get(i).getUserName();
             }
-            rideRequest += userWCar.getUserWOCars().get(i).getUserName();
         }
 
         values.put(DatabaseHandler.USERS_WITH_CAR_USER_NAME, userWCar.getUserName());
@@ -473,18 +479,18 @@ public class UserControl {
 
     }
 
-    public int updateUsersWithOutCar(DatabaseHandler dh, UserWOCar userWOCar, String userWCName){
+    public int updateUsersWithOutCar(DatabaseHandler dh, UserWOCar userWOCar, String userWCName, String meetingPoint){
         SQLiteDatabase db = dh.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        String interestPoints = "'";
+        String interestPoints = "";
         for(int i=0; i<userWOCar.getInterestPoints().size(); i++){
             if(i>0){
-                interestPoints += ", ";
+                interestPoints += ",";
             }
             interestPoints += userWOCar.getInterestPoints().get(i);
         }
-        interestPoints += "'";
+        interestPoints += "";
 
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_USER_NAME, userWOCar.getUserName());
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_PASSWORD, userWOCar.getPassword());
@@ -496,6 +502,7 @@ public class UserControl {
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_FRIDAY_HOUR, userWOCar.getFridayHour());
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_INTEREST_POINTS, interestPoints);
         values.put(DatabaseHandler.USERS_WITHOUT_CAR_RIDE_USER, userWCName);
+        values.put(DatabaseHandler.USERS_WITHOUT_CAR_MEETING_POINT, meetingPoint);
 
         int count = db.update(DatabaseHandler.USERS_WITHOUT_CAR, values,
                 DatabaseHandler.USERS_WITHOUT_CAR_USER_NAME + " = ?", new String[] {userWOCar.getUserName()});

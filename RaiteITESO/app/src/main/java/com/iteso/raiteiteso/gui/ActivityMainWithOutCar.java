@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
@@ -39,9 +38,8 @@ public class ActivityMainWithOutCar extends Activity{
         DatabaseHandler dh = DatabaseHandler.getInstance(this);
         UserControl userControl = new UserControl(this);
 
-        userWOCarc = getIntent().getParcelableExtra(Constants.USER_EXTRA);
-
-        Toast.makeText(this, "Ya tienes ride", Toast.LENGTH_LONG).show();
+        String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
+        userWOCarc = userControl.getUserWithOuthCarByUserName(userName, dh);
 
        // if(Calendar.DAY_OF_WEEK != Calendar.SATURDAY && Calendar.DAY_OF_WEEK != Calendar.SUNDAY) {
             points = userControl.getRides(dh, Calendar.MONDAY, getHora());
@@ -61,8 +59,8 @@ public class ActivityMainWithOutCar extends Activity{
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(ActivityMainWithOutCar.this, ActivityRaiteDetail.class);
-                    intent.putExtra("uwc", points.get(position));
-                    intent.putExtra("wc", userWOCarc);
+                    intent.putExtra(Constants.USER_WITH_CAR_EXTRA, points.get(position).getUserName());
+                    intent.putExtra(Constants.USER_EXTRA, userWOCarc.getUserName());
                     startActivity(intent);
                 }
             });
