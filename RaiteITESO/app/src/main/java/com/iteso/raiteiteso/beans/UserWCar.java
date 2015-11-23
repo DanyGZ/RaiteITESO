@@ -3,12 +3,16 @@ package com.iteso.raiteiteso.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.iteso.raiteiteso.database.DatabaseHandler;
+import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.gui.Subject;
+
 import java.util.ArrayList;
 
 /**
  * Created by Daniel on 08/11/2015.
  */
-public class UserWCar extends UserWOCar implements Parcelable{
+public class UserWCar extends UserWOCar implements Parcelable, Subject{
     private String car;
     private String carColor;
     private int carCapacity;
@@ -55,21 +59,6 @@ public class UserWCar extends UserWOCar implements Parcelable{
         }
     };
 
-    public boolean askForRide(UserWOCar userWOCar){
-        boolean flag = true;
-        for(int i=0; i<userWOCars.size(); i++){
-            if(userWOCars.get(i).getUserName().equals(userWOCar.getUserName())){
-                flag = false;
-            }
-        }
-
-        if(flag){
-            userWOCars.add(userWOCar);
-        }
-
-        return flag;
-    }
-
     public String getCar() {
         return car;
     }
@@ -108,5 +97,33 @@ public class UserWCar extends UserWOCar implements Parcelable{
 
     public void setUserWOCars(ArrayList<UserWOCar> userWOCars) {
         this.userWOCars = userWOCars;
+    }
+
+    @Override
+    public boolean registerObserver(UserWOCar observer) {
+        boolean flag = true;
+        for(int i=0; i<userWOCars.size(); i++){
+            if(userWOCars.get(i).getUserName().equals(observer.getUserName())){
+                flag = false;
+            }
+        }
+
+        if(flag){
+            userWOCars.add(observer);
+        }
+
+        return flag;
+    }
+
+    @Override
+    public void notifyObservers(DatabaseHandler dh, String meetingPoint, UserControl userControl, String userName) {
+        for(UserWOCar userWOCar : userWOCars){
+            userWOCar.update(dh, userControl, userName, meetingPoint);
+        }
+    }
+
+    @Override
+    public void removeObserver(UserWOCar observer) {
+        userWOCars.remove(observer);
     }
 }

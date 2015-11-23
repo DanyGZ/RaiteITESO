@@ -69,7 +69,7 @@ public class ActivityRaiteDetail extends Activity{
             askForRide.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (user.askForRide(userWOCar)) {
+                    if (userWOCar.addRide(user)) {
                         Toast.makeText(ActivityRaiteDetail.this, "Solicitud de ride enviada", Toast.LENGTH_LONG).show();
                         userControl.updateUserWithCar(dh, user);
                     } else {

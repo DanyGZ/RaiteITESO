@@ -18,8 +18,6 @@ import com.iteso.raiteiteso.database.UserControl;
 import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ListIterator;
 
 /**
  * Created by Daniel on 29/10/2015.
@@ -63,11 +61,10 @@ public class ActivityMainWithCar extends Activity{
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
-            noticeMessage.setVisibility(View.GONE);
+            noticeMessage.setVisibility(View.INVISIBLE);
             meetingPoint.setVisibility(View.GONE);
-            confirm.setVisibility(View.GONE);
-            listView.setVisibility(View.GONE);
-            cancel.setVisibility(View.GONE);
+            confirm.setVisibility(View.INVISIBLE);
+            listView.setVisibility(View.INVISIBLE);
         }else{
             rideRequest = new ArrayList<>();
             for(int i=0; i<userWCar.getUserWOCars().size(); i++){
@@ -77,13 +74,12 @@ public class ActivityMainWithCar extends Activity{
             }
 
             if(rideRequest.size() == 0){
-                rideRequestText.setText("Ya has aceptado todas las solicitudes");
+                rideRequestText.setText("No tienes solicitudes sin responder");
                 rideRequestText.setVisibility(View.VISIBLE);
                 noticeMessage.setVisibility(View.GONE);
                 meetingPoint.setVisibility(View.GONE);
                 confirm.setVisibility(View.GONE);
                 listView.setVisibility(View.GONE);
-                cancel.setVisibility(View.GONE);
             }
 
             adapterList = new AdapterListWithCar(rideRequest, this);
@@ -109,13 +105,15 @@ public class ActivityMainWithCar extends Activity{
                             Toast.makeText(ActivityMainWithCar.this, "Debes escribir un mensaje con el" +
                                     "punto de reunión", Toast.LENGTH_LONG).show();
                         } else {
+                            ArrayList<UserWOCar> finalRideRequest = new ArrayList<>();
                             for (int i = 0; i < acceptedUsers.size(); i++) {
-                                userControl.updateUsersWithOutCar(dh, rideRequest.get(acceptedUsers.get(i)), userWCar.getUserName(),
-                                        meetingPoint.getText().toString());
+                                finalRideRequest.add(rideRequest.get(acceptedUsers.get(i)));
                                 rideRequest.remove(acceptedUsers.get(i));
                             }
-
-                            Toast.makeText(ActivityMainWithCar.this, "Has aceptado a los usuarios seleccionados", Toast.LENGTH_LONG).show();
+                            userWCar.setUserWOCars(finalRideRequest);
+                            userWCar.notifyObservers(dh, meetingPoint.getText().toString(), userControl, userWCar.getUserName());
+                            userControl.updateUserWithCar(dh, userWCar);
+                            Toast.makeText(ActivityMainWithCar.this, "Has aceptado las solicitudes", Toast.LENGTH_LONG).show();
                             finish();
                             startActivity(getIntent());
                         }
@@ -127,9 +125,11 @@ public class ActivityMainWithCar extends Activity{
             cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    for (int i=0; i<rideRequest.size(); i++){
-                        userControl.updateUsersWithOutCar(dh,rideRequest.get(acceptedUsers.get(i)),"","");
-                    }
+                    userWCar.notifyObservers(dh, "", userControl, "");
+                    userWCar.setUserWOCars(new ArrayList<UserWOCar>());
+                    userControl.updateUserWithCar(dh, userWCar);
+                    finish();
+                    startActivity(getIntent());
                 }
             });
 

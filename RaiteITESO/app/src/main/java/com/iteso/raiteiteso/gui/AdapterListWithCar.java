@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -28,7 +26,7 @@ public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
         checkedItems = new ArrayList<>();
 
         for(int i=0; i<pointsInteres.size(); i++){
-            checkedItems.add(false);
+            checkedItems.add(true);
         }
 
     }
@@ -65,19 +63,6 @@ public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
 
         TextView finalPointTxt = (TextView)view.findViewById(R.id.activity_item_final_point);
         finalPointTxt.setText(pointsInteres.get(position).getFridayHour());
-
-        CheckBox checkBox = (CheckBox) view.findViewById(R.id.item_button_check);
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    checkedItems.set(position, true);
-                }else{
-                    checkedItems.set(position, false);
-                }
-            }
-        });
-
 
         return view;
     }
