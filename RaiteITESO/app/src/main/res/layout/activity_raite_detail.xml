@@ -30,6 +30,17 @@
         android:layout_below="@+id/activity_raite_detail_name">
     </com.iteso.raiteiteso.gui.ToggleButtonClass>
 
+    <TextView
+        android:id="@+id/activity_raite_detail_no_raite_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:layout_centerInParent="true"
+        android:text="No hay detalles Disponibles"
+        />
+
     <ListView
         android:id="@+id/activity_raite_detail_list"
         android:layout_width="300dp"

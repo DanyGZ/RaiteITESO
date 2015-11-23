@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import com.iteso.raiteiteso.database.UserControl;
 import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * Created by Daniel on 29/10/2015.
@@ -31,6 +34,8 @@ public class ActivityMainWithCar extends Activity{
     private TextView noticeMessage;
     private EditText meetingPoint;
     private Button confirm;
+    private Button cancel;
+    private ImageView refresh;
     private ArrayList<UserWOCar> rideRequest;
     private ArrayList<Integer> acceptedUsers;
     private UserWCar userWCar;
@@ -46,6 +51,8 @@ public class ActivityMainWithCar extends Activity{
         noticeMessage = (TextView) findViewById(R.id.activity_main_with_car_message_aviso);
         meetingPoint = (EditText) findViewById(R.id.activity_main_with_car_message_confirm);
         confirm = (Button) findViewById(R.id.activity_main_with_car_confirm_button);
+        cancel = (Button) findViewById(R.id.activity_main_with_car_cancel_button);
+        refresh = (ImageView) findViewById(R.id.activity_main_with_car_refresh);
 
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
@@ -53,12 +60,14 @@ public class ActivityMainWithCar extends Activity{
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWCar = userControl.getUserWithCarByUserName(userName, dh);
 
+
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
             noticeMessage.setVisibility(View.GONE);
             meetingPoint.setVisibility(View.GONE);
             confirm.setVisibility(View.GONE);
             listView.setVisibility(View.GONE);
+            cancel.setVisibility(View.GONE);
         }else{
             rideRequest = new ArrayList<>();
             for(int i=0; i<userWCar.getUserWOCars().size(); i++){
@@ -74,6 +83,7 @@ public class ActivityMainWithCar extends Activity{
                 meetingPoint.setVisibility(View.GONE);
                 confirm.setVisibility(View.GONE);
                 listView.setVisibility(View.GONE);
+                cancel.setVisibility(View.GONE);
             }
 
             adapterList = new AdapterListWithCar(rideRequest, this);
@@ -85,21 +95,21 @@ public class ActivityMainWithCar extends Activity{
                     ArrayList<Boolean> checkedUsers = adapterList.getCheckedItems();
                     acceptedUsers = new ArrayList<>();
 
-                    for(int i=0; i<checkedUsers.size(); i++){
-                        if(checkedUsers.get(i)){
+                    for (int i = 0; i < checkedUsers.size(); i++) {
+                        if (checkedUsers.get(i)) {
                             acceptedUsers.add(i);
                         }
                     }
 
-                    if(acceptedUsers.size() == 0){
+                    if (acceptedUsers.size() == 0) {
                         Toast.makeText(ActivityMainWithCar.this, "No has seleccionado a nadie para darle ride",
                                 Toast.LENGTH_LONG).show();
-                    }else{
-                        if(meetingPoint.getText().toString().equals("")){
+                    } else {
+                        if (meetingPoint.getText().toString().equals("")) {
                             Toast.makeText(ActivityMainWithCar.this, "Debes escribir un mensaje con el" +
                                     "punto de reunión", Toast.LENGTH_LONG).show();
-                        }else{
-                            for(int i=0; i<acceptedUsers.size(); i++){
+                        } else {
+                            for (int i = 0; i < acceptedUsers.size(); i++) {
                                 userControl.updateUsersWithOutCar(dh, rideRequest.get(acceptedUsers.get(i)), userWCar.getUserName(),
                                         meetingPoint.getText().toString());
                                 rideRequest.remove(acceptedUsers.get(i));
@@ -111,6 +121,23 @@ public class ActivityMainWithCar extends Activity{
                         }
                     }
 
+                }
+            });
+
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int i=0; i<rideRequest.size(); i++){
+                        userControl.updateUsersWithOutCar(dh,rideRequest.get(acceptedUsers.get(i)),"","");
+                    }
+                }
+            });
+
+            refresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    startActivity(getIntent());
                 }
             });
 

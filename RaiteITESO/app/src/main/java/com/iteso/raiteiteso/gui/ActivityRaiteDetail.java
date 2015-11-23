@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iteso.raiteiteso.beans.UserWCar;
@@ -25,6 +26,7 @@ public class ActivityRaiteDetail extends Activity{
     private ArrayList<String> interestPoints;
     private ArrayList<String> adapterArrayList;
     private Button askForRide;
+    private TextView noRaite;
     ListView listDetail;
     private DatabaseHandler dh;
     private UserControl userControl;
@@ -38,6 +40,7 @@ public class ActivityRaiteDetail extends Activity{
         listDetail = (ListView)findViewById(R.id.activity_raite_detail_list);
         toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
         askForRide = (Button) findViewById(R.id.activity_raite_detail_buttom_raite);
+        noRaite = (TextView) findViewById(R.id.activity_raite_detail_no_raite_detail);
 
         detail = new ArrayList<>();
         interestPoints = new ArrayList<>();
@@ -74,6 +77,8 @@ public class ActivityRaiteDetail extends Activity{
                     }
                 }
             });
+            noRaite.setVisibility(View.VISIBLE);
+            listDetail.setVisibility(View.GONE);
         }else{
             askForRide.setVisibility(View.GONE);
         }

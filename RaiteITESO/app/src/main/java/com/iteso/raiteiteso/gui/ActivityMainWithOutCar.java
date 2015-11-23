@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.iteso.raiteiteso.beans.UserWCar;
@@ -27,6 +31,8 @@ public class ActivityMainWithOutCar extends Activity{
     Calendar calendar = Calendar.getInstance();
     ArrayList<UserWCar> points;
     ArrayList<UserWCar> usersWithCar;
+    ImageView refresh;
+    Switch aSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -35,6 +41,8 @@ public class ActivityMainWithOutCar extends Activity{
 
         noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
         listView = (ListView)findViewById(R.id.activity_main_without_car_list);
+        refresh = (ImageView)findViewById(R.id.activity_main_without_car_refresh);
+        aSwitch = (Switch)findViewById(R.id.activity_main_without_car_visible);
 
         DatabaseHandler dh = DatabaseHandler.getInstance(this);
         UserControl userControl = new UserControl(this);
@@ -73,6 +81,25 @@ public class ActivityMainWithOutCar extends Activity{
                 }
             });
        // }
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+
+                }else{
+
+                }
+            }
+        });
+
+        refresh.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
     }
 
     public String getHora(){

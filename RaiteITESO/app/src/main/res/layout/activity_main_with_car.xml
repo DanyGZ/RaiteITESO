@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No tienes solicitudes de ride pendientes"
+        android:text="No tienes solicitudes de raite pendientes"
         android:textSize="25sp"
         android:visibility="gone"
         android:layout_centerInParent="true"/>
