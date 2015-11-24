@@ -3,12 +3,16 @@ package com.iteso.raiteiteso.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.iteso.raiteiteso.database.DatabaseHandler;
+import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.gui.Observer;
+
 import java.util.ArrayList;
 
 /**
  * Created by Daniel on 18/10/2015.
  */
-public class UserWOCar implements Parcelable{
+public class UserWOCar implements Parcelable, Observer{
     private String userName;
     private String password;
     private String name;
@@ -20,6 +24,7 @@ public class UserWOCar implements Parcelable{
     private String ride;
     private ArrayList<String> interestPoints;
     private String meetingPoint;
+    private UserWCar userWCar;
 
 
     public UserWOCar(){
@@ -39,6 +44,7 @@ public class UserWOCar implements Parcelable{
         ride = in.readString();
         interestPoints = in.createStringArrayList();
         meetingPoint = in.readString();
+        userWCar = in.readParcelable(UserWCar.class.getClassLoader());
     }
 
     public static final Creator<UserWOCar> CREATOR = new Creator<UserWOCar>() {
@@ -148,6 +154,7 @@ public class UserWOCar implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeString(userName);
         dest.writeString(password);
         dest.writeString(name);
@@ -159,5 +166,16 @@ public class UserWOCar implements Parcelable{
         dest.writeString(ride);
         dest.writeStringList(interestPoints);
         dest.writeString(meetingPoint);
+        dest.writeParcelable(userWCar, flags);
+    }
+
+    public boolean addRide(UserWCar userWCar){
+        this.userWCar = userWCar;
+       return  this.userWCar.registerObserver(this);
+    }
+
+    @Override
+    public void update(DatabaseHandler dh, UserControl userControl, String userWCName, String meetingPoint) {
+        userControl.updateUsersWithOutCar(dh, this, userWCName, meetingPoint);
     }
 }

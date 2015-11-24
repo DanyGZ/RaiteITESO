@@ -106,33 +106,40 @@
         android:id="@+id/activity_main_with_car_message_confirm"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_above="@+id/activity_main_with_car_confirm_button"
+        android:layout_above="@+id/activity_main_with_car_buttons_layout"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:singleLine="true"
         android:hint="¿Donde nos vemos?"
         />
-    <Button
-        android:id="@+id/activity_main_with_car_confirm_button"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/activity_main_with_car_buttons_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="50dp"
-        android:typeface="sans"
-        android:textSize="20dp"
-        android:text="Confirmar"
-        />
-    <Button
-        android:id="@+id/activity_main_with_car_cancel_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/activity_main_with_car_confirm_button"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:typeface="sans"
-        android:textSize="20dp"
-        android:text="Cancelar"
-        />
+        android:gravity="center"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/activity_main_with_car_confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="sans"
+            android:textSize="20dp"
+            android:text="Confirmar"
+            />
+        <Button
+            android:id="@+id/activity_main_with_car_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:typeface="sans"
+            android:textSize="20dp"
+            android:text="Cancelar"
+            />
+
+    </LinearLayout>
+
 </RelativeLayout>

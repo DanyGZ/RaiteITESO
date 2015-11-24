@@ -51,8 +51,10 @@ public class ActivityMainWithOutCar extends Activity{
         userWOCarc = userControl.getUserWithOuthCarByUserName(userName, dh);
         points = new ArrayList<>();
 
-       // if(Calendar.DAY_OF_WEEK != Calendar.SATURDAY && Calendar.DAY_OF_WEEK != Calendar.SUNDAY) {
-        usersWithCar = userControl.getRides(dh, Calendar.MONDAY, getHora());
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        if(day != Calendar.SATURDAY && day != Calendar.SUNDAY) {
+        usersWithCar = userControl.getRides(dh, day, getHora());
 
         for(int i=0; i<usersWithCar.size(); i++){
             if(usersWithCar.get(i).getUserWOCars().size() < usersWithCar.get(i).getCarCapacity()){
@@ -80,7 +82,7 @@ public class ActivityMainWithOutCar extends Activity{
                     startActivity(intent);
                 }
             });
-       // }
+        }
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -121,8 +123,6 @@ public class ActivityMainWithOutCar extends Activity{
                 hora = userWOCarc.getFridayHour();
                 break;
         }
-
-        hora = userWOCarc.getMondayHour();
 
         return hora;
     }
