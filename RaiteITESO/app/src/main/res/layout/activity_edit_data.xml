@@ -1,6 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/activity_edit_data_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:text="Editar"
+        />
+
+    <TextView
+        android:id="@+id/activity_edit_data_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horarios de salida"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/activity_edit_data_title"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:id="@+id/activity_edit_data_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        style="@style/HourLayoutStyle"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/activity_edit_data_message"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_edit_data_monday"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight=".20"
+            android:textColor="@android:color/white"
+            android:background="@color/gray"
+            android:text="Lun"/>
+
+        <Button
+            android:id="@+id/activity_edit_data_tuesday"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight=".20"
+            android:textColor="@android:color/white"
+            android:background="@color/black"
+            android:text="Mar"/>
+
+        <Button
+            android:id="@+id/activity_edit_data_wednesday"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight=".20"
+            android:textColor="@android:color/white"
+            android:background="@color/black"
+            android:text="Mié"/>
+
+        <Button
+            android:id="@+id/activity_edit_data_thursday"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight=".20"
+            android:textColor="@android:color/white"
+            android:background="@color/black"
+            android:text="Jue"/>
+
+        <Button
+            android:id="@+id/activity_edit_data_friday"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight=".20"
+            android:textColor="@android:color/white"
+            android:background="@color/black"
+            android:text="Vier"/>
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_edit_data_monday_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Presione para selecicionar la hora"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/activity_edit_data_tuesday_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/activity_edit_data_wednesday_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/activity_edit_data_thursday_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/activity_edit_data_friday_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/activity_edit_data_points_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntos de interés"
+        android:textColor="@android:color/black"
+        android:layout_gravity="left"
+        android:layout_below="@+id/activity_edit_data_layout1"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:id="@+id/activity_edit_data_points_interes"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/activity_edit_data_points_message"
+        android:dividerHeight="1dp">
+    </ListView>
+
+    <Button
+        android:id="@+id/activity_edit_data_botton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_edit_data_points_interes"
+        android:layout_centerHorizontal="true"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:text="Aceptar"
+        />
+
+</RelativeLayout>
