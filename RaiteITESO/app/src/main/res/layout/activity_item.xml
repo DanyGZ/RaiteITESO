@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/activity_item_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/manita"
+        />
+
+
+    <TextView
+        android:id="@+id/activity_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/activity_item_image"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/activity_item_final_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Punto Final"
+        android:textSize="20dp"
+        android:layout_below="@+id/activity_item_name"
+        android:layout_toRightOf="@+id/activity_item_image"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:id="@+id/activity_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/activity_item_final_point"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/activity_item_name"
+        />
+
+</RelativeLayout>

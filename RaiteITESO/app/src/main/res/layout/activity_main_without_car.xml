@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/activity_main_without_car_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/iteso_logo"
+        android:layout_centerHorizontal="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/activity_main_without_car_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/activity_main_without_car_image"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="10dp"
+            android:typeface="sans"
+            android:textSize="20dp"
+            android:text="Irme ahora"
+            />
+
+
+        <Switch
+            android:id="@+id/activity_main_without_car_visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="205dp"
+            android:background="@color/colorPrimary"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/activity_main_without_car_refresh"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/activity_main_without_car_layout1"
+        android:src="@drawable/refresh"
+        />
+    <ListView
+        android:id="@+id/activity_main_without_car_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_main_without_car_refresh"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="3dp"
+        >
+    </ListView>
+
+    <TextView
+        android:id="@+id/activity_main_without_car_no_raite"
+        android:layout_below="@+id/activity_main_without_car_layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:text="Raites Disponibles"/>
+
+</RelativeLayout>
