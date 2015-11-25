@@ -12,25 +12,20 @@ import java.util.ArrayList;
 /**
  * Created by Daniel on 08/11/2015.
  */
-public class UserWCar extends UserDecorator implements Parcelable, Subject{
+public class UserWCar extends UserWOCar implements Parcelable, Subject{
     private String car;
     private String carColor;
     private int carCapacity;
     private boolean available;
-    private UserWOCar userWOCar;
     private ArrayList<UserWOCar> userWOCars;
 
     protected UserWCar(Parcel in) {
-        userWOCar = new UserWCar(in);
+        super(in);
         car = in.readString();
         carColor = in.readString();
         carCapacity = in.readInt();
         available = in.readByte() != 0;
         userWOCars = in.createTypedArrayList(UserWOCar.CREATOR);
-    }
-
-    public UserWCar(UserWOCar userWOCar){
-
     }
 
     public UserWCar(){
