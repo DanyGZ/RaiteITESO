@@ -71,6 +71,7 @@ public class ActivityCreateAccount extends Activity {
     private ListView interestPointsListView;
     private AdapterInterestPoints adapterInterestPoints;
     private ArrayList<String> interestPoints;
+    private UserWOCar user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -325,6 +326,10 @@ public class ActivityCreateAccount extends Activity {
                     if (password.equals(repeatedPassword)) {
                         if (userControl.getUserWithCarByUserName(userName, dh) == null &&
                                 userControl.getUserWithOuthCarByUserName(userName, dh) == null) {
+                            user  = new UserWOCar();
+                            user.setUserName(userName);
+                            user.setName(name);
+                            user.setPassword(password);
                             firstContainer.setVisibility(View.GONE);
                             secondContainer.setVisibility(View.VISIBLE);
                         } else {
@@ -340,7 +345,6 @@ public class ActivityCreateAccount extends Activity {
         createActount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserWCar user;
                 ArrayList<Boolean> checkedPlaces;
                 ArrayList<String> checkedPlacesList;
 
@@ -370,10 +374,6 @@ public class ActivityCreateAccount extends Activity {
                     if(checkedPlacesList.size() == 0){
                         Toast.makeText(ActivityCreateAccount.this, "Debe seleccionar al menos un punto de interés", Toast.LENGTH_LONG).show();
                     }else{
-                        user = new UserWCar();
-                        user.setUserName(userName);
-                        user.setName(name);
-                        user.setPassword(password);
                         user.setMondayHour(monday);
                         user.setTuesdayHour(tuesday);
                         user.setWednesdayHour(wednesday);
@@ -382,19 +382,17 @@ public class ActivityCreateAccount extends Activity {
                         user.setInterestPoints(interestPoints);
 
                         if(carToggle.isChecked()){
-                            user.setCar(car);
-                            user.setCarColor(carColor);
-                            user.setCarCapacity(Integer.parseInt(carCapacity));
-                            user.setAvailable(availableToggle.isChecked());
+                            user = new UserWCar(user);
+                            user.setCarAttributes(car, carColor, Integer.parseInt(carCapacity), availableToggle.isChecked());
 
-                            if(userControl.addUserWithCar(user, dh) == -1){
+                            if(userControl.addUserWithCar((UserWCar) user, dh) == -1){
                                 Toast.makeText(ActivityCreateAccount.this, "Usuario inválido", Toast.LENGTH_LONG).show();
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
                             }
                         }else{
-                            if(userControl.addUserWithOutCar((UserWOCar)user, dh) == -1){
+                            if(userControl.addUserWithOutCar(user, dh) == -1){
                                 Toast.makeText(ActivityCreateAccount.this, "Usuario inválido", Toast.LENGTH_LONG).show();
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
