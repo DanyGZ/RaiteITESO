@@ -12,6 +12,14 @@
         android:layout_centerHorizontal="true"
         />
 
+    <ImageView
+        android:id="@+id/activity_main_without_car_image_edit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/editar"
+        />
+
     <LinearLayout
         android:id="@+id/activity_main_without_car_layout1"
         android:layout_width="match_parent"

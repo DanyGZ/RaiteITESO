@@ -379,7 +379,7 @@ public class ActivityCreateAccount extends Activity {
                         user.setWednesdayHour(wednesday);
                         user.setThursdayHour(thursday);
                         user.setFridayHour(friday);
-                        user.setInterestPoints(interestPoints);
+                        user.setInterestPoints(checkedPlacesList);
 
                         if(carToggle.isChecked()){
                             user.setCar(car);
