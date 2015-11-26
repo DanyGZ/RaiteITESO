@@ -35,7 +35,7 @@
 
 
         <Switch
-            android:id="@+id/activity_main_with_car_visible"
+            android:id="@+id/activity_main_without_car_visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

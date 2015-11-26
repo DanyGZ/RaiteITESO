@@ -8,9 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.database.DatabaseHandler;
 import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.utils.Constants;
 
 /**
  * Created by Daniel on 18/10/2015.
@@ -33,6 +35,8 @@ public class ActivityLogin extends Activity {
         setContentView(R.layout.activity_login);
 
         dh = DatabaseHandler.getInstance(this);
+        final UserWCar userWCar = new UserWCar();
+        final UserWOCar userWOCar = new UserWOCar();
 
         userNameEdit = (EditText) findViewById(R.id.activity_login_user);
         passwordEdit = (EditText) findViewById(R.id.activity_login_password);
@@ -58,15 +62,23 @@ public class ActivityLogin extends Activity {
                 }else if(userName.contains("'")){
                     Toast.makeText(ActivityLogin.this, "Caracteres inválidos", Toast.LENGTH_LONG).show();
                 }else{
-                    UserWOCar userWCar = userValidation();
+                    UserWCar userWCar = (UserWCar) userValidation();
                     if(userWCar != null){
                         if(userWCar.getPassword().equals(password)){
-                            if(userWCar instanceof UserWOCar){
-                                intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
-                            }else{
+                            if(userWCar.getCar() != null){
                                 intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
+                            }else {
+                                if (userWCar.getRide().equals("")){
+                                    intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                                }else{
+                                    intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
+                                    intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
+                                            userControl.getUserWithCarByUserName(userWCar.getRide(),dh).getUserName());
+                                }
                             }
+                            intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
                             startActivity(intent);
+
                         }else{
                             Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
                         }

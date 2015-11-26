@@ -1,13 +1,10 @@
 package com.iteso.raiteiteso.gui;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -21,10 +18,21 @@ import java.util.ArrayList;
 public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
     private ArrayList<UserWOCar> pointsInteres = new ArrayList<>();
     private Context context;
+    private ArrayList<Boolean> checkedItems;
 
     public AdapterListWithCar(ArrayList<UserWOCar> pointsInteres, Context context){
         this.pointsInteres = pointsInteres;
         this.context=context;
+        checkedItems = new ArrayList<>();
+
+        for(int i=0; i<pointsInteres.size(); i++){
+            checkedItems.add(true);
+        }
+
+    }
+
+    public ArrayList<Boolean> getCheckedItems(){
+        return checkedItems;
     }
 
     @Override
@@ -55,27 +63,6 @@ public class AdapterListWithCar extends BaseAdapter implements ListAdapter{
 
         TextView finalPointTxt = (TextView)view.findViewById(R.id.activity_item_final_point);
         finalPointTxt.setText(pointsInteres.get(position).getFridayHour());
-        //Falta agregar el punto
-
-        Button cancelBtn = (Button)view.findViewById(R.id.activity_item_cancel);
-
-      /*  CheckBox c = new CheckBox(context);
-        c.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(c.isChecked()){
-
-                }
-            }
-        });*/
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pointsInteres.remove(position);
-                notifyDataSetChanged();
-            }
-        });
 
         return view;
     }

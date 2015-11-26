@@ -44,9 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="170dp"
+            android:layout_marginLeft="80dp"
             android:background="@color/colorPrimary"
-            />
+            android:checked="false" />
 
     </LinearLayout>
 
@@ -71,6 +71,17 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/refresh"
         />
+
+    <TextView
+        android:id="@+id/activity_main_with_car_pending_ride_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="No tienes solicitudes de raite pendientes"
+        android:textSize="25sp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
     <ListView
         android:id="@+id/activity_main_with_car_points_interest"
         android:layout_width="wrap_content"
@@ -85,7 +96,7 @@
         android:id="@+id/activity_main_with_car_message_aviso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_main_with_car_points_interest"
+        android:layout_above="@+id/activity_main_with_car_message_confirm"
         android:layout_marginLeft="15dp"
         android:typeface="sans"
         android:textSize="20dp"
@@ -95,20 +106,40 @@
         android:id="@+id/activity_main_with_car_message_confirm"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/activity_main_with_car_message_aviso"
+        android:layout_above="@+id/activity_main_with_car_buttons_layout"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:singleLine="true"
-        android:text="¿Donde nos vemos?"
+        android:hint="¿Donde nos vemos?"
         />
-    <Button
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/activity_main_with_car_buttons_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_main_with_car_message_confirm"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:typeface="sans"
-        android:textSize="20dp"
-        android:text="Confirmar"
-        />
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/activity_main_with_car_confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="sans"
+            android:textSize="20dp"
+            android:text="Confirmar"
+            />
+        <Button
+            android:id="@+id/activity_main_with_car_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:typeface="sans"
+            android:textSize="20dp"
+            android:text="Cancelar"
+            />
+
+    </LinearLayout>
+
 </RelativeLayout>

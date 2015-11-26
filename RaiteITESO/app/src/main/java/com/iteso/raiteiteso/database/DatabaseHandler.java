@@ -29,6 +29,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     public static final String USERS_WITH_CAR_THURSDAY_HOUR = "WCthursdayhour";
     public static final String USERS_WITH_CAR_FRIDAY_HOUR = "WCfridayhour";
     public static final String USERS_WITH_CAR_AVAILABLE = "Available";
+    public static final String USERS_WITH_CAR_INTEREST_POINTS = "WCInterestPoints";
+    public static final String USERS_WITH_CAR_RIDE_REQUEST = "WCRequestList";
 
     public static final String USERS_WITHOUT_CAR_USER_NAME = "WOCusername";
     public static final String USERS_WITHOUT_CAR_PASSWORD = "WOCpassword";
@@ -38,6 +40,9 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     public static final String USERS_WITHOUT_CAR_WEDNESDAY_HOUR = "WOCwednesdayhour";
     public static final String USERS_WITHOUT_CAR_THURSDAY_HOUR = "WOCthursdayhour";
     public static final String USERS_WITHOUT_CAR_FRIDAY_HOUR = "WOCfridayhour";
+    public static final String USERS_WITHOUT_CAR_INTEREST_POINTS = "WOCInterestPoints";
+    public static final String USERS_WITHOUT_CAR_RIDE_USER = "WOCRide";
+    public static final String USERS_WITHOUT_CAR_MEETING_POINT = "WOCMeetingPoint";
 
 
     private static DatabaseHandler databaseHandler;
@@ -61,14 +66,16 @@ public class DatabaseHandler extends SQLiteOpenHelper{
                 USERS_WITH_CAR_CAPACITY + " INTEGER, " + USERS_WITH_CAR_MONDAY_HOUR + " TEXT, " +
                 USERS_WITH_CAR_TUESDAY_HOUR + " TEXT, " + USERS_WITH_CAR_WEDNESDAY_HOUR + " TEXT, " +
                 USERS_WITH_CAR_THURSDAY_HOUR + " TEXT, " + USERS_WITH_CAR_FRIDAY_HOUR + " TEXT, " +
-                USERS_WITH_CAR_AVAILABLE + " INTEGER);";
+                USERS_WITH_CAR_AVAILABLE + " INTEGER, " + USERS_WITH_CAR_INTEREST_POINTS +
+                " TEXT, " + USERS_WITH_CAR_RIDE_REQUEST + " TEXT);";
         db.execSQL(sql);
 
         sql = "CREATE TABLE " + USERS_WITHOUT_CAR + " (" + USERS_WITHOUT_CAR_USER_NAME + " TEXT PRIMARY KEY, " +
                 USERS_WITHOUT_CAR_PASSWORD + " TEXT, " + USERS_WITHOUT_CAR_NAME + " TEXT, " +
                 USERS_WITHOUT_CAR_MONDAY_HOUR + " TEXT, " + USERS_WITHOUT_CAR_TUESDAY_HOUR + " TEXT, " +
                 USERS_WITHOUT_CAR_WEDNESDAY_HOUR + " TEXT, " + USERS_WITHOUT_CAR_THURSDAY_HOUR + " TEXT, " +
-                USERS_WITHOUT_CAR_FRIDAY_HOUR + " ,TEXT);";
+                USERS_WITHOUT_CAR_FRIDAY_HOUR + " TEXT, " + USERS_WITHOUT_CAR_INTEREST_POINTS +
+                " TEXT, " + USERS_WITHOUT_CAR_RIDE_USER + " TEXT, " + USERS_WITHOUT_CAR_MEETING_POINT + " TEXT);";
         db.execSQL(sql);
     }
 

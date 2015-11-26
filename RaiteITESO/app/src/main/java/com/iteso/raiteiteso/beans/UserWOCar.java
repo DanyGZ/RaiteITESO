@@ -3,10 +3,16 @@ package com.iteso.raiteiteso.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.iteso.raiteiteso.database.DatabaseHandler;
+import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.gui.Observer;
+
+import java.util.ArrayList;
+
 /**
  * Created by Daniel on 18/10/2015.
  */
-public class UserWOCar implements Parcelable{
+public class UserWOCar implements Parcelable, Observer{
     private String userName;
     private String password;
     private String name;
@@ -15,6 +21,16 @@ public class UserWOCar implements Parcelable{
     private String wednesdayHour;
     private String thursdayHour;
     private String fridayHour;
+    private String ride;
+    private ArrayList<String> interestPoints;
+    private String meetingPoint;
+    private UserWCar userWCar;
+
+
+    public UserWOCar(){
+        ride = "";
+        meetingPoint = "";
+    }
 
     protected UserWOCar(Parcel in) {
         userName = in.readString();
@@ -25,6 +41,10 @@ public class UserWOCar implements Parcelable{
         wednesdayHour = in.readString();
         thursdayHour = in.readString();
         fridayHour = in.readString();
+        ride = in.readString();
+        interestPoints = in.createStringArrayList();
+        meetingPoint = in.readString();
+        userWCar = in.readParcelable(UserWCar.class.getClassLoader());
     }
 
     public static final Creator<UserWOCar> CREATOR = new Creator<UserWOCar>() {
@@ -38,10 +58,6 @@ public class UserWOCar implements Parcelable{
             return new UserWOCar[size];
         }
     };
-
-    public UserWOCar(){
-
-    }
 
     public String getUserName() {
         return userName;
@@ -107,6 +123,30 @@ public class UserWOCar implements Parcelable{
         this.fridayHour = fridayHour;
     }
 
+    public String getRide() {
+        return ride;
+    }
+
+    public void setRide(String ride) {
+        this.ride = ride;
+    }
+
+    public ArrayList<String> getInterestPoints() {
+        return interestPoints;
+    }
+
+    public void setInterestPoints(ArrayList<String> interestPoints) {
+        this.interestPoints = interestPoints;
+    }
+
+    public String getMeetingPoint() {
+        return meetingPoint;
+    }
+
+    public void setMeetingPoint(String meetingPoint) {
+        this.meetingPoint = meetingPoint;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -114,6 +154,7 @@ public class UserWOCar implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeString(userName);
         dest.writeString(password);
         dest.writeString(name);
@@ -122,5 +163,19 @@ public class UserWOCar implements Parcelable{
         dest.writeString(wednesdayHour);
         dest.writeString(thursdayHour);
         dest.writeString(fridayHour);
+        dest.writeString(ride);
+        dest.writeStringList(interestPoints);
+        dest.writeString(meetingPoint);
+        dest.writeParcelable(userWCar, flags);
+    }
+
+    public boolean addRide(UserWCar userWCar){
+        this.userWCar = userWCar;
+       return  this.userWCar.registerObserver(this);
+    }
+
+    @Override
+    public void update(DatabaseHandler dh, UserControl userControl, String userWCName, String meetingPoint) {
+        userControl.updateUsersWithOutCar(dh, this, userWCName, meetingPoint);
     }
 }
