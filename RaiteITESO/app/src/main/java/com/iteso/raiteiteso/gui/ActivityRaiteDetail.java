@@ -27,6 +27,7 @@ public class ActivityRaiteDetail extends Activity{
     private ArrayList<String> adapterArrayList;
     private Button askForRide;
     private TextView noRaite;
+    private TextView name;
     ListView listDetail;
     private DatabaseHandler dh;
     private UserControl userControl;
@@ -41,12 +42,16 @@ public class ActivityRaiteDetail extends Activity{
         toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
         askForRide = (Button) findViewById(R.id.activity_raite_detail_buttom_raite);
         noRaite = (TextView) findViewById(R.id.activity_raite_detail_no_raite_detail);
+        name = (TextView) findViewById(R.id.activity_raite_detail_name);
+
 
         detail = new ArrayList<>();
         interestPoints = new ArrayList<>();
         adapterArrayList = new ArrayList<>();
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
+
+        name.setText(user.getName());
 
         String userName = getIntent().getStringExtra(Constants.USER_WITH_CAR_EXTRA);
         user = userControl.getUserWithCarByUserName(userName, dh);
@@ -77,7 +82,6 @@ public class ActivityRaiteDetail extends Activity{
                     }
                 }
             });
-            noRaite.setVisibility(View.VISIBLE);
             listDetail.setVisibility(View.GONE);
         }else{
             askForRide.setVisibility(View.GONE);
@@ -93,6 +97,7 @@ public class ActivityRaiteDetail extends Activity{
             @Override
             public void rightButtonClick() {
                 raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
+                noRaite.setVisibility(View.VISIBLE);
                 listDetail.setAdapter(raiteDetail);
             }
         });

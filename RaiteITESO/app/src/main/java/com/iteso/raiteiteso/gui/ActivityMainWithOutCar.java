@@ -32,6 +32,7 @@ public class ActivityMainWithOutCar extends Activity{
     ArrayList<UserWCar> points;
     ArrayList<UserWCar> usersWithCar;
     ImageView refresh;
+    ImageView edit;
     Switch aSwitch;
 
     @Override
@@ -42,6 +43,7 @@ public class ActivityMainWithOutCar extends Activity{
         noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
         listView = (ListView)findViewById(R.id.activity_main_without_car_list);
         refresh = (ImageView)findViewById(R.id.activity_main_without_car_refresh);
+        edit = (ImageView) findViewById(R.id.activity_main_without_car_image_edit);
         aSwitch = (Switch)findViewById(R.id.activity_main_without_car_visible);
 
         DatabaseHandler dh = DatabaseHandler.getInstance(this);
@@ -100,6 +102,13 @@ public class ActivityMainWithOutCar extends Activity{
             public void onClick(View v) {
                 finish();
                 startActivity(getIntent());
+            }
+        });
+
+        edit.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

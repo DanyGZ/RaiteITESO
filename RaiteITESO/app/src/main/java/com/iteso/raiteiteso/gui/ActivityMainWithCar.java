@@ -34,6 +34,7 @@ public class ActivityMainWithCar extends Activity{
     private Button confirm;
     private Button cancel;
     private ImageView refresh;
+    private ImageView edit;
     private ArrayList<UserWOCar> rideRequest;
     private ArrayList<Integer> acceptedUsers;
     private UserWCar userWCar;
@@ -51,15 +52,13 @@ public class ActivityMainWithCar extends Activity{
         confirm = (Button) findViewById(R.id.activity_main_with_car_confirm_button);
         cancel = (Button) findViewById(R.id.activity_main_with_car_cancel_button);
         refresh = (ImageView) findViewById(R.id.activity_main_with_car_refresh);
+        edit = (ImageView) findViewById(R.id.activity_main_with_car_image_edit);
 
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWCar = userControl.getUserWithCarByUserName(userName, dh);
-
-        visibility.setChecked(userWCar.isAvailable());
-
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
@@ -140,6 +139,13 @@ public class ActivityMainWithCar extends Activity{
                 public void onClick(View v) {
                     finish();
                     startActivity(getIntent());
+                }
+            });
+
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
                 }
             });
 
