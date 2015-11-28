@@ -1,6 +1,5 @@
 package com.iteso.raiteiteso;
 
-import android.graphics.drawable.Drawable;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,13 +67,23 @@ public class ActLoginTest extends ActivityInstrumentationTestCase2<ActivityLogin
         assertEquals("signUpButton contains wrong text", expectedSignUpButtonText, actualSignUpButtonText);
     }
 
-    public void testUserEditText_empty() {
+    public void testUserEditText_emptyText() {
         final String actualUserEditTextText = userEditText.getText().toString();
-        assertEquals("userEditText isn't empty", "", actualUserEditTextText);
+        assertEquals("userEditText text isn't empty", "", actualUserEditTextText);
     }
 
-    public void testPasswordEditText_empty() {
+    public void testUserEditText_emptyHint() {
+        final String actualUserEditTextHint = userEditText.getHint().toString();
+        assertEquals("userEditText hint isn't empty", "", actualUserEditTextHint);
+    }
+
+    public void testPasswordEditText_emptyText() {
         final String actualPasswordEditTextText = passwordEditText.getText().toString();
-        assertEquals("userEditText isn't empty", "", actualPasswordEditTextText);
+        assertEquals("userEditText text isn't empty", "", actualPasswordEditTextText);
+    }
+
+    public void testPasswordEditText_emptyHint() {
+        final String actualPasswordEditTextHint = passwordEditText.getHint().toString();
+        assertEquals("userEditText hint isn't empty", "", actualPasswordEditTextHint);
     }
 }
