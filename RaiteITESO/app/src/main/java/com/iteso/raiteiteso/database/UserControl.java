@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
-import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Daniel on 08/11/2015.
@@ -260,7 +260,7 @@ public class UserControl {
         return userWOCar;
     }
 
-    public ArrayList<UserWCar> getRides(DatabaseHandler dh, int day, String hour){
+    public ArrayList<UserWCar> getRides(DatabaseHandler dh, int day, String hour, ArrayList<String> points){
         ArrayList<UserWCar> usersWCars = new ArrayList<>();
         String selectQuery = "Select " + DatabaseHandler.USERS_WITH_CAR_USER_NAME + ", " + DatabaseHandler.USERS_WITH_CAR_NAME +
                 ", " + DatabaseHandler.USERS_WITH_CAR_CAR + ", " + DatabaseHandler.USERS_WITH_CAR_CAR_COLOR +
@@ -273,19 +273,19 @@ public class UserControl {
                 " WHERE ";
 
         switch (day){
-            case Constants.MONDAY:
+            case Calendar.MONDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_MONDAY_HOUR;
                 break;
-            case Constants.TUESDAY:
+            case Calendar.TUESDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_TUESDAY_HOUR;
                 break;
-            case Constants.WEDNESDAY:
+            case Calendar.WEDNESDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_WEDNESDAY_HOUR;
                 break;
-            case Constants.THURSDAY:
+            case Calendar.THURSDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_THURSDAY_HOUR;
                 break;
-            case Constants.FRIDAY:
+            case Calendar.FRIDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_FRIDAY_HOUR;
                 break;
         }
@@ -297,6 +297,7 @@ public class UserControl {
         if(cursor.moveToFirst()){
             do{
                 UserWOCar userWOCar = new UserWOCar();
+                boolean userFlag = false;
                 userWOCar.setUserName(cursor.getString(0));
                 userWOCar.setName(cursor.getString(1));
                 userWOCar.setMondayHour(cursor.getString(5));
@@ -319,9 +320,27 @@ public class UserControl {
                         point += interesPoints.charAt(i);
                     }else{
                         interestPointsArray.add(point);
+                        if(!userFlag) {
+                            for (int j = 0; j < points.size(); j++) {
+                                if (points.get(j).equals(point)) {
+                                    userFlag = true;
+                                    break;
+                                }
+                            }
+                        }
                         point = "";
                     }
                 }
+
+                if(!userFlag) {
+                    for (int j = 0; j < points.size(); j++) {
+                        if (points.get(j).equals(point)) {
+                            userFlag = true;
+                            break;
+                        }
+                    }
+                }
+
                 interestPointsArray.add(point);
                 userWCar.setInterestPoints(interestPointsArray);
 
@@ -339,10 +358,14 @@ public class UserControl {
                 if(user.length() > 0) {
                     userWOCars.add(getUserWithOuthCarByUserName(user, dh));
                 }
-                usersWCars.add(userWCar);
+
                 userWCar.setUserWOCars(userWOCars);
 
                 userWCar.setPassword(cursor.getString(12));
+
+                if(userFlag) {
+                    usersWCars.add(userWCar);
+                }
 
             }while(cursor.moveToNext());
         }

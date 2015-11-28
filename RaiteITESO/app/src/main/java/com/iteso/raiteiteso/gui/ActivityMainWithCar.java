@@ -58,6 +58,8 @@ public class ActivityMainWithCar extends Activity{
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWCar = userControl.getUserWithCarByUserName(userName, dh);
 
+        visibility.setChecked(userWCar.isAvailable());
+
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);

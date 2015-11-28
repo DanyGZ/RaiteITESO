@@ -54,7 +54,7 @@ public class ActivityMainWithOutCar extends Activity{
         int day = calendar.get(Calendar.DAY_OF_WEEK);
 
         if(day != Calendar.SATURDAY && day != Calendar.SUNDAY) {
-        usersWithCar = userControl.getRides(dh, day, getHora());
+        usersWithCar = userControl.getRides(dh, day, getHora(), userWOCarc.getInterestPoints());
 
         for(int i=0; i<usersWithCar.size(); i++){
             if(usersWithCar.get(i).getUserWOCars().size() < usersWithCar.get(i).getCarCapacity()){

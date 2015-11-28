@@ -226,7 +226,13 @@ public class ActivityCreateAccount extends Activity {
                 mTimePicker = new TimePickerDialog(ActivityCreateAccount.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        mondayHourText.setText(selectedHour + " : " + selectedMinute);
+                        String hourText = "" + selectedHour + ":";
+                        if(selectedMinute < 10){
+                            hourText += "0";
+                        }
+
+                        hourText += selectedMinute;
+                        mondayHourText.setText(hourText);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Seleccionar hora");
@@ -244,7 +250,13 @@ public class ActivityCreateAccount extends Activity {
                 mTimePicker = new TimePickerDialog(ActivityCreateAccount.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesdayHourText.setText(selectedHour + " : " + selectedMinute);
+                        String hourText = "" + selectedHour + ":";
+                        if(selectedMinute < 10){
+                            hourText += "0";
+                        }
+
+                        hourText += selectedMinute;
+                        tuesdayHourText.setText(hourText);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Seleccionar hora");
@@ -263,7 +275,13 @@ public class ActivityCreateAccount extends Activity {
                 mTimePicker = new TimePickerDialog(ActivityCreateAccount.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                       wednesdayHourText.setText(selectedHour + " : " + selectedMinute);
+                        String hourText = "" + selectedHour + ":";
+                        if(selectedMinute < 10){
+                            hourText += "0";
+                        }
+
+                        hourText += selectedMinute;
+                        wednesdayHourText.setText(hourText);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Seleccionar hora");
@@ -282,7 +300,13 @@ public class ActivityCreateAccount extends Activity {
                 mTimePicker = new TimePickerDialog(ActivityCreateAccount.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        thursdayHourText.setText(selectedHour + " : " + selectedMinute);
+                        String hourText = "" + selectedHour + ":";
+                        if(selectedMinute < 10){
+                            hourText += "0";
+                        }
+
+                        hourText += selectedMinute;
+                        thursdayHourText.setText(hourText);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Seleccionar hora");
@@ -301,7 +325,13 @@ public class ActivityCreateAccount extends Activity {
                 mTimePicker = new TimePickerDialog(ActivityCreateAccount.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        fridayHourText.setText(selectedHour + " : " + selectedMinute);
+                        String hourText = "" + selectedHour + ":";
+                        if(selectedMinute < 10){
+                            hourText += "0";
+                        }
+
+                        hourText += selectedMinute;
+                        fridayHourText.setText(hourText);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Seleccionar hora");
@@ -379,7 +409,7 @@ public class ActivityCreateAccount extends Activity {
                         user.setWednesdayHour(wednesday);
                         user.setThursdayHour(thursday);
                         user.setFridayHour(friday);
-                        user.setInterestPoints(interestPoints);
+                        user.setInterestPoints(checkedPlacesList);
 
                         if(carToggle.isChecked()){
                             user = new UserWCar(user);
