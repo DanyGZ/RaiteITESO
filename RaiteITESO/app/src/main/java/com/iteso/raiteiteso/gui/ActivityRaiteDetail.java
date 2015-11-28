@@ -27,7 +27,7 @@ public class ActivityRaiteDetail extends Activity{
     private ArrayList<String> adapterArrayList;
     private Button askForRide;
     private TextView noRaite;
-    private TextView name;
+    private TextView nameView;
     ListView listDetail;
     private DatabaseHandler dh;
     private UserControl userControl;
@@ -42,7 +42,7 @@ public class ActivityRaiteDetail extends Activity{
         toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
         askForRide = (Button) findViewById(R.id.activity_raite_detail_buttom_raite);
         noRaite = (TextView) findViewById(R.id.activity_raite_detail_no_raite_detail);
-        name = (TextView) findViewById(R.id.activity_raite_detail_name);
+        nameView = (TextView) findViewById(R.id.activity_raite_detail_name);
 
 
         detail = new ArrayList<>();
@@ -51,12 +51,12 @@ public class ActivityRaiteDetail extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
-        name.setText(user.getName());
-
         String userName = getIntent().getStringExtra(Constants.USER_WITH_CAR_EXTRA);
         user = userControl.getUserWithCarByUserName(userName, dh);
         String name = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWOCar = userControl.getUserWithOuthCarByUserName(name, dh);
+
+        nameView.setText(user.getName());
 
         detail.add(user.getCar());
         detail.add(user.getCarColor());

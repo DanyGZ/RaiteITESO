@@ -80,6 +80,6 @@
         android:layout_marginTop="5dp"
         android:typeface="sans"
         android:textSize="20dp"
-        android:text="Raites Disponibles"/>
+        android:text="No hay raites disponibles en estos momentos"/>
 
 </RelativeLayout>

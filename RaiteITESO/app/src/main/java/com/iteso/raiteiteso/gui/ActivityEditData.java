@@ -11,14 +11,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.iteso.raiteiteso.beans.UserWCar;
-import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.database.DatabaseHandler;
 import com.iteso.raiteiteso.database.UserControl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static android.view.View.*;
+import static android.view.View.GONE;
+import static android.view.View.OnClickListener;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by Daniel on 29/10/2015.
@@ -58,7 +59,6 @@ public class ActivityEditData extends Activity{
 
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
-        userWCar = new UserWCar();
 
         mondayEditText = (Button) findViewById(R.id.activity_edit_data_monday);
         tuesdayEditText = (Button) findViewById(R.id.activity_edit_data_tuesday);
