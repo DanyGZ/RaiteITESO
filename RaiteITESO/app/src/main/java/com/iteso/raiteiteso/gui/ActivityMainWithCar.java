@@ -1,6 +1,5 @@
 package com.iteso.raiteiteso.gui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +55,6 @@ public class ActivityMainWithCar extends AppCompatActivity {
         confirm = (Button) findViewById(R.id.activity_main_with_car_confirm_button);
         cancel = (Button) findViewById(R.id.activity_main_with_car_cancel_button);
         refresh = (ImageView) findViewById(R.id.activity_main_with_car_refresh);
-        edit = (ImageView) findViewById(R.id.activity_main_with_car_image_edit);
 
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
@@ -143,13 +141,6 @@ public class ActivityMainWithCar extends AppCompatActivity {
                 public void onClick(View v) {
                     finish();
                     startActivity(getIntent());
-                }
-            });
-
-            edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
                 }
             });
 

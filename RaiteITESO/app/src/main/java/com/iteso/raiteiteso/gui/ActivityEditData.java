@@ -72,16 +72,15 @@ public class ActivityEditData extends Activity{
         wednesdayEditText = (Button) findViewById(R.id.activity_edit_data_wednesday);
         thursdayEditText = (Button) findViewById(R.id.activity_edit_data_thursday);
         fridayEditText = (Button) findViewById(R.id.activity_edit_data_friday);
-        aceptar = (Button) findViewById(R.id.activity_edit_data_botton);
         mondayHourText = (TextView) findViewById(R.id.activity_edit_data_monday_hour);
         tuesdayHourText = (TextView) findViewById(R.id.activity_edit_data_tuesday_hour);
         wednesdayHourText = (TextView) findViewById(R.id.activity_edit_data_wednesday_hour);
         thursdayHourText = (TextView) findViewById(R.id.activity_edit_data_thursday_hour);
         fridayHourText = (TextView) findViewById(R.id.activity_edit_data_friday_hour);
-        interestPointsListView = (ListView) findViewById(R.id.activity_edit_data_points_interes);
+        interestPointsListView = (ListView) findViewById(R.id.activity_edit_data_interest_points);
         carEditText = (EditText) findViewById(R.id.activity_edit_data_car);
-        capacityEditText = (EditText) findViewById(R.id.activity_edit_data_capacity);
-        colorEditText = (EditText) findViewById(R.id.activity_edit_data_color);
+        capacityEditText = (EditText) findViewById(R.id.activity_edit_data_car_capacity);
+        colorEditText = (EditText) findViewById(R.id.activity_edit_data_car_color);
         aceptar = (Button) findViewById(R.id.activity_edit_data_aceptar);
         carLayout = (LinearLayout) findViewById(R.id.activity_edit_data_layout_car);
 
@@ -92,7 +91,7 @@ public class ActivityEditData extends Activity{
 
         if(userWCar != null) {
             carEditText.setText(userWCar.getCar());
-            capacityEditText.setText(userWCar.getCarCapacity());
+            capacityEditText.setText(String.valueOf(userWCar.getCarCapacity()));
             colorEditText.setText(userWCar.getCarColor());
             interestPoints = userWCar.getInterestPoints();
         }
@@ -182,6 +181,9 @@ public class ActivityEditData extends Activity{
                 fridayHourText.setVisibility(VISIBLE);
             }
         });
+
+        adapterInterestPoints = new AdapterInterestPoints(ActivityEditData.this, interestPoints);
+        interestPointsListView.setAdapter(adapterInterestPoints);
 
         mondayHourText.setOnClickListener(new OnClickListener() {
             @Override
@@ -304,9 +306,6 @@ public class ActivityEditData extends Activity{
                     }
                 }
                 user.setInterestPoints(checkedPlacesList);
-
-                adapterInterestPoints = new AdapterInterestPoints(ActivityEditData.this, interestPoints);
-                interestPointsListView.setAdapter(adapterInterestPoints);
 
                 if(userWCar != null) {
                     userWCar.setCar(car);
