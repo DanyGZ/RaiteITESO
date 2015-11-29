@@ -10,8 +10,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ActivityLogin"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,10 +27,14 @@
         </activity>
         <activity
             android:name=".ActivityMainWithOutCar"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ActivityRaiteDetail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ActivityEditData"
             android:screenOrientation="portrait" >
         </activity>
     </application>

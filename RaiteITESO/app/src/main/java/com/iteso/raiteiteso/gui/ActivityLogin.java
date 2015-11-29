@@ -35,8 +35,6 @@ public class ActivityLogin extends Activity {
         setContentView(R.layout.activity_login);
 
         dh = DatabaseHandler.getInstance(this);
-        final UserWCar userWCar = new UserWCar();
-        final UserWOCar userWOCar = new UserWOCar();
 
         userNameEdit = (EditText) findViewById(R.id.activity_login_user);
         passwordEdit = (EditText) findViewById(R.id.activity_login_password);
@@ -62,45 +60,52 @@ public class ActivityLogin extends Activity {
                 }else if(userName.contains("'")){
                     Toast.makeText(ActivityLogin.this, "Caracteres inválidos", Toast.LENGTH_LONG).show();
                 }else{
-                    UserWCar userWCar = (UserWCar) userValidation();
-                    if(userWCar != null){
-                        if(userWCar.getPassword().equals(password)){
-                            if(userWCar.getCar() != null){
-                                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
-                            }else {
-                                if (userWCar.getRide().equals("")){
-                                    intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
-                                }else{
-                                    intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
-                                    intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
-                                            userControl.getUserWithCarByUserName(userWCar.getRide(),dh).getUserName());
-                                }
+                    UserWOCar userWOCar = userWOCarValidation();
+                    if(userWOCar != null){
+                        if(userWOCar.getPassword().equals(password)){
+                            if (userWOCar.getRide().equals("")){
+                                intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                            }else{
+                                intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
+                                intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
+                                        userControl.getUserWithCarByUserName(userWOCar.getRide(), dh).getUserName());
                             }
-                            intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
+                            intent.putExtra(Constants.USER_EXTRA, userWOCar.getUserName());
                             startActivity(intent);
 
                         }else{
                             Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
                         }
                     }else{
-                        Toast.makeText(ActivityLogin.this, "Usuario incorrecto", Toast.LENGTH_LONG).show();
+                        UserWCar userWCar = userWCarValidation();
+                        if(userWCar != null){
+                            if(userWCar.getPassword().equals(password)){
+                                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
+                                intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
+                            }
+                        }else{
+                            Toast.makeText(ActivityLogin.this, "Usuario incorrecto", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
             }
         });
     }
 
-    private UserWOCar userValidation(){
-        UserWOCar userWOCar = null;
-
+    private UserWOCar userWOCarValidation(){
         userControl = new UserControl(this);
+        UserWOCar userWOCar = userControl.getUserWithOuthCarByUserName(userName, dh);
 
-        userWOCar = userControl.getUserWithOuthCarByUserName(userName, dh);
+        return  userWOCar;
+    }
 
-        if(userWOCar == null){
-            userWOCar = userControl.getUserWithCarByUserName(userName, dh);
-        }
+    private UserWCar userWCarValidation(){
+       userControl = new UserControl(this);
+        UserWCar userWCar = userControl.getUserWithCarByUserName(userName, dh);
 
-        return userWOCar;
+        return userWCar;
     }
 }

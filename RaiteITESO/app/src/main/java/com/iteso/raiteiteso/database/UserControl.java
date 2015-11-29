@@ -10,6 +10,7 @@ import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Daniel on 08/11/2015.
@@ -140,18 +141,20 @@ public class UserControl {
         SQLiteDatabase db = dh.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()){
-            userWCar = new UserWCar();
-            userWCar.setUserName(cursor.getString(0));
-            userWCar.setPassword(cursor.getString(1));
-            userWCar.setName(cursor.getString(2));
+            UserWOCar userWOCar = new UserWOCar();
+            userWOCar.setUserName(cursor.getString(0));
+            userWOCar.setPassword(cursor.getString(1));
+            userWOCar.setName(cursor.getString(2));
+            userWOCar.setMondayHour(cursor.getString(6));
+            userWOCar.setTuesdayHour(cursor.getString(7));
+            userWOCar.setWednesdayHour(cursor.getString(8));
+            userWOCar.setThursdayHour(cursor.getString(9));
+            userWOCar.setFridayHour(cursor.getString(10));
+
+            userWCar = new UserWCar(userWOCar);
             userWCar.setCar(cursor.getString(3));
             userWCar.setCarColor(cursor.getString(4));
             userWCar.setCarCapacity(cursor.getInt(5));
-            userWCar.setMondayHour(cursor.getString(6));
-            userWCar.setTuesdayHour(cursor.getString(7));
-            userWCar.setWednesdayHour(cursor.getString(8));
-            userWCar.setThursdayHour(cursor.getString(9));
-            userWCar.setFridayHour(cursor.getString(10));
 
             boolean avaliable;
             if(cursor.getInt(11) == 0){
@@ -218,7 +221,7 @@ public class UserControl {
         SQLiteDatabase db = dh.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()){
-            userWOCar = new UserWCar();
+            userWOCar = new UserWOCar();
             userWOCar.setUserName(cursor.getString(0));
             userWOCar.setPassword(cursor.getString(1));
             userWOCar.setName(cursor.getString(2));
@@ -271,19 +274,19 @@ public class UserControl {
                 " WHERE ";
 
         switch (day){
-            case Constants.MONDAY:
+            case Calendar.MONDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_MONDAY_HOUR;
                 break;
-            case Constants.TUESDAY:
+            case Calendar.TUESDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_TUESDAY_HOUR;
                 break;
-            case Constants.WEDNESDAY:
+            case Calendar.WEDNESDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_WEDNESDAY_HOUR;
                 break;
-            case Constants.THURSDAY:
+            case Calendar.THURSDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_THURSDAY_HOUR;
                 break;
-            case Constants.FRIDAY:
+            case Calendar.FRIDAY:
                 selectQuery += DatabaseHandler.USERS_WITH_CAR_FRIDAY_HOUR;
                 break;
         }
@@ -294,17 +297,19 @@ public class UserControl {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()){
             do{
-                UserWCar userWCar = new UserWCar();
-                userWCar.setUserName(cursor.getString(0));
-                userWCar.setName(cursor.getString(1));
+                UserWOCar userWOCar = new UserWOCar();
+                userWOCar.setUserName(cursor.getString(0));
+                userWOCar.setName(cursor.getString(1));
+                userWOCar.setMondayHour(cursor.getString(5));
+                userWOCar.setTuesdayHour(cursor.getString(6));
+                userWOCar.setWednesdayHour(cursor.getString(7));
+                userWOCar.setThursdayHour(cursor.getString(8));
+                userWOCar.setFridayHour(cursor.getString(9));
+
+                UserWCar userWCar = new UserWCar(userWOCar);
                 userWCar.setCar(cursor.getString(2));
                 userWCar.setCarColor(cursor.getString(3));
                 userWCar.setCarCapacity(cursor.getInt(4));
-                userWCar.setMondayHour(cursor.getString(5));
-                userWCar.setTuesdayHour(cursor.getString(6));
-                userWCar.setWednesdayHour(cursor.getString(7));
-                userWCar.setThursdayHour(cursor.getString(8));
-                userWCar.setFridayHour(cursor.getString(9));
                 userWCar.setAvailable(true);
 
                 ArrayList<String> interestPointsArray = new ArrayList<>();
@@ -335,9 +340,8 @@ public class UserControl {
                 if(user.length() > 0) {
                     userWOCars.add(getUserWithOuthCarByUserName(user, dh));
                 }
-                userWCar.setUserWOCars(userWOCars);
-
                 usersWCars.add(userWCar);
+                userWCar.setUserWOCars(userWOCars);
 
                 userWCar.setPassword(cursor.getString(12));
 

@@ -178,4 +178,7 @@ public class UserWOCar implements Parcelable, Observer{
     public void update(DatabaseHandler dh, UserControl userControl, String userWCName, String meetingPoint) {
         userControl.updateUsersWithOutCar(dh, this, userWCName, meetingPoint);
     }
+
+    public void setCarAttributes(String car, String color, int capacity, boolean available){}
+
 }

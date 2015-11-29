@@ -27,7 +27,7 @@ public class ActivityRaiteDetail extends Activity{
     private ArrayList<String> adapterArrayList;
     private Button askForRide;
     private TextView noRaite;
-    private TextView name;
+    private TextView nameView;
     ListView listDetail;
     private DatabaseHandler dh;
     private UserControl userControl;
@@ -42,7 +42,7 @@ public class ActivityRaiteDetail extends Activity{
         toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
         askForRide = (Button) findViewById(R.id.activity_raite_detail_buttom_raite);
         noRaite = (TextView) findViewById(R.id.activity_raite_detail_no_raite_detail);
-        name = (TextView) findViewById(R.id.activity_raite_detail_name);
+        nameView = (TextView) findViewById(R.id.activity_raite_detail_name);
 
 
         detail = new ArrayList<>();
@@ -51,7 +51,7 @@ public class ActivityRaiteDetail extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
-        name.setText(user.getName());
+
 
         String userName = getIntent().getStringExtra(Constants.USER_WITH_CAR_EXTRA);
         user = userControl.getUserWithCarByUserName(userName, dh);
@@ -63,6 +63,8 @@ public class ActivityRaiteDetail extends Activity{
         detail.add(userWOCar.getMeetingPoint());
 
         interestPoints = user.getInterestPoints();
+
+        nameView.setText(userName);
 
         adapterArrayList = interestPoints;
         toggleButton.setLeftButtonText("Puntos de interés", "Puntos de interés");
@@ -82,7 +84,7 @@ public class ActivityRaiteDetail extends Activity{
                     }
                 }
             });
-            listDetail.setVisibility(View.GONE);
+
         }else{
             askForRide.setVisibility(View.GONE);
         }
@@ -92,13 +94,18 @@ public class ActivityRaiteDetail extends Activity{
             public void leftButtonClick() {
                 raiteDetail = new AdapterListRaiteDetail(interestPoints, ActivityRaiteDetail.this);
                 listDetail.setAdapter(raiteDetail);
+                listDetail.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void rightButtonClick() {
-                raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
-                noRaite.setVisibility(View.VISIBLE);
-                listDetail.setAdapter(raiteDetail);
+                if(userWOCar.getRide().equals("")){
+                    noRaite.setVisibility(View.VISIBLE);
+                    listDetail.setVisibility(View.GONE);
+                }else{
+                    raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
+                    listDetail.setAdapter(raiteDetail);
+                }
             }
         });
 
