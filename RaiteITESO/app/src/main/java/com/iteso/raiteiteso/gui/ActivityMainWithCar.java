@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,14 +29,12 @@ public class ActivityMainWithCar extends AppCompatActivity {
     private UserControl userControl;
     private AdapterListWithCar adapterList;
     private ListView listView;
-    private Switch visibility;
     private TextView rideRequestText;
     private TextView noticeMessage;
     private EditText meetingPoint;
     private Button confirm;
     private Button cancel;
     private ImageView refresh;
-    private ImageView edit;
     private ArrayList<UserWOCar> rideRequest;
     private ArrayList<Integer> acceptedUsers;
     private UserWCar userWCar;
@@ -48,7 +45,6 @@ public class ActivityMainWithCar extends AppCompatActivity {
         setContentView(R.layout.activity_main_with_car);
 
         listView =(ListView)findViewById(R.id.activity_main_with_car_points_interest);
-        visibility = (Switch) findViewById(R.id.activity_main_with_car_visible);
         rideRequestText = (TextView) findViewById(R.id.activity_main_with_car_pending_ride_request);
         noticeMessage = (TextView) findViewById(R.id.activity_main_with_car_message_aviso);
         meetingPoint = (EditText) findViewById(R.id.activity_main_with_car_message_confirm);
@@ -61,8 +57,6 @@ public class ActivityMainWithCar extends AppCompatActivity {
 
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWCar = userControl.getUserWithCarByUserName(userName, dh);
-
-        visibility.setChecked(userWCar.isAvailable());
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);

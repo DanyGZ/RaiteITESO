@@ -284,7 +284,7 @@
 
                 <ToggleButton
                     android:id="@+id/activity_create_account_toggle_available"
-                    android:layout_width="100dp"
+                    android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:textOff="No disponible"
                     android:textOn="Disponible"

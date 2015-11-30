@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="530dp"
+        android:layout_alignParentBottom="true"
         android:typeface="sans"
         android:textSize="20dp"
         android:text="Pedir Raite"

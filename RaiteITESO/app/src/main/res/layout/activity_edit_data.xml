@@ -207,6 +207,15 @@
                     android:inputType="number"
                     android:hint="Capacidad" />
 
+                <ToggleButton
+                    android:id="@+id/activity_edit_data_toggle_available"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:textOff="No disponible"
+                    android:textOn="Disponible"
+                    android:singleLine="true"
+                    android:checked="true"/>
+
             </LinearLayout>
 
             <Button

@@ -37,6 +37,25 @@ public class AdapterInterestPoints extends BaseAdapter {
 
     }
 
+    public AdapterInterestPoints(Context context, ArrayList<String> interestPoints, ArrayList<String> checked){
+        this.context = context;
+        this.interestPoints = interestPoints;
+        this.inflater =  LayoutInflater.from(context);
+        checkedPoints = new ArrayList<>();
+
+        for(int i=0; i<interestPoints.size(); i++){
+            boolean flag = false;
+            for(int j=0; j<checked.size(); j++){
+                if(checked.get(j).contains(interestPoints.get(i))){
+                    flag = true;
+                    break;
+                }
+            }
+            checkedPoints.add(flag);
+        }
+
+    }
+
     public ArrayList<Boolean> getCheckedPoints(){
         return checkedPoints;
     }
@@ -70,6 +89,7 @@ public class AdapterInterestPoints extends BaseAdapter {
             pointHolder = (PointHolder) convertView.getTag();
         }
 
+        pointHolder.checkBox.setChecked(checkedPoints.get(position));
         pointHolder.place.setText(interestPoints.get(position));
         pointHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

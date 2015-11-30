@@ -1,7 +1,10 @@
 package com.iteso.raiteiteso.gui;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by Daniel on 29/10/2015.
  */
-public class ActivityRaiteDetail extends Activity{
+public class ActivityRaiteDetail extends AppCompatActivity{
     ToggleButtonClass toggleButton;
     private AdapterListRaiteDetail raiteDetail;
     private  ArrayList<String> detail;
@@ -33,6 +36,25 @@ public class ActivityRaiteDetail extends Activity{
     private UserControl userControl;
     private UserWCar user;
     private UserWOCar userWOCar;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_menu_item:
+                Intent intent = new Intent(ActivityRaiteDetail.this, ActivityEditData.class);
+                intent.putExtra(Constants.USER_EXTRA_NAME, userWOCar.getUserName());
+                intent.putExtra(Constants.USER_EXTRA_HAS_CAR, false);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +117,7 @@ public class ActivityRaiteDetail extends Activity{
                 raiteDetail = new AdapterListRaiteDetail(interestPoints, ActivityRaiteDetail.this);
                 listDetail.setAdapter(raiteDetail);
                 listDetail.setVisibility(View.VISIBLE);
+                noRaite.setVisibility(View.GONE);
             }
 
             @Override

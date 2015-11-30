@@ -19,6 +19,7 @@ import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.database.DatabaseHandler;
 import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -70,7 +71,6 @@ public class ActivityCreateAccount extends Activity {
     private TextView fridayHourText;
     private ListView interestPointsListView;
     private AdapterInterestPoints adapterInterestPoints;
-    private ArrayList<String> interestPoints;
     private UserWOCar user;
 
     @Override
@@ -109,12 +109,8 @@ public class ActivityCreateAccount extends Activity {
         fridayHourText = (TextView) findViewById(R.id.activity_create_account_friday_hour);
         interestPointsListView = (ListView) findViewById(R.id.activity_create_account_interest_points);
 
-        interestPoints = new ArrayList<>();
-        interestPoints.add("Patria");
-        interestPoints.add("Colón");
-        interestPoints.add("Guadalupe");
-        interestPoints.add("López Mateos");
-        adapterInterestPoints = new AdapterInterestPoints(this, interestPoints);
+        Constants.fillInterestPoints();
+        adapterInterestPoints = new AdapterInterestPoints(this, Constants.interestPoints);
         interestPointsListView.setAdapter(adapterInterestPoints);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -398,7 +394,7 @@ public class ActivityCreateAccount extends Activity {
                     checkedPlacesList = new ArrayList<>();
                     for(int i=0; i<checkedPlaces.size(); i++){
                         if(checkedPlaces.get(i)){
-                            checkedPlacesList.add(interestPoints.get(i));
+                            checkedPlacesList.add(Constants.interestPoints.get(i));
                         }
                     }
                     if(checkedPlacesList.size() == 0){
