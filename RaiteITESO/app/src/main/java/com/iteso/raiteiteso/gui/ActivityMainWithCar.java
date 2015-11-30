@@ -1,7 +1,10 @@
 package com.iteso.raiteiteso.gui;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +25,7 @@ import java.util.ArrayList;
 /**
  * Created by Daniel on 29/10/2015.
  */
-public class ActivityMainWithCar extends Activity{
+public class ActivityMainWithCar extends AppCompatActivity {
     private DatabaseHandler dh;
     private UserControl userControl;
     private AdapterListWithCar adapterList;
@@ -52,7 +55,6 @@ public class ActivityMainWithCar extends Activity{
         confirm = (Button) findViewById(R.id.activity_main_with_car_confirm_button);
         cancel = (Button) findViewById(R.id.activity_main_with_car_cancel_button);
         refresh = (ImageView) findViewById(R.id.activity_main_with_car_refresh);
-        edit = (ImageView) findViewById(R.id.activity_main_with_car_image_edit);
 
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
@@ -144,15 +146,28 @@ public class ActivityMainWithCar extends Activity{
                 }
             });
 
-            edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
         }
         
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_menu_item:
+                Intent intent = new Intent(ActivityMainWithCar.this, ActivityEditData.class);
+                intent.putExtra(Constants.USER_EXTRA_NAME, userWCar.getUserName());
+                intent.putExtra(Constants.USER_EXTRA_HAS_CAR, true);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
 }

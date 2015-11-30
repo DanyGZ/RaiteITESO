@@ -3,6 +3,9 @@ package com.iteso.raiteiteso.gui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -24,7 +27,7 @@ import java.util.Calendar;
 /**
  * Created by Daniel on 29/10/2015.
  */
-public class ActivityMainWithOutCar extends Activity{
+public class ActivityMainWithOutCar extends AppCompatActivity{
     TextView noRaite;
     ListView listView;
     UserWOCar userWOCarc = new UserWOCar();
@@ -32,7 +35,6 @@ public class ActivityMainWithOutCar extends Activity{
     ArrayList<UserWCar> points;
     ArrayList<UserWCar> usersWithCar;
     ImageView refresh;
-    ImageView edit;
     Switch aSwitch;
 
     @Override
@@ -43,7 +45,6 @@ public class ActivityMainWithOutCar extends Activity{
         noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
         listView = (ListView)findViewById(R.id.activity_main_without_car_list);
         refresh = (ImageView)findViewById(R.id.activity_main_without_car_refresh);
-        edit = (ImageView) findViewById(R.id.activity_main_without_car_image_edit);
         aSwitch = (Switch)findViewById(R.id.activity_main_without_car_visible);
 
         final DatabaseHandler dh = DatabaseHandler.getInstance(this);
@@ -147,12 +148,28 @@ public class ActivityMainWithOutCar extends Activity{
             }
         });
 
-        edit.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-            }
-        });
+    //Copiar y poner al wey con carro y al raite detail y todas las actividades extiendan de appcompactActivity
+    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_menu_item:
+                Intent intent = new Intent(ActivityMainWithOutCar.this, ActivityEditData.class);
+                intent.putExtra(Constants.USER_EXTRA_NAME, userWOCarc.getUserName());
+                intent.putExtra(Constants.USER_EXTRA_HAS_CAR, false);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
     public String getHora(){

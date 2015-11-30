@@ -51,6 +51,8 @@ public class ActivityRaiteDetail extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
+
+
         String userName = getIntent().getStringExtra(Constants.USER_WITH_CAR_EXTRA);
         user = userControl.getUserWithCarByUserName(userName, dh);
         String name = getIntent().getStringExtra(Constants.USER_EXTRA);
@@ -82,7 +84,7 @@ public class ActivityRaiteDetail extends Activity{
                     }
                 }
             });
-            listDetail.setVisibility(View.GONE);
+
         }else{
             askForRide.setVisibility(View.GONE);
         }
@@ -92,13 +94,18 @@ public class ActivityRaiteDetail extends Activity{
             public void leftButtonClick() {
                 raiteDetail = new AdapterListRaiteDetail(interestPoints, ActivityRaiteDetail.this);
                 listDetail.setAdapter(raiteDetail);
+                listDetail.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void rightButtonClick() {
-                raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
-                noRaite.setVisibility(View.VISIBLE);
-                listDetail.setAdapter(raiteDetail);
+                if(userWOCar.getRide().equals("")){
+                    noRaite.setVisibility(View.VISIBLE);
+                    listDetail.setVisibility(View.GONE);
+                }else{
+                    raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
+                    listDetail.setAdapter(raiteDetail);
+                }
             }
         });
 
