@@ -32,6 +32,7 @@ public class ActRaiteDetailTest extends ActivityInstrumentationTestCase2<Activit
 //        noRaiteTextView = (TextView) activityRaiteDetail.findViewById(R.id.activity_raite_detail_no_raite_detail);
         logoImageView = (ImageView) activityRaiteDetail.findViewById(R.id.activity_raite_details_image);
         pedirRideButton = (Button) activityRaiteDetail.findViewById(R.id.activity_raite_detail_buttom_raite);
+        
     }
 
     public void testPreconditions() {
