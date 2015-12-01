@@ -37,17 +37,6 @@
             android:textSize="20dp"
             android:text="Disponible"
             />
-
-
-        <Switch
-            android:id="@+id/activity_main_with_car_visible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="80dp"
-            android:background="@color/colorPrimary"
-            android:checked="false" />
-
     </LinearLayout>
 
 

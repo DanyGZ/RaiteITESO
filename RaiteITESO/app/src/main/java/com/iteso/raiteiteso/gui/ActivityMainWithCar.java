@@ -1,13 +1,15 @@
 package com.iteso.raiteiteso.gui;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +24,11 @@ import java.util.ArrayList;
 /**
  * Created by Daniel on 29/10/2015.
  */
-public class ActivityMainWithCar extends Activity{
+public class ActivityMainWithCar extends AppCompatActivity {
     private DatabaseHandler dh;
     private UserControl userControl;
     private AdapterListWithCar adapterList;
     private ListView listView;
-    private Switch visibility;
     private TextView rideRequestText;
     private TextView noticeMessage;
     private EditText meetingPoint;
@@ -44,7 +45,6 @@ public class ActivityMainWithCar extends Activity{
         setContentView(R.layout.activity_main_with_car);
 
         listView =(ListView)findViewById(R.id.activity_main_with_car_points_interest);
-        visibility = (Switch) findViewById(R.id.activity_main_with_car_visible);
         rideRequestText = (TextView) findViewById(R.id.activity_main_with_car_pending_ride_request);
         noticeMessage = (TextView) findViewById(R.id.activity_main_with_car_message_aviso);
         meetingPoint = (EditText) findViewById(R.id.activity_main_with_car_message_confirm);
@@ -57,9 +57,6 @@ public class ActivityMainWithCar extends Activity{
 
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWCar = userControl.getUserWithCarByUserName(userName, dh);
-
-        visibility.setChecked(userWCar.isAvailable());
-
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
@@ -145,6 +142,26 @@ public class ActivityMainWithCar extends Activity{
 
         }
         
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_menu_item:
+                Intent intent = new Intent(ActivityMainWithCar.this, ActivityEditData.class);
+                intent.putExtra(Constants.USER_EXTRA_NAME, userWCar.getUserName());
+                intent.putExtra(Constants.USER_EXTRA_HAS_CAR, true);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
 }
