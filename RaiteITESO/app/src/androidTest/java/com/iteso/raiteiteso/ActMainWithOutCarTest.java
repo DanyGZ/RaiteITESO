@@ -18,7 +18,7 @@ public class ActMainWithOutCarTest extends ActivityInstrumentationTestCase2<Acti
     private TextView titleTextView;
     private ImageView logoImageView;
     private ImageView refreshImageView;
-    private ListView ridesListView;
+//    private ListView ridesListView;
 //    private LinearLayout irmeAhoraLinearLayout;
 //    private Switch irmeAhoraSwitch;
 
@@ -34,7 +34,7 @@ public class ActMainWithOutCarTest extends ActivityInstrumentationTestCase2<Acti
         titleTextView = (TextView) activityMainWithOutCar.findViewById(R.id.activity_main_without_car_no_raite);
         logoImageView = (ImageView) activityMainWithOutCar.findViewById(R.id.activity_main_without_car_image);
         refreshImageView = (ImageView) activityMainWithOutCar.findViewById(R.id.activity_main_without_car_refresh);
-        ridesListView = (ListView) activityMainWithOutCar.findViewById(R.id.activity_main_without_car_list);
+//        ridesListView = (ListView) activityMainWithOutCar.findViewById(R.id.activity_main_without_car_list);
 //        irmeAhoraLinearLayout = (LinearLayout) irmeAhoraLinearLayout.findViewById(R.id.activity_main_without_car_layout1);
 //        irmeAhoraSwitch = (Switch) irmeAhoraSwitch.findViewById(R.id.activity_main_without_car_visible);
     }
@@ -44,7 +44,7 @@ public class ActMainWithOutCarTest extends ActivityInstrumentationTestCase2<Acti
         assertNotNull("titleTextView is null", titleTextView);
         assertNotNull("logoImageView is null", logoImageView);
         assertNotNull("refreshImageView is null", refreshImageView);
-        assertNotNull("ridesListView is null", ridesListView);
+//        assertNotNull("ridesListView is null", ridesListView);
 //        assertNotNull("irmeAhoraLinearLayout is null", irmeAhoraLinearLayout);
 //        assertNotNull("irmeAhoraSwitch is null", irmeAhoraSwitch);
     }
