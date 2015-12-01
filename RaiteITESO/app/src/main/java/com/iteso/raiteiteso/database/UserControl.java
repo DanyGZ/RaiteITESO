@@ -272,25 +272,16 @@ public class UserControl {
                 " FROM " + DatabaseHandler.USERS_WITH_CAR +
                 " WHERE ";
 
-        switch (day){
-            case Calendar.MONDAY:
-                selectQuery += DatabaseHandler.USERS_WITH_CAR_MONDAY_HOUR;
-                break;
-            case Calendar.TUESDAY:
-                selectQuery += DatabaseHandler.USERS_WITH_CAR_TUESDAY_HOUR;
-                break;
-            case Calendar.WEDNESDAY:
-                selectQuery += DatabaseHandler.USERS_WITH_CAR_WEDNESDAY_HOUR;
-                break;
-            case Calendar.THURSDAY:
-                selectQuery += DatabaseHandler.USERS_WITH_CAR_THURSDAY_HOUR;
-                break;
-            case Calendar.FRIDAY:
-                selectQuery += DatabaseHandler.USERS_WITH_CAR_FRIDAY_HOUR;
-                break;
+        String userHour = "";
+        for(int i=0; i< hour.length(); i++){
+            if(hour.charAt(i) != ':'){
+                userHour += hour.charAt(i);
+            }
         }
 
-        selectQuery += " = '" + hour + "' AND " + DatabaseHandler.USERS_WITH_CAR_AVAILABLE + " = 1";
+        int userHourInteger = Integer.parseInt(userHour);
+
+        selectQuery += DatabaseHandler.USERS_WITH_CAR_AVAILABLE + " = 1";
 
         SQLiteDatabase db = dh.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -298,6 +289,7 @@ public class UserControl {
             do{
                 UserWOCar userWOCar = new UserWOCar();
                 boolean userFlag = false;
+                boolean hourFlag = false;
                 userWOCar.setUserName(cursor.getString(0));
                 userWOCar.setName(cursor.getString(1));
                 userWOCar.setMondayHour(cursor.getString(5));
@@ -359,11 +351,39 @@ public class UserControl {
                     userWOCars.add(getUserWithOuthCarByUserName(user, dh));
                 }
 
+                String rideHour = "";
+
+                switch(day){
+                    case Calendar.MONDAY: rideHour = userWCar.getMondayHour();
+                        break;
+                    case Calendar.TUESDAY: rideHour = userWCar.getTuesdayHour();
+                        break;
+                    case Calendar.WEDNESDAY: rideHour = userWCar.getWednesdayHour();
+                        break;
+                    case Calendar.THURSDAY: rideHour = userWCar.getThursdayHour();
+                        break;
+                    case Calendar.FRIDAY: rideHour = userWCar.getFridayHour();
+                        break;
+                }
+
+                String rideHourString = "";
+                for(int i=0; i<rideHour.length(); i++){
+                    if(rideHour.charAt(i) != ':'){
+                        rideHourString += rideHour.charAt(i);
+                    }
+                }
+
+                int rideHourInteger = Integer.parseInt(rideHourString);
+
+                if(userHourInteger >= rideHourInteger-20 && userHourInteger <= rideHourInteger+40){
+                    hourFlag = true;
+                }
+
                 userWCar.setUserWOCars(userWOCars);
 
                 userWCar.setPassword(cursor.getString(12));
 
-                if(userFlag) {
+                if(userFlag && hourFlag) {
                     usersWCars.add(userWCar);
                 }
 
