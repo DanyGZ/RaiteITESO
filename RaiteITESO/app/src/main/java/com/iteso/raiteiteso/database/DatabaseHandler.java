@@ -3,7 +3,8 @@ package com.iteso.raiteiteso.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import com.iteso.raiteiteso.database.DBContract.USERS_WITH_CAR;
+import com.iteso.raiteiteso.database.DBContract.USERS_WITHOUT_CAR;
 /**
  * Created by Daniel on 18/10/2015.
  */
@@ -11,38 +12,6 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "RaiteITESO.db";
     private static final int DATABASE_VERSION = 1;
-
-    //Tables
-    public static final String USERS_WITH_CAR = "UsersWC";
-    public static final String USERS_WITHOUT_CAR = "UsersWOC";
-
-    //Columns
-    public static final String USERS_WITH_CAR_USER_NAME = "WCusername";
-    public static final String USERS_WITH_CAR_PASSWORD = "WCpassword";
-    public static final String USERS_WITH_CAR_NAME = "WCname";
-    public static final String USERS_WITH_CAR_CAR = "Car";
-    public static final String USERS_WITH_CAR_CAR_COLOR = "Carcolor";
-    public static final String USERS_WITH_CAR_CAPACITY = "Carcapacity";
-    public static final String USERS_WITH_CAR_MONDAY_HOUR = "WCmondayhour";
-    public static final String USERS_WITH_CAR_TUESDAY_HOUR = "WCtuesdayhour";
-    public static final String USERS_WITH_CAR_WEDNESDAY_HOUR = "WCwednesdayhour";
-    public static final String USERS_WITH_CAR_THURSDAY_HOUR = "WCthursdayhour";
-    public static final String USERS_WITH_CAR_FRIDAY_HOUR = "WCfridayhour";
-    public static final String USERS_WITH_CAR_AVAILABLE = "Available";
-    public static final String USERS_WITH_CAR_INTEREST_POINTS = "WCInterestPoints";
-    public static final String USERS_WITH_CAR_RIDE_REQUEST = "WCRequestList";
-
-    public static final String USERS_WITHOUT_CAR_USER_NAME = "WOCusername";
-    public static final String USERS_WITHOUT_CAR_PASSWORD = "WOCpassword";
-    public static final String USERS_WITHOUT_CAR_NAME = "WOCname";
-    public static final String USERS_WITHOUT_CAR_MONDAY_HOUR = "WOCmondayhour";
-    public static final String USERS_WITHOUT_CAR_TUESDAY_HOUR = "WOCtuesdayhour";
-    public static final String USERS_WITHOUT_CAR_WEDNESDAY_HOUR = "WOCwednesdayhour";
-    public static final String USERS_WITHOUT_CAR_THURSDAY_HOUR = "WOCthursdayhour";
-    public static final String USERS_WITHOUT_CAR_FRIDAY_HOUR = "WOCfridayhour";
-    public static final String USERS_WITHOUT_CAR_INTEREST_POINTS = "WOCInterestPoints";
-    public static final String USERS_WITHOUT_CAR_RIDE_USER = "WOCRide";
-    public static final String USERS_WITHOUT_CAR_MEETING_POINT = "WOCMeetingPoint";
 
 
     private static DatabaseHandler databaseHandler;
@@ -60,23 +29,38 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + USERS_WITH_CAR + " (" + USERS_WITH_CAR_USER_NAME + " TEXT PRIMARY KEY, "+
-                USERS_WITH_CAR_PASSWORD + " TEXT, " + USERS_WITH_CAR_NAME + " TEXT, " +
-                USERS_WITH_CAR_CAR + " TEXT, " + USERS_WITH_CAR_CAR_COLOR + " TEXT, " +
-                USERS_WITH_CAR_CAPACITY + " INTEGER, " + USERS_WITH_CAR_MONDAY_HOUR + " TEXT, " +
-                USERS_WITH_CAR_TUESDAY_HOUR + " TEXT, " + USERS_WITH_CAR_WEDNESDAY_HOUR + " TEXT, " +
-                USERS_WITH_CAR_THURSDAY_HOUR + " TEXT, " + USERS_WITH_CAR_FRIDAY_HOUR + " TEXT, " +
-                USERS_WITH_CAR_AVAILABLE + " INTEGER, " + USERS_WITH_CAR_INTEREST_POINTS +
-                " TEXT, " + USERS_WITH_CAR_RIDE_REQUEST + " TEXT);";
-        db.execSQL(sql);
+        final String SQL_FOR_USERS_WITH_CAR_TABLE = "CEATE TABLE " + USERS_WITH_CAR.table_name + "(" +
+                USERS_WITH_CAR.column_users_with_car_user_name + " TEXT PRIMARY KEY NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_password + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_name + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_car + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_car_color + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_capacity + " INTEGER NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_monday_hour + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_tuesday_hour + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_wednesday_hour + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_thursday_hour + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_friday_hour + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_aviable + " INTEGER NOT NULL." +
+                USERS_WITH_CAR.column_users_with_car_interest_point + " TEXT NOT NULL," +
+                USERS_WITH_CAR.column_users_with_car_ride_request + " TEXT NOT NULL);";
 
-        sql = "CREATE TABLE " + USERS_WITHOUT_CAR + " (" + USERS_WITHOUT_CAR_USER_NAME + " TEXT PRIMARY KEY, " +
-                USERS_WITHOUT_CAR_PASSWORD + " TEXT, " + USERS_WITHOUT_CAR_NAME + " TEXT, " +
-                USERS_WITHOUT_CAR_MONDAY_HOUR + " TEXT, " + USERS_WITHOUT_CAR_TUESDAY_HOUR + " TEXT, " +
-                USERS_WITHOUT_CAR_WEDNESDAY_HOUR + " TEXT, " + USERS_WITHOUT_CAR_THURSDAY_HOUR + " TEXT, " +
-                USERS_WITHOUT_CAR_FRIDAY_HOUR + " TEXT, " + USERS_WITHOUT_CAR_INTEREST_POINTS +
-                " TEXT, " + USERS_WITHOUT_CAR_RIDE_USER + " TEXT, " + USERS_WITHOUT_CAR_MEETING_POINT + " TEXT);";
-        db.execSQL(sql);
+        db.execSQL(SQL_FOR_USERS_WITH_CAR_TABLE);
+
+        final String SQL_FOR_USERS_WITHOUT_CAR_TABLE = "CEATE TABLE " + USERS_WITHOUT_CAR.table_name + "(" +
+                USERS_WITHOUT_CAR.column_users_without_car_user_name + " TEXT PRIMARY KEY NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_password + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_name + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_monday_hour + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_tuesday_hour + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_wednesday_hour + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_thursday_hour + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_friday_hour + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_interest_point + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_ride_user + " TEXT NOT NULL," +
+                USERS_WITHOUT_CAR.column_users_without_car_meeting_point + " TEXT NOT NULL);";
+
+        db.execSQL(SQL_FOR_USERS_WITHOUT_CAR_TABLE);
     }
 
     @Override
