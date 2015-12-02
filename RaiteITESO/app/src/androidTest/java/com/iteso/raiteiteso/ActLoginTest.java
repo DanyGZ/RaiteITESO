@@ -71,28 +71,4 @@ public class ActLoginTest extends ActivityInstrumentationTestCase2<ActivityLogin
         final String actualSignUpButtonText = signUpButton.getText().toString();
         assertEquals("signUpButton contains wrong text", expectedSignUpButtonText, actualSignUpButtonText);
     }
-
-
-/*
-    EDIT TEXTS
-    public void testUserEditText_emptyText() {
-        final String actualUserEditTextText = userEditText.getText().toString();
-        assertEquals("userEditText text isn't empty", "", actualUserEditTextText);
-    }
-
-    public void testUserEditText_emptyHint() {
-        final String actualUserEditTextHint = userEditText.getHint().toString();
-        assertEquals("userEditText hint isn't empty", "", actualUserEditTextHint);
-    }
-
-    public void testPasswordEditText_emptyText() {
-        final String actualPasswordEditTextText = passwordEditText.getText().toString();
-        assertEquals("userEditText text isn't empty", "", actualPasswordEditTextText);
-    }
-
-    public void testPasswordEditText_emptyHint() {
-        final String actualPasswordEditTextHint = passwordEditText.getHint().toString();
-        assertEquals("userEditText hint isn't empty", "", actualPasswordEditTextHint);
-    }
-*/
 }
