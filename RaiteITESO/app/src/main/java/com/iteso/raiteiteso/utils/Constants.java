@@ -11,6 +11,7 @@ public class Constants {
     public static final String USER_EXTRA_NAME = "UserExtraName";
     public static final String USER_EXTRA_HAS_CAR = "HasCar";
     public static ArrayList<String> interestPoints;
+    public static final String SHARED_PREFERENCES = "SharedPreferences";
 
     public static void fillInterestPoints(){
         interestPoints = new ArrayList<>();

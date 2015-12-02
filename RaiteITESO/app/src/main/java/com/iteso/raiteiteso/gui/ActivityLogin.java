@@ -1,7 +1,9 @@
 package com.iteso.raiteiteso.gui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +29,7 @@ public class ActivityLogin extends Activity {
     private DatabaseHandler dh;
     private UserControl userControl;
     private Intent intent;
-
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,9 @@ public class ActivityLogin extends Activity {
         setContentView(R.layout.activity_login);
 
         dh = DatabaseHandler.getInstance(this);
+        userControl = new UserControl(this);
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         userNameEdit = (EditText) findViewById(R.id.activity_login_user);
         passwordEdit = (EditText) findViewById(R.id.activity_login_password);
@@ -96,14 +101,12 @@ public class ActivityLogin extends Activity {
     }
 
     private UserWOCar userWOCarValidation(){
-        userControl = new UserControl(this);
         UserWOCar userWOCar = userControl.getUserWithOuthCarByUserName(userName, dh);
 
         return  userWOCar;
     }
 
     private UserWCar userWCarValidation(){
-       userControl = new UserControl(this);
         UserWCar userWCar = userControl.getUserWithCarByUserName(userName, dh);
 
         return userWCar;
