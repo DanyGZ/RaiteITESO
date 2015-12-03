@@ -106,7 +106,7 @@ public class UserWCar extends UserDecorator implements Parcelable, Subject{
     public boolean registerObserver(UserWOCar observer) {
         boolean flag = true;
         for(int i=0; i<userWOCars.size(); i++){
-            if(userWOCars.get(i).getUserName() == (observer.getUserName())){
+            if(userWOCars.get(i).getUserName().equals(observer.getUserName())){
                 flag = false;
             }
         }
