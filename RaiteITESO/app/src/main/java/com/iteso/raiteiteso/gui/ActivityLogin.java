@@ -40,64 +40,88 @@ public class ActivityLogin extends Activity {
         userControl = new UserControl(this);
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        if(sharedPreferences.contains(Constants.OPEN_PROFILE)){
+            Intent intent;
+            String userName = sharedPreferences.getString(Constants.OPEN_PROFILE, "");
+            int type = sharedPreferences.getInt(Constants.PROFILE_TYPE, 0);
 
-        userNameEdit = (EditText) findViewById(R.id.activity_login_user);
-        passwordEdit = (EditText) findViewById(R.id.activity_login_password);
-        login = (Button) findViewById(R.id.activity_login_login);
-        create = (Button) findViewById(R.id.activity_login_create);
-
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(ActivityLogin.this, ActivityCreateAccount.class);
-                startActivity(intent);
+            if(type == Constants.WITCHCAR){
+                UserWCar userWCar = userControl.getUserWithCarByUserName(userName, dh);
+                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
+            }else{
+                UserWOCar userWOCar = userControl.getUserWithOuthCarByUserName(userName, dh);
+                intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
             }
-        });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userName = userNameEdit.getText().toString();
-                password = passwordEdit.getText().toString();
+            intent.putExtra(Constants.USER_EXTRA, userName);
+            startActivity(intent);
 
-                if(userName.equals("") || userName.equals(" ") || password.equals("") || password.equals(" ")){
-                    Toast.makeText(ActivityLogin.this, "Debe llenar todos los campos", Toast.LENGTH_LONG).show();
-                }else if(userName.contains("'")){
-                    Toast.makeText(ActivityLogin.this, "Caracteres inválidos", Toast.LENGTH_LONG).show();
-                }else{
-                    UserWOCar userWOCar = userWOCarValidation();
-                    if(userWOCar != null){
-                        if(userWOCar.getPassword().equals(password)){
-                            if (userWOCar.getRide().equals("")){
-                                intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
-                            }else{
-                                intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
-                                intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
-                                        userControl.getUserWithCarByUserName(userWOCar.getRide(), dh).getUserName());
-                            }
-                            intent.putExtra(Constants.USER_EXTRA, userWOCar.getUserName());
-                            startActivity(intent);
+        }else{
+            userNameEdit = (EditText) findViewById(R.id.activity_login_user);
+            passwordEdit = (EditText) findViewById(R.id.activity_login_password);
+            login = (Button) findViewById(R.id.activity_login_login);
+            create = (Button) findViewById(R.id.activity_login_create);
 
-                        }else{
-                            Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
-                        }
+            create.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent = new Intent(ActivityLogin.this, ActivityCreateAccount.class);
+                    startActivity(intent);
+                }
+            });
+
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    userName = userNameEdit.getText().toString();
+                    password = passwordEdit.getText().toString();
+
+                    if(userName.equals("") || userName.equals(" ") || password.equals("") || password.equals(" ")){
+                        Toast.makeText(ActivityLogin.this, "Debe llenar todos los campos", Toast.LENGTH_LONG).show();
+                    }else if(userName.contains("'")){
+                        Toast.makeText(ActivityLogin.this, "Caracteres inválidos", Toast.LENGTH_LONG).show();
                     }else{
-                        UserWCar userWCar = userWCarValidation();
-                        if(userWCar != null){
-                            if(userWCar.getPassword().equals(password)){
-                                intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
-                                intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        UserWOCar userWOCar = userWOCarValidation();
+                        if(userWOCar != null){
+                            if(userWOCar.getPassword().equals(password)){
+                                if (userWOCar.getRide().equals("")){
+                                    intent = new Intent(ActivityLogin.this, ActivityMainWithOutCar.class);
+                                }else{
+                                    intent = new Intent(ActivityLogin.this, ActivityRaiteDetail.class);
+                                    intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
+                                            userControl.getUserWithCarByUserName(userWOCar.getRide(), dh).getUserName());
+                                }
+                                editor.putString(Constants.OPEN_PROFILE, "");
+                                editor.putInt(Constants.PROFILE_TYPE, Constants.WITHOUTCAR);
+                                editor.commit();
+                                intent.putExtra(Constants.USER_EXTRA, userWOCar.getUserName());
                                 startActivity(intent);
+
                             }else{
                                 Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
                             }
                         }else{
-                            Toast.makeText(ActivityLogin.this, "Usuario incorrecto", Toast.LENGTH_LONG).show();
+                            UserWCar userWCar = userWCarValidation();
+                            if(userWCar != null){
+                                if(userWCar.getPassword().equals(password)){
+                                    intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
+                                    editor.putString(Constants.OPEN_PROFILE, "");
+                                    editor.putInt(Constants.PROFILE_TYPE, Constants.WITCHCAR);
+                                    editor.commit();
+                                    intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
+                                    startActivity(intent);
+                                }else{
+                                    Toast.makeText(ActivityLogin.this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
+                                }
+                            }else{
+                                Toast.makeText(ActivityLogin.this, "Usuario incorrecto", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     private UserWOCar userWOCarValidation(){
