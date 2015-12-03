@@ -17,7 +17,7 @@
             android:text="Punto de interés"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:textColor="@color/black"
+            android:textColor="@color/AzulIteso"
             android:textSize="18sp"/>
 
         <CheckBox

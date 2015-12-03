@@ -96,6 +96,7 @@ public class AdapterInterestPoints extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     checkedPoints.set(position, true);
+                    pointHolder.checkBox.setBackgroundColor(context.getResources().getColor(R.color.AzulIteso));
                 }else{
                     checkedPoints.set(position, false);
                 }

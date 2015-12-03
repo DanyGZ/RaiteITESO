@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <TextView
@@ -287,7 +287,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:gravity="center">
 
                 <EditText
@@ -318,8 +318,8 @@
 
                 <ToggleButton
                     android:id="@+id/activity_create_account_toggle_available"
-                    android:layout_width="140dp"
-                    android:layout_height="50dp"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
                     android:textOff="No disponible"
                     android:textOn="Disponible"
                     android:singleLine="true"

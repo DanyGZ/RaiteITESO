@@ -109,83 +109,83 @@ public class ActivityEditData extends Activity{
         thursdayHourText.setText(user.getThursdayHour());
         fridayHourText.setText(user.getFridayHour());
 
-        mondayEditText.setOnClickListener(new OnClickListener() {
+        mondayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                mondayHourText.setVisibility(VISIBLE);
-                tuesdayHourText.setVisibility(GONE);
-                wednesdayHourText.setVisibility(GONE);
-                thursdayHourText.setVisibility(GONE);
-                fridayHourText.setVisibility(GONE);
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                mondayHourText.setVisibility(View.VISIBLE);
+                tuesdayHourText.setVisibility(View.GONE);
+                wednesdayHourText.setVisibility(View.GONE);
+                thursdayHourText.setVisibility(View.GONE);
+                fridayHourText.setVisibility(View.GONE);
             }
         });
 
-        tuesdayEditText.setOnClickListener(new OnClickListener() {
+        tuesdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                mondayHourText.setVisibility(GONE);
-                tuesdayHourText.setVisibility(VISIBLE);
-                wednesdayHourText.setVisibility(GONE);
-                thursdayHourText.setVisibility(GONE);
-                fridayHourText.setVisibility(GONE);
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                mondayHourText.setVisibility(View.GONE);
+                tuesdayHourText.setVisibility(View.VISIBLE);
+                wednesdayHourText.setVisibility(View.GONE);
+                thursdayHourText.setVisibility(View.GONE);
+                fridayHourText.setVisibility(View.GONE);
             }
         });
 
-        wednesdayEditText.setOnClickListener(new OnClickListener() {
+        wednesdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                mondayHourText.setVisibility(GONE);
-                tuesdayHourText.setVisibility(GONE);
-                wednesdayHourText.setVisibility(VISIBLE);
-                thursdayHourText.setVisibility(GONE);
-                fridayHourText.setVisibility(GONE);
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                mondayHourText.setVisibility(View.GONE);
+                tuesdayHourText.setVisibility(View.GONE);
+                wednesdayHourText.setVisibility(View.VISIBLE);
+                thursdayHourText.setVisibility(View.GONE);
+                fridayHourText.setVisibility(View.GONE);
             }
         });
 
-        thursdayEditText.setOnClickListener(new OnClickListener() {
+        thursdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                mondayHourText.setVisibility(GONE);
-                tuesdayHourText.setVisibility(GONE);
-                wednesdayHourText.setVisibility(GONE);
-                thursdayHourText.setVisibility(VISIBLE);
-                fridayHourText.setVisibility(GONE);
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                mondayHourText.setVisibility(View.GONE);
+                tuesdayHourText.setVisibility(View.GONE);
+                wednesdayHourText.setVisibility(View.GONE);
+                thursdayHourText.setVisibility(View.VISIBLE);
+                fridayHourText.setVisibility(View.GONE);
             }
         });
 
-        fridayEditText.setOnClickListener(new OnClickListener() {
+        fridayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                mondayHourText.setVisibility(GONE);
-                tuesdayHourText.setVisibility(GONE);
-                wednesdayHourText.setVisibility(GONE);
-                thursdayHourText.setVisibility(GONE);
-                fridayHourText.setVisibility(VISIBLE);
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                mondayHourText.setVisibility(View.GONE);
+                tuesdayHourText.setVisibility(View.GONE);
+                wednesdayHourText.setVisibility(View.GONE);
+                thursdayHourText.setVisibility(View.GONE);
+                fridayHourText.setVisibility(View.VISIBLE);
             }
         });
 
