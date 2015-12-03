@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Presione_para_seleccionar_la_hora"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/AzulIteso"
                     android:gravity="center"
                     android:visibility="gone"
                     android:layout_marginTop="20dp"
@@ -173,7 +173,7 @@
             <ListView
                 android:id="@+id/activity_edit_data_interest_points"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="210dp"
                 android:dividerHeight="1dp">
             </ListView>
 

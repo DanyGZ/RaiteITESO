@@ -1,10 +1,14 @@
 package com.iteso.raiteiteso.gui;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -72,6 +76,7 @@ public class ActivityCreateAccount extends Activity {
     private AdapterInterestPoints adapterInterestPoints;
     private UserWOCar user;
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,9 +113,11 @@ public class ActivityCreateAccount extends Activity {
         fridayHourText = (TextView) findViewById(R.id.activity_create_account_friday_hour);
         interestPointsListView = (ListView) findViewById(R.id.activity_create_account_interest_points);
 
+
         Constants.fillInterestPoints();
         adapterInterestPoints = new AdapterInterestPoints(this, Constants.interestPoints);
         interestPointsListView.setAdapter(adapterInterestPoints);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

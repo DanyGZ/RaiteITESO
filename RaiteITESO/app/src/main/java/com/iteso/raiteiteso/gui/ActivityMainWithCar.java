@@ -36,16 +36,15 @@ public class ActivityMainWithCar extends AppCompatActivity {
     private EditText meetingPoint;
     private Button confirm;
     private Button cancel;
-    private ImageView refresh;
     private ArrayList<UserWOCar> rideRequest;
     private ArrayList<Integer> acceptedUsers;
     private UserWCar userWCar;
     private SharedPreferences sharedPreferences;
+    private TextView availableText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_with_car);
+    protected void onResume() {
+        super.onResume();
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -55,13 +54,17 @@ public class ActivityMainWithCar extends AppCompatActivity {
         meetingPoint = (EditText) findViewById(R.id.activity_main_with_car_message_confirm);
         confirm = (Button) findViewById(R.id.activity_main_with_car_confirm_button);
         cancel = (Button) findViewById(R.id.activity_main_with_car_cancel_button);
-        refresh = (ImageView) findViewById(R.id.activity_main_with_car_refresh);
+        availableText = (TextView) findViewById(R.id.activity_main_with_car_available);
 
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
         String userName = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWCar = userControl.getUserWithCarByUserName(userName, dh);
+
+        if(!userWCar.isAvailable()){
+            availableText.setText("No disponible");
+        }
 
         if(userWCar.getUserWOCars().size() == 0){
             rideRequestText.setVisibility(View.VISIBLE);
@@ -137,16 +140,13 @@ public class ActivityMainWithCar extends AppCompatActivity {
                 }
             });
 
-            refresh.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    startActivity(getIntent());
-                }
-            });
-
         }
-        
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_with_car);
     }
 
 

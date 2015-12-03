@@ -23,5 +23,6 @@ public class Constants {
         interestPoints.add("Colón");
         interestPoints.add("Guadalupe");
         interestPoints.add("López Mateos");
+        interestPoints.add("Plaza del Sol");
     }
 }

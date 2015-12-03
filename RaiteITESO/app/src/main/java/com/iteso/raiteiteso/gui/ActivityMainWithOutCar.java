@@ -37,9 +37,8 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
     private SharedPreferences sharedPreferences;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_without_car);
+    protected void onResume() {
+        super.onResume();
 
         sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -57,13 +56,13 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
         final int day = calendar.get(Calendar.DAY_OF_WEEK);
 
         if(day != Calendar.SATURDAY && day != Calendar.SUNDAY) {
-        usersWithCar = userControl.getRides(dh, day, getHora(), userWOCarc.getInterestPoints());
+            usersWithCar = userControl.getRides(dh, day, getHora(), userWOCarc.getInterestPoints());
 
-        for(int i=0; i<usersWithCar.size(); i++){
-            if(usersWithCar.get(i).getUserWOCars().size() < usersWithCar.get(i).getCarCapacity()){
-                points.add(usersWithCar.get(i));
+            for(int i=0; i<usersWithCar.size(); i++){
+                if(usersWithCar.get(i).getUserWOCars().size() < usersWithCar.get(i).getCarCapacity()){
+                    points.add(usersWithCar.get(i));
+                }
             }
-        }
 
 
             if (points.size() == 0) {
@@ -139,10 +138,13 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
                 }
             }
         });
-
     }
 
-    //Copiar y poner al wey con carro y al raite detail y todas las actividades extiendan de appcompactActivity
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_without_car);
+    }
     
 
     @Override
