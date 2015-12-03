@@ -18,7 +18,7 @@
         android:orientation="horizontal"
         android:paddingLeft="20dp"
         android:layout_below="@+id/activity_main_with_car_image"
-        android:background="@android:color/black"
+        android:background="@color/verdeGoogle"
         android:textColor="@android:color/white"
         >
         
@@ -46,19 +46,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_main_with_car_layout1"
         android:layout_marginTop="5dp"
+        android:textColor="@color/AzulIteso"
         android:typeface="sans"
         android:textSize="20dp"
         android:text="Solicitudes de Raite"
-        />
-
-    <ImageView
-        android:id="@+id/activity_main_with_car_refresh"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/activity_main_with_car_layout1"
-        android:layout_marginTop="3dp"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/refresh"
         />
 
     <TextView
@@ -69,13 +60,14 @@
         android:text="No tienes solicitudes de raite pendientes"
         android:textSize="25sp"
         android:visibility="gone"
+        android:textColor="@color/AzulIteso"
         android:layout_centerInParent="true"/>
 
     <ListView
         android:id="@+id/activity_main_with_car_points_interest"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:layout_below="@+id/activity_main_with_car_refresh"
+        android:layout_height="180dp"
+        android:layout_below="@+id/activity_main_with_car_message_solicitud"
         android:layout_marginTop="1dp"
         android:dividerHeight="1dp"
         >
@@ -89,6 +81,7 @@
         android:layout_marginLeft="15dp"
         android:typeface="sans"
         android:textSize="20dp"
+        android:textColor="@color/AzulIteso"
         android:text="Mensaje de Aviso:"
         />
     <EditText
@@ -99,6 +92,7 @@
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:singleLine="true"
+        android:textColor="@color/AzulIteso"
         android:hint="¿Donde nos vemos?"
         />
 
@@ -117,6 +111,8 @@
             android:layout_height="wrap_content"
             android:typeface="sans"
             android:textSize="20dp"
+            android:background="@color/verdeGoogle"
+            android:textColor="@android:color/white"
             android:text="Confirmar"
             />
         <Button
@@ -126,6 +122,8 @@
             android:layout_marginLeft="40dp"
             android:typeface="sans"
             android:textSize="20dp"
+            android:background="@color/AzulIteso"
+            android:textColor="@android:color/white"
             android:text="Cancelar"
             />
 
