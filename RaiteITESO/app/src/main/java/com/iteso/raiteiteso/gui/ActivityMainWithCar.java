@@ -1,6 +1,8 @@
 package com.iteso.raiteiteso.gui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -38,11 +40,14 @@ public class ActivityMainWithCar extends AppCompatActivity {
     private ArrayList<UserWOCar> rideRequest;
     private ArrayList<Integer> acceptedUsers;
     private UserWCar userWCar;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_with_car);
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         listView =(ListView)findViewById(R.id.activity_main_with_car_points_interest);
         rideRequestText = (TextView) findViewById(R.id.activity_main_with_car_pending_ride_request);
@@ -163,6 +168,10 @@ public class ActivityMainWithCar extends AppCompatActivity {
                 break;
             case R.id.item_menu_item_cerrar:
                 intent = new Intent(ActivityMainWithCar.this, ActivityLogin.class);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(Constants.OPEN_PROFILE);
+                editor.remove(Constants.PROFILE_TYPE);
+                editor.commit();
                 finish();
                 startActivity(intent);
                 break;

@@ -1,6 +1,8 @@
 package com.iteso.raiteiteso.gui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -36,6 +38,7 @@ public class ActivityRaiteDetail extends AppCompatActivity{
     private UserControl userControl;
     private UserWCar user;
     private UserWOCar userWOCar;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,6 +58,10 @@ public class ActivityRaiteDetail extends AppCompatActivity{
                 break;
             case R.id.item_menu_item_cerrar:
                 intent = new Intent(ActivityRaiteDetail.this, ActivityLogin.class);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(Constants.OPEN_PROFILE);
+                editor.remove(Constants.PROFILE_TYPE);
+                editor.commit();
                 finish();
                 startActivity(intent);
                 break;
@@ -72,6 +79,7 @@ public class ActivityRaiteDetail extends AppCompatActivity{
         noRaite = (TextView) findViewById(R.id.activity_raite_detail_no_raite_detail);
         nameView = (TextView) findViewById(R.id.activity_raite_detail_name);
 
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         detail = new ArrayList<>();
         interestPoints = new ArrayList<>();

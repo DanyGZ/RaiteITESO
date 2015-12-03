@@ -171,7 +171,7 @@ public class UserWOCar implements Parcelable, Observer{
 
     public boolean addRide(UserWCar userWCar){
         this.userWCar = userWCar;
-       return  this.userWCar.registerObserver(this);
+        return  this.userWCar.registerObserver(this);
     }
 
     @Override

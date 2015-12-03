@@ -23,7 +23,6 @@ import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
 /**
  * Created by Daniel on 25/10/2015.
  */
