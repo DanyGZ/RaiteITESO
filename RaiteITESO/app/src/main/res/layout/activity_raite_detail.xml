@@ -54,6 +54,8 @@
         android:id="@+id/activity_raite_detail_buttom_raite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:background="@color/verdeGoogle"
