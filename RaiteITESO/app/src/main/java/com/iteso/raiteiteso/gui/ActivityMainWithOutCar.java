@@ -1,15 +1,15 @@
 package com.iteso.raiteiteso.gui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -34,11 +34,14 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
     ArrayList<UserWCar> points;
     ArrayList<UserWCar> usersWithCar;
     Switch aSwitch;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_without_car);
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
         listView = (ListView)findViewById(R.id.activity_main_without_car_list);
@@ -160,6 +163,10 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
                 break;
             case R.id.item_menu_item_cerrar:
                 intent = new Intent(ActivityMainWithOutCar.this, ActivityLogin.class);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(Constants.OPEN_PROFILE);
+                editor.remove(Constants.PROFILE_TYPE);
+                editor.commit();
                 finish();
                 startActivity(intent);
                 break;

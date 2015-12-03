@@ -168,6 +168,10 @@ public class ActivityMainWithCar extends AppCompatActivity {
                 break;
             case R.id.item_menu_item_cerrar:
                 intent = new Intent(ActivityMainWithCar.this, ActivityLogin.class);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(Constants.OPEN_PROFILE);
+                editor.remove(Constants.PROFILE_TYPE);
+                editor.commit();
                 finish();
                 startActivity(intent);
                 break;

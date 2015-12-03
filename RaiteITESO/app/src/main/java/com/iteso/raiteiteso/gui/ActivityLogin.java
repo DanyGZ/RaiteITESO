@@ -92,9 +92,10 @@ public class ActivityLogin extends Activity {
                                     intent.putExtra(Constants.USER_WITH_CAR_EXTRA,
                                             userControl.getUserWithCarByUserName(userWOCar.getRide(), dh).getUserName());
                                 }
-                                editor.putString(Constants.OPEN_PROFILE, "");
+                                editor.putString(Constants.OPEN_PROFILE, userName);
                                 editor.putInt(Constants.PROFILE_TYPE, Constants.WITHOUTCAR);
                                 editor.commit();
+                                finish();
                                 intent.putExtra(Constants.USER_EXTRA, userWOCar.getUserName());
                                 startActivity(intent);
 
@@ -106,9 +107,10 @@ public class ActivityLogin extends Activity {
                             if(userWCar != null){
                                 if(userWCar.getPassword().equals(password)){
                                     intent = new Intent(ActivityLogin.this, ActivityMainWithCar.class);
-                                    editor.putString(Constants.OPEN_PROFILE, "");
+                                    editor.putString(Constants.OPEN_PROFILE, userName);
                                     editor.putInt(Constants.PROFILE_TYPE, Constants.WITCHCAR);
                                     editor.commit();
+                                    finish();
                                     intent.putExtra(Constants.USER_EXTRA, userWCar.getUserName());
                                     startActivity(intent);
                                 }else{
