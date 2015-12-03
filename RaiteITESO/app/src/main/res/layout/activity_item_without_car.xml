@@ -32,9 +32,10 @@
         android:textSize="18dp"
         android:text="(12:00 pm)"
         android:textColor="@color/AzulIteso"
+        android:layout_marginLeft="10dp"
         android:layout_alignTop="@+id/activity_item_without_car_name"
-        android:layout_toRightOf="@+id/activity_item_without_car_final_point"
-        android:layout_toEndOf="@+id/activity_item_without_car_final_point" />
+        android:layout_toRightOf="@+id/activity_item_without_car_name"
+        android:layout_toEndOf="@+id/activity_item_without_car_name" />
     <TextView
         android:id="@+id/activity_item_without_car_final_point"
         android:layout_width="wrap_content"
