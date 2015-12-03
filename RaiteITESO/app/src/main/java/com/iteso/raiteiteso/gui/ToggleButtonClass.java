@@ -57,8 +57,10 @@ public class ToggleButtonClass extends RelativeLayout{
                 if(leftButton.isChecked() && toggleButtonListener != null){
                     toggleButtonListener.leftButtonClick();
                 }
-                leftButton.setBackgroundColor(context.getResources().getColor(R.color.gray));
-                rightButton.setBackgroundColor(context.getResources().getColor(R.color.black));
+                leftButton.setBackgroundColor(context.getResources().getColor(R.color.verdeGoogle));
+                leftButton.setTextColor(context.getResources().getColor(R.color.AzulIteso));
+                rightButton.setBackgroundColor(context.getResources().getColor(R.color.AzulIteso));
+                rightButton.setTextColor(context.getResources().getColor(R.color.verdeGoogle));
                 leftButton.setChecked(true);
                 rightButton.setChecked(false);
             }
@@ -70,8 +72,10 @@ public class ToggleButtonClass extends RelativeLayout{
                 if(rightButton.isChecked() && toggleButtonListener != null){
                     toggleButtonListener.rightButtonClick();
                 }
-                leftButton.setBackgroundColor(context.getResources().getColor(R.color.black));
+                leftButton.setBackgroundColor(context.getResources().getColor(R.color.AzulIteso));
+                leftButton.setTextColor(context.getResources().getColor(R.color.verdeGoogle));
                 rightButton.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                rightButton.setTextColor(context.getResources().getColor(R.color.AzulIteso));
                 rightButton.setChecked(true);
                 leftButton.setChecked(false);
             }
