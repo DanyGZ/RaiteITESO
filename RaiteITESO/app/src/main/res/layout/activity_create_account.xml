@@ -273,8 +273,8 @@
                 android:id="@+id/activity_create_account_toggle"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:textOff="Pedir ride"
-                android:textOn="dar ride"
+                android:textOff="Dar ride"
+                android:textOn="Pedir ride"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"
                 android:background="@color/verdeGoogle"
@@ -324,6 +324,7 @@
                     android:singleLine="true"
                     android:background="@color/AzulIteso"
                     android:textColor="@android:color/white"
+                    android:layout_marginBottom="20dp"
                     android:checked="true"/>
 
             </LinearLayout>

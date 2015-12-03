@@ -153,7 +153,7 @@ public class ActivityCreateAccount extends Activity {
                 mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
                 wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 mondayHourText.setVisibility(View.GONE);
                 tuesdayHourText.setVisibility(View.VISIBLE);
@@ -229,7 +229,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         mondayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
             }
@@ -253,7 +253,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         tuesdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -278,7 +278,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         wednesdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -303,7 +303,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         thursdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -328,7 +328,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         fridayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 

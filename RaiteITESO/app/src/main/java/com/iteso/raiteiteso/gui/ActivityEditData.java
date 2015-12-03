@@ -90,7 +90,8 @@ public class ActivityEditData extends Activity{
         carLayout = (LinearLayout) findViewById(R.id.activity_edit_data_layout_car);
         available = (ToggleButton) findViewById(R.id.activity_edit_data_toggle_available);
 
-        interestPoints = user.getInterestPoints();
+        Constants.fillInterestPoints();
+        interestPoints = Constants.interestPoints;
 
         if(userWCar!= null)
             carLayout.setVisibility(View.VISIBLE);
@@ -100,7 +101,6 @@ public class ActivityEditData extends Activity{
             capacityEditText.setText(String.valueOf(userWCar.getCarCapacity()));
             colorEditText.setText(userWCar.getCarColor());
             available.setChecked(userWCar.isAvailable());
-            interestPoints = userWCar.getInterestPoints();
         }
 
         mondayHourText.setText(user.getMondayHour());
@@ -131,7 +131,7 @@ public class ActivityEditData extends Activity{
                 mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
                 wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 mondayHourText.setVisibility(View.GONE);
                 tuesdayHourText.setVisibility(View.VISIBLE);
@@ -190,7 +190,7 @@ public class ActivityEditData extends Activity{
         });
 
         Constants.fillInterestPoints();
-        adapterInterestPoints = new AdapterInterestPoints(ActivityEditData.this, Constants.interestPoints, interestPoints);
+        adapterInterestPoints = new AdapterInterestPoints(ActivityEditData.this, Constants.interestPoints, user.getInterestPoints());
         interestPointsListView.setAdapter(adapterInterestPoints);
 
         mondayHourText.setOnClickListener(new View.OnClickListener() {
@@ -211,7 +211,7 @@ public class ActivityEditData extends Activity{
                         hourText += selectedMinute;
                         mondayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
             }
@@ -235,7 +235,7 @@ public class ActivityEditData extends Activity{
                         hourText += selectedMinute;
                         tuesdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -260,7 +260,7 @@ public class ActivityEditData extends Activity{
                         hourText += selectedMinute;
                         wednesdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -285,7 +285,7 @@ public class ActivityEditData extends Activity{
                         hourText += selectedMinute;
                         thursdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -310,7 +310,7 @@ public class ActivityEditData extends Activity{
                         hourText += selectedMinute;
                         fridayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -384,6 +384,12 @@ public class ActivityEditData extends Activity{
 
                     if (userWCar != null) {
 
+                        ArrayList<UserWOCar> rides = userWCar.getUserWOCars();
+
+                        userWCar = new UserWCar(user);
+
+                        userWCar.setUserWOCars(rides);
+
                         if(userWCar.isAvailable() && !available.isChecked()){
                             changeFlag = true;
                         }
@@ -392,6 +398,7 @@ public class ActivityEditData extends Activity{
                         userWCar.setCarCapacity(Integer.parseInt(capacity));
                         userWCar.setCarColor(color);
                         userWCar.setAvailable(available.isChecked());
+                        userWCar.setInterestPoints(checkedPlacesList);
 
                         if(changeFlag){
                             userWCar.notifyObservers(dh, "", userControl, "");
