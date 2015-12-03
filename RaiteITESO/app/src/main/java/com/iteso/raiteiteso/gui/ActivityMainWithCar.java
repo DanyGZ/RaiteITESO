@@ -153,11 +153,17 @@ public class ActivityMainWithCar extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()){
             case R.id.item_menu_item:
-                Intent intent = new Intent(ActivityMainWithCar.this, ActivityEditData.class);
+                intent = new Intent(ActivityMainWithCar.this, ActivityEditData.class);
                 intent.putExtra(Constants.USER_EXTRA_NAME, userWCar.getUserName());
                 intent.putExtra(Constants.USER_EXTRA_HAS_CAR, true);
+                startActivity(intent);
+                break;
+            case R.id.item_menu_item_cerrar:
+                intent = new Intent(ActivityMainWithCar.this, ActivityLogin.class);
+                finish();
                 startActivity(intent);
                 break;
         }

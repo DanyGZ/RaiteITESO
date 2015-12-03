@@ -33,7 +33,6 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
     Calendar calendar = Calendar.getInstance();
     ArrayList<UserWCar> points;
     ArrayList<UserWCar> usersWithCar;
-    ImageView refresh;
     Switch aSwitch;
 
     @Override
@@ -43,7 +42,6 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
 
         noRaite = (TextView) findViewById(R.id.activity_main_without_car_no_raite);
         listView = (ListView)findViewById(R.id.activity_main_without_car_list);
-        refresh = (ImageView)findViewById(R.id.activity_main_without_car_refresh);
         aSwitch = (Switch)findViewById(R.id.activity_main_without_car_visible);
 
         final DatabaseHandler dh = DatabaseHandler.getInstance(this);
@@ -139,14 +137,6 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
             }
         });
 
-        refresh.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(getIntent());
-            }
-        });
-
     }
 
     //Copiar y poner al wey con carro y al raite detail y todas las actividades extiendan de appcompactActivity
@@ -160,11 +150,17 @@ public class ActivityMainWithOutCar extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()){
             case R.id.item_menu_item:
-                Intent intent = new Intent(ActivityMainWithOutCar.this, ActivityEditData.class);
+                intent = new Intent(ActivityMainWithOutCar.this, ActivityEditData.class);
                 intent.putExtra(Constants.USER_EXTRA_NAME, userWOCarc.getUserName());
                 intent.putExtra(Constants.USER_EXTRA_HAS_CAR, false);
+                startActivity(intent);
+                break;
+            case R.id.item_menu_item_cerrar:
+                intent = new Intent(ActivityMainWithOutCar.this, ActivityLogin.class);
+                finish();
                 startActivity(intent);
                 break;
         }
