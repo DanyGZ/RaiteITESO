@@ -45,11 +45,17 @@ public class ActivityRaiteDetail extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()){
             case R.id.item_menu_item:
-                Intent intent = new Intent(ActivityRaiteDetail.this, ActivityEditData.class);
+                intent = new Intent(ActivityRaiteDetail.this, ActivityEditData.class);
                 intent.putExtra(Constants.USER_EXTRA_NAME, userWOCar.getUserName());
                 intent.putExtra(Constants.USER_EXTRA_HAS_CAR, false);
+                startActivity(intent);
+                break;
+            case R.id.item_menu_item_cerrar:
+                intent = new Intent(ActivityRaiteDetail.this, ActivityLogin.class);
+                finish();
                 startActivity(intent);
                 break;
         }

@@ -415,6 +415,7 @@ public class ActivityCreateAccount extends Activity {
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }else{
                             if(userControl.addUserWithOutCar(user, dh) == -1){
@@ -422,6 +423,7 @@ public class ActivityCreateAccount extends Activity {
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                     }

@@ -11,7 +11,7 @@
         android:textSize="30sp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="25dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/AzulIteso"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,13 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:visibility="visible"
             android:paddingLeft="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textSize="20sp"/>
 
             <EditText
@@ -42,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="Apellido"
                 android:layout_marginTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textSize="20sp"/>
 
             <EditText
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="Expediente (Usuario)"
                 android:layout_marginTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textSize="20sp"/>
 
             <EditText
@@ -70,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="Contraseña"
                 android:layout_marginTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textSize="20sp"/>
 
             <EditText
@@ -86,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:text="Repita su contraseña"
                 android:layout_marginTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textSize="20sp"/>
 
             <EditText
@@ -100,7 +101,7 @@
                 android:id="@+id/activity_create_account_next"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:background="@android:color/black"
+                android:background="@color/verdeGoogle"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
@@ -120,14 +121,14 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Horarios de salida"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
 
@@ -136,6 +137,7 @@
                 android:layout_height="120dp"
                 style="@style/HourLayoutStyle"
                 android:layout_marginBottom="40dp"
+                android:visibility="visible"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -149,7 +151,7 @@
                         android:layout_height="40dp"
                         android:layout_weight=".20"
                         android:textColor="@android:color/white"
-                        android:background="@color/gray"
+                        android:background="@color/verdeGoogle"
                         android:text="@string/Lunes"/>
 
                     <Button
@@ -158,7 +160,7 @@
                         android:layout_height="40dp"
                         android:layout_weight=".20"
                         android:textColor="@android:color/white"
-                        android:background="@color/black"
+                        android:background="@color/AzulIteso"
                         android:text="@string/Martes"/>
 
                     <Button
@@ -167,7 +169,7 @@
                         android:layout_height="40dp"
                         android:layout_weight=".20"
                         android:textColor="@android:color/white"
-                        android:background="@color/black"
+                        android:background="@color/AzulIteso"
                         android:text="@string/Miércoles"/>
 
                     <Button
@@ -176,7 +178,7 @@
                         android:layout_height="40dp"
                         android:layout_weight=".20"
                         android:textColor="@android:color/white"
-                        android:background="@color/black"
+                        android:background="@color/AzulIteso"
                         android:text="@string/Jueves"/>
 
                     <Button
@@ -185,7 +187,7 @@
                         android:layout_height="40dp"
                         android:layout_weight=".20"
                         android:textColor="@android:color/white"
-                        android:background="@color/black"
+                        android:background="@color/AzulIteso"
                         android:text="@string/Viernes"/>
 
                 </LinearLayout>
@@ -196,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Presione_para_seleccionar_la_hora"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/AzulIteso"
                     android:gravity="center"
                     android:layout_marginTop="20dp"
                     android:textSize="20sp"/>
@@ -207,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Presione_para_seleccionar_la_hora"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/AzulIteso"
                     android:gravity="center"
                     android:visibility="gone"
                     android:layout_marginTop="20dp"
@@ -219,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Presione_para_seleccionar_la_hora"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/AzulIteso"
                     android:gravity="center"
                     android:visibility="gone"
                     android:layout_marginTop="20dp"
@@ -231,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Presione_para_seleccionar_la_hora"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/AzulIteso"
                     android:gravity="center"
                     android:visibility="gone"
                     android:layout_marginTop="20dp"
@@ -243,7 +245,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Presione_para_seleccionar_la_hora"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/AzulIteso"
                     android:gravity="center"
                     android:visibility="gone"
                     android:layout_marginTop="20dp"
@@ -251,53 +253,11 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/activity_create_account_layout_car"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/activity_create_account_car"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:singleLine="true"
-                    android:hint="Carro" />
-
-                <EditText
-                    android:id="@+id/activity_create_account_car_color"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:singleLine="true"
-                    android:hint="Color" />
-
-                <EditText
-                    android:id="@+id/activity_create_account_car_capacity"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:inputType="number"
-                    android:hint="Capacidad" />
-
-                <ToggleButton
-                    android:id="@+id/activity_create_account_toggle_available"
-                    android:layout_width="140dp"
-                    android:layout_height="50dp"
-                    android:textOff="No disponible"
-                    android:textOn="Disponible"
-                    android:singleLine="true"
-                    android:checked="true"/>
-
-            </LinearLayout>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Puntos de interés"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:layout_gravity="left"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
@@ -306,6 +266,7 @@
                 android:id="@+id/activity_create_account_interest_points"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:visibility="visible"
                 android:dividerHeight="1dp">
             </ListView>
 
@@ -317,14 +278,64 @@
                 android:textOn="dar ride"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"
+                android:background="@color/verdeGoogle"
+                android:textColor="@android:color/white"
                 android:checked="false"/>
+
+            <LinearLayout
+                android:id="@+id/activity_create_account_layout_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/activity_create_account_car"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:singleLine="true"
+                    android:textColor="@color/AzulIteso"
+                    android:hint="Carro" />
+
+                <EditText
+                    android:id="@+id/activity_create_account_car_color"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/AzulIteso"
+                    android:hint="Color" />
+
+                <EditText
+                    android:id="@+id/activity_create_account_car_capacity"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:textColor="@color/AzulIteso"
+                    android:hint="Capacidad" />
+
+                <ToggleButton
+                    android:id="@+id/activity_create_account_toggle_available"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:textOff="No disponible"
+                    android:textOn="Disponible"
+                    android:singleLine="true"
+                    android:background="@color/AzulIteso"
+                    android:textColor="@android:color/white"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/activity_create_account_create"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:textColor="@android:color/black"
-                android:background="@android:color/darker_gray"
+                android:background="@color/verdeGoogle"
+                android:textColor="@android:color/white"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:text="Crear"/>
@@ -333,7 +344,7 @@
                 android:id="@+id/activity_create_account_back"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:background="@android:color/black"
+                android:background="@color/AzulIteso"
                 android:textColor="@android:color/white"
                 android:layout_gravity="center"
                 android:text="Atrás"/>

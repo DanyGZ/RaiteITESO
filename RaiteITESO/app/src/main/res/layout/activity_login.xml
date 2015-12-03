@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ride ITESO"
                 android:textSize="35sp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/AzulIteso"/>
 
             <ImageView
                 android:id="@+id/activity_login_logo"
@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
+                android:textColor="#002F55"
                 android:textSize="20sp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="55dp"
@@ -44,15 +44,15 @@
                 android:layout_width="250dp"
                 android:layout_height="30dp"
                 android:singleLine="true"
-                android:background="@android:color/black"
-                android:textColor="@android:color/white"
+                android:background="#E0E0E0"
+                android:textColor="@color/AzulIteso"
                 android:paddingLeft="10dp"
                 android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
+                android:textColor="@color/AzulIteso"
                 android:textSize="20sp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="55dp"
@@ -67,8 +67,8 @@
                 android:singleLine="true"
                 android:inputType="textPassword"
                 android:password="true"
-                android:background="@android:color/black"
-                android:textColor="@android:color/white"
+                android:background="#E0E0E0"
+                android:textColor="@color/AzulIteso"
                 android:paddingLeft="10dp"
                 android:layout_gravity="center"/>
 
@@ -78,7 +78,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="50dp"
                 android:textColor="@android:color/black"
-                android:background="@android:color/darker_gray"
+                android:background="@color/verdeGoogle"
                 android:layout_marginBottom="20dp"
                 android:text="Log In"/>
 
@@ -86,7 +86,7 @@
                 android:id="@+id/activity_login_create"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:background="@android:color/black"
+                android:background="@color/AzulIteso"
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="30dp"
                 android:text="Sign Up"/>
