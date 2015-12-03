@@ -1,6 +1,7 @@
 package com.iteso.raiteiteso.gui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,14 +52,16 @@ public class ToggleButtonClass extends RelativeLayout{
             rightButton = (ToggleButton) linearLayout.getChildAt(1);
         }catch(Exception e){}
 
+        leftButton.setTextColor(Color.WHITE);
+        rightButton.setTextColor(Color.WHITE);
         leftButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(leftButton.isChecked() && toggleButtonListener != null){
                     toggleButtonListener.leftButtonClick();
                 }
-                leftButton.setBackgroundColor(context.getResources().getColor(R.color.gray));
-                rightButton.setBackgroundColor(context.getResources().getColor(R.color.black));
+                leftButton.setBackgroundColor(context.getResources().getColor(R.color.verdeGoogle));
+                rightButton.setBackgroundColor(context.getResources().getColor(R.color.AzulIteso));
                 leftButton.setChecked(true);
                 rightButton.setChecked(false);
             }
@@ -70,8 +73,8 @@ public class ToggleButtonClass extends RelativeLayout{
                 if(rightButton.isChecked() && toggleButtonListener != null){
                     toggleButtonListener.rightButtonClick();
                 }
-                leftButton.setBackgroundColor(context.getResources().getColor(R.color.black));
-                rightButton.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                leftButton.setBackgroundColor(context.getResources().getColor(R.color.AzulIteso));
+                rightButton.setBackgroundColor(context.getResources().getColor(R.color.verdeGoogle));
                 rightButton.setChecked(true);
                 leftButton.setChecked(false);
             }
