@@ -21,6 +21,7 @@
         android:typeface="sans"
         android:textSize="20dp"
         android:text="Nombre: "
+        android:textColor="@color/AzulIteso"
         />
 
     <TextView
@@ -30,6 +31,7 @@
         android:typeface="sans"
         android:textSize="18dp"
         android:text="(12:00 pm)"
+        android:textColor="@color/AzulIteso"
         android:layout_alignTop="@+id/activity_item_without_car_name"
         android:layout_toRightOf="@+id/activity_item_without_car_final_point"
         android:layout_toEndOf="@+id/activity_item_without_car_final_point" />
@@ -41,6 +43,7 @@
         android:layout_toRightOf="@+id/activity_item_without_car_image_car"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
+        android:textColor="@color/AzulIteso"
         android:typeface="sans"
         android:textSize="20dp"
         android:text="Punto Final"

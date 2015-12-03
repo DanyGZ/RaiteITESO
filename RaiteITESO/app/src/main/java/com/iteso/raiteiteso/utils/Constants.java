@@ -1,14 +1,28 @@
 package com.iteso.raiteiteso.utils;
 
+import java.util.ArrayList;
+
 /**
  * Created by Daniel on 13/11/2015.
  */
 public class Constants {
-    public static final int MONDAY = 0;
-    public static final int TUESDAY = 1;
-    public static final int WEDNESDAY = 2;
-    public static final int THURSDAY = 3;
-    public static final int FRIDAY = 4;
     public static final String USER_EXTRA = "UserExtra";
     public static final String USER_WITH_CAR_EXTRA = "UserWCExtra";
+    public static final String USER_EXTRA_NAME = "UserExtraName";
+    public static final String USER_EXTRA_HAS_CAR = "HasCar";
+    public static ArrayList<String> interestPoints;
+    public static final String SHARED_PREFERENCES = "SharedPreferences";
+    public static final String OPEN_PROFILE = "OpenProfile";
+    public static final String PROFILE_TYPE = "ProfileType";
+    public static final int WITCHCAR = 0;
+    public static final int WITHOUTCAR = 1;
+
+    public static void fillInterestPoints(){
+        interestPoints = new ArrayList<>();
+        interestPoints.add("Patria");
+        interestPoints.add("Colón");
+        interestPoints.add("Guadalupe");
+        interestPoints.add("López Mateos");
+        interestPoints.add("Plaza del Sol");
+    }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iteso.raiteiteso.gui" >
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,8 +9,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ActivityLogin"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,6 +30,10 @@
         </activity>
         <activity
             android:name=".ActivityRaiteDetail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ActivityEditData"
             android:screenOrientation="portrait" >
         </activity>
     </application>

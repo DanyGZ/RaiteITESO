@@ -19,6 +19,7 @@
         android:layout_below="@+id/activity_raite_details_image"
         android:typeface="sans"
         android:textSize="40dp"
+        android:textColor="@color/AzulIteso"
         android:text="Wey del raite"
         />
 
@@ -38,13 +39,14 @@
         android:gravity="center"
         android:textSize="25sp"
         android:layout_centerInParent="true"
+        android:textColor="@color/AzulIteso"
         android:text="No hay detalles Disponibles"
         />
 
     <ListView
         android:id="@+id/activity_raite_detail_list"
         android:layout_width="300dp"
-        android:layout_height="280dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:dividerHeight="1dp"
         android:layout_below="@+id/activity_raite_detail_toggle_button">
@@ -54,10 +56,13 @@
         android:id="@+id/activity_raite_detail_buttom_raite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/activity_raite_detail_list"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/verdeGoogle"
         android:typeface="sans"
+        android:textColor="@android:color/white"
         android:textSize="20dp"
         android:text="Pedir Raite"
         />

@@ -1,6 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/activity_edit_data_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:src="@drawable/iteso_logo"
+                />
+
+            <TextView
+                android:id="@+id/activity_edit_data_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:layout_gravity="center"
+                android:textColor="@color/AzulIteso"
+                android:text="Editar"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Horarios de salida"
+                android:textColor="@color/AzulIteso"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                style="@style/HourLayoutStyle"
+                android:layout_marginBottom="40dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/activity_edit_data_monday"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".20"
+                        android:textColor="@android:color/white"
+                        android:background="@color/verdeGoogle"
+                        android:text="@string/Lunes"/>
+
+                    <Button
+                        android:id="@+id/activity_edit_data_tuesday"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".20"
+                        android:textColor="@android:color/white"
+                        android:background="@color/AzulIteso"
+                        android:text="@string/Martes"/>
+
+                    <Button
+                        android:id="@+id/activity_edit_data_wednesday"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".20"
+                        android:textColor="@android:color/white"
+                        android:background="@color/AzulIteso"
+                        android:text="@string/Miércoles"/>
+
+                    <Button
+                        android:id="@+id/activity_edit_data_thursday"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".20"
+                        android:textColor="@android:color/white"
+                        android:background="@color/AzulIteso"
+                        android:text="@string/Jueves"/>
+
+                    <Button
+                        android:id="@+id/activity_edit_data_friday"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".20"
+                        android:textColor="@android:color/white"
+                        android:background="@color/AzulIteso"
+                        android:text="@string/Viernes"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/activity_edit_data_monday_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Presione_para_seleccionar_la_hora"
+                    android:layout_gravity="center"
+                    android:textColor="@color/AzulIteso"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/activity_edit_data_tuesday_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Presione_para_seleccionar_la_hora"
+                    android:layout_gravity="center"
+                    android:textColor="@color/AzulIteso"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/activity_edit_data_wednesday_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Presione_para_seleccionar_la_hora"
+                    android:layout_gravity="center"
+                    android:textColor="@color/AzulIteso"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/activity_edit_data_thursday_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Presione_para_seleccionar_la_hora"
+                    android:layout_gravity="center"
+                    android:textColor="@color/AzulIteso"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/activity_edit_data_friday_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Presione_para_seleccionar_la_hora"
+                    android:layout_gravity="center"
+                    android:textColor="@color/AzulIteso"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntos de interés"
+                android:textColor="@color/AzulIteso"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <ListView
+                android:id="@+id/activity_edit_data_interest_points"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:dividerHeight="1dp">
+            </ListView>
+
+            <LinearLayout
+                android:id="@+id/activity_edit_data_layout_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/activity_edit_data_car"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:singleLine="true"
+                    android:textColor="@color/AzulIteso"
+                    android:hint="Carro" />
+
+                <EditText
+                    android:id="@+id/activity_edit_data_car_color"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/AzulIteso"
+                    android:hint="Color" />
+
+                <EditText
+                    android:id="@+id/activity_edit_data_car_capacity"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/AzulIteso"
+                    android:inputType="number"
+                    android:hint="Capacidad" />
+
+                <ToggleButton
+                    android:id="@+id/activity_edit_data_toggle_available"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:textOff="No disponible"
+                    android:textOn="Disponible"
+                    android:singleLine="true"
+                    android:background="@color/verdeGoogle"
+                    android:textColor="@android:color/white"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/activity_edit_data_aceptar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="20sp"
+                android:background="@color/AzulIteso"
+                android:textColor="@android:color/white"
+                android:text="Aceptar"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

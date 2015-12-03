@@ -1,7 +1,12 @@
 package com.iteso.raiteiteso.gui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Created by Daniel on 29/10/2015.
  */
-public class ActivityRaiteDetail extends Activity{
+public class ActivityRaiteDetail extends AppCompatActivity{
     ToggleButtonClass toggleButton;
     private AdapterListRaiteDetail raiteDetail;
     private  ArrayList<String> detail;
@@ -27,11 +32,42 @@ public class ActivityRaiteDetail extends Activity{
     private ArrayList<String> adapterArrayList;
     private Button askForRide;
     private TextView noRaite;
+    private TextView nameView;
     ListView listDetail;
     private DatabaseHandler dh;
     private UserControl userControl;
     private UserWCar user;
     private UserWOCar userWOCar;
+    private SharedPreferences sharedPreferences;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()){
+            case R.id.item_menu_item:
+                intent = new Intent(ActivityRaiteDetail.this, ActivityEditData.class);
+                intent.putExtra(Constants.USER_EXTRA_NAME, userWOCar.getUserName());
+                intent.putExtra(Constants.USER_EXTRA_HAS_CAR, false);
+                startActivity(intent);
+                break;
+            case R.id.item_menu_item_cerrar:
+                intent = new Intent(ActivityRaiteDetail.this, ActivityLogin.class);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(Constants.OPEN_PROFILE);
+                editor.remove(Constants.PROFILE_TYPE);
+                editor.commit();
+                finish();
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +77,9 @@ public class ActivityRaiteDetail extends Activity{
         toggleButton = (ToggleButtonClass) findViewById(R.id.activity_raite_detail_toggle_button);
         askForRide = (Button) findViewById(R.id.activity_raite_detail_buttom_raite);
         noRaite = (TextView) findViewById(R.id.activity_raite_detail_no_raite_detail);
+        nameView = (TextView) findViewById(R.id.activity_raite_detail_name);
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         detail = new ArrayList<>();
         interestPoints = new ArrayList<>();
@@ -48,10 +87,14 @@ public class ActivityRaiteDetail extends Activity{
         dh = DatabaseHandler.getInstance(this);
         userControl = new UserControl(this);
 
+
+
         String userName = getIntent().getStringExtra(Constants.USER_WITH_CAR_EXTRA);
         user = userControl.getUserWithCarByUserName(userName, dh);
         String name = getIntent().getStringExtra(Constants.USER_EXTRA);
         userWOCar = userControl.getUserWithOuthCarByUserName(name, dh);
+
+        nameView.setText(user.getName());
 
         detail.add(user.getCar());
         detail.add(user.getCarColor());
@@ -77,8 +120,7 @@ public class ActivityRaiteDetail extends Activity{
                     }
                 }
             });
-            noRaite.setVisibility(View.VISIBLE);
-            listDetail.setVisibility(View.GONE);
+
         }else{
             askForRide.setVisibility(View.GONE);
         }
@@ -88,12 +130,19 @@ public class ActivityRaiteDetail extends Activity{
             public void leftButtonClick() {
                 raiteDetail = new AdapterListRaiteDetail(interestPoints, ActivityRaiteDetail.this);
                 listDetail.setAdapter(raiteDetail);
+                listDetail.setVisibility(View.VISIBLE);
+                noRaite.setVisibility(View.GONE);
             }
 
             @Override
             public void rightButtonClick() {
-                raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
-                listDetail.setAdapter(raiteDetail);
+                if(userWOCar.getRide().equals("")){
+                    noRaite.setVisibility(View.VISIBLE);
+                    listDetail.setVisibility(View.GONE);
+                }else{
+                    raiteDetail = new AdapterListRaiteDetail(detail, ActivityRaiteDetail.this);
+                    listDetail.setAdapter(raiteDetail);
+                }
             }
         });
 

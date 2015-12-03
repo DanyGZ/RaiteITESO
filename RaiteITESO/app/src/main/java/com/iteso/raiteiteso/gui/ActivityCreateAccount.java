@@ -1,10 +1,14 @@
 package com.iteso.raiteiteso.gui;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -19,10 +23,10 @@ import com.iteso.raiteiteso.beans.UserWCar;
 import com.iteso.raiteiteso.beans.UserWOCar;
 import com.iteso.raiteiteso.database.DatabaseHandler;
 import com.iteso.raiteiteso.database.UserControl;
+import com.iteso.raiteiteso.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
 /**
  * Created by Daniel on 25/10/2015.
  */
@@ -70,9 +74,9 @@ public class ActivityCreateAccount extends Activity {
     private TextView fridayHourText;
     private ListView interestPointsListView;
     private AdapterInterestPoints adapterInterestPoints;
-    private ArrayList<String> interestPoints;
     private UserWOCar user;
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,13 +113,11 @@ public class ActivityCreateAccount extends Activity {
         fridayHourText = (TextView) findViewById(R.id.activity_create_account_friday_hour);
         interestPointsListView = (ListView) findViewById(R.id.activity_create_account_interest_points);
 
-        interestPoints = new ArrayList<>();
-        interestPoints.add("Patria");
-        interestPoints.add("Colón");
-        interestPoints.add("Guadalupe");
-        interestPoints.add("López Mateos");
-        adapterInterestPoints = new AdapterInterestPoints(this, interestPoints);
+
+        Constants.fillInterestPoints();
+        adapterInterestPoints = new AdapterInterestPoints(this, Constants.interestPoints);
         interestPointsListView.setAdapter(adapterInterestPoints);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,11 +141,11 @@ public class ActivityCreateAccount extends Activity {
         mondayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 mondayHourText.setVisibility(View.VISIBLE);
                 tuesdayHourText.setVisibility(View.GONE);
                 wednesdayHourText.setVisibility(View.GONE);
@@ -155,11 +157,11 @@ public class ActivityCreateAccount extends Activity {
         tuesdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 mondayHourText.setVisibility(View.GONE);
                 tuesdayHourText.setVisibility(View.VISIBLE);
                 wednesdayHourText.setVisibility(View.GONE);
@@ -171,11 +173,11 @@ public class ActivityCreateAccount extends Activity {
        wednesdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 mondayHourText.setVisibility(View.GONE);
                 tuesdayHourText.setVisibility(View.GONE);
                 wednesdayHourText.setVisibility(View.VISIBLE);
@@ -187,11 +189,11 @@ public class ActivityCreateAccount extends Activity {
         thursdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.black));
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
                 mondayHourText.setVisibility(View.GONE);
                 tuesdayHourText.setVisibility(View.GONE);
                 wednesdayHourText.setVisibility(View.GONE);
@@ -203,11 +205,11 @@ public class ActivityCreateAccount extends Activity {
         fridayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mondayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.black));
-                fridayEditText.setBackgroundColor(getResources().getColor(R.color.gray));
+                mondayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                tuesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                wednesdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                thursdayEditText.setBackgroundColor(getResources().getColor(R.color.AzulIteso));
+                fridayEditText.setBackgroundColor(getResources().getColor(R.color.verdeGoogle));
                 mondayHourText.setVisibility(View.GONE);
                 tuesdayHourText.setVisibility(View.GONE);
                 wednesdayHourText.setVisibility(View.GONE);
@@ -234,7 +236,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         mondayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
             }
@@ -258,7 +260,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         tuesdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -283,7 +285,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         wednesdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -308,7 +310,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         thursdayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -333,7 +335,7 @@ public class ActivityCreateAccount extends Activity {
                         hourText += selectedMinute;
                         fridayHourText.setText(hourText);
                     }
-                }, hour, minute, false);
+                }, hour, minute, true);
                 mTimePicker.setTitle("Seleccionar hora");
                 mTimePicker.show();
 
@@ -398,7 +400,7 @@ public class ActivityCreateAccount extends Activity {
                     checkedPlacesList = new ArrayList<>();
                     for(int i=0; i<checkedPlaces.size(); i++){
                         if(checkedPlaces.get(i)){
-                            checkedPlacesList.add(interestPoints.get(i));
+                            checkedPlacesList.add(Constants.interestPoints.get(i));
                         }
                     }
                     if(checkedPlacesList.size() == 0){
@@ -420,6 +422,7 @@ public class ActivityCreateAccount extends Activity {
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }else{
                             if(userControl.addUserWithOutCar(user, dh) == -1){
@@ -427,6 +430,7 @@ public class ActivityCreateAccount extends Activity {
                             }else{
                                 Intent intent = new Intent(ActivityCreateAccount.this, ActivityLogin.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                     }

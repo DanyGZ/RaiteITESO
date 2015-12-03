@@ -1,5 +1,6 @@
 package com.iteso.raiteiteso;
 
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ public class ActLoginTest extends ActivityInstrumentationTestCase2<ActivityLogin
     private EditText passwordEditText;
     private ImageView logoImageView;
 
+    private Intent signLaunchIntent;
+
     public ActLoginTest() {
         super(ActivityLogin.class);
     }
@@ -29,6 +32,8 @@ public class ActLoginTest extends ActivityInstrumentationTestCase2<ActivityLogin
     protected void setUp() throws Exception{
         super.setUp();
         setActivityInitialTouchMode(true);
+
+        signLaunchIntent = new Intent(getInstrumentation().getTargetContext(),ActivityLogin.class);
 
         activityLogin = getActivity();
         titleTextView = (TextView) activityLogin.findViewById(R.id.activity_login_title);
@@ -65,25 +70,5 @@ public class ActLoginTest extends ActivityInstrumentationTestCase2<ActivityLogin
         final String expectedSignUpButtonText = "Sign Up";
         final String actualSignUpButtonText = signUpButton.getText().toString();
         assertEquals("signUpButton contains wrong text", expectedSignUpButtonText, actualSignUpButtonText);
-    }
-
-    public void testUserEditText_emptyText() {
-        final String actualUserEditTextText = userEditText.getText().toString();
-        assertEquals("userEditText text isn't empty", "", actualUserEditTextText);
-    }
-
-    public void testUserEditText_emptyHint() {
-        final String actualUserEditTextHint = userEditText.getHint().toString();
-        assertEquals("userEditText hint isn't empty", "", actualUserEditTextHint);
-    }
-
-    public void testPasswordEditText_emptyText() {
-        final String actualPasswordEditTextText = passwordEditText.getText().toString();
-        assertEquals("userEditText text isn't empty", "", actualPasswordEditTextText);
-    }
-
-    public void testPasswordEditText_emptyHint() {
-        final String actualPasswordEditTextHint = passwordEditText.getHint().toString();
-        assertEquals("userEditText hint isn't empty", "", actualPasswordEditTextHint);
     }
 }
